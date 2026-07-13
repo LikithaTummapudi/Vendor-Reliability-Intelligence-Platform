@@ -1,0 +1,105 @@
+<p>procurement-dashboard works!</p>
+<h2>Procurement Dashboard</h2>
+
+<!-- Overview Cards -->
+
+<div class="cards">
+
+  <div class="card" *ngFor="let card of overviewCards">
+    <h4>{{card.title}}</h4>
+    <h2>{{card.value}}</h2>
+  </div>
+
+</div>
+
+<!-- Purchase Orders -->
+
+<div class="table-container">
+
+  <h3>Active Purchase Orders</h3>
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>PO Number</th>
+        <th>Vendor</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Expected Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let order of purchaseOrders">
+        <td>{{order.po}}</td>
+        <td>{{order.vendor}}</td>
+        <td>{{order.category}}</td>
+        <td>{{order.amount}}</td>
+        <td>{{order.status}}</td>
+        <td>{{order.expected}}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+<!-- Vendor Performance -->
+
+<div class="vendor-card">
+
+  <h3>Vendor Performance Summary</h3>
+
+  <div *ngFor="let vendor of vendors">
+
+    <div class="vendor-header">
+      <span>{{vendor.name}}</span>
+      <span>{{vendor.score}}</span>
+    </div>
+
+    <div class="progress">
+      <div
+        class="progress-bar"
+        [style.width.%]="vendor.score">
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Charts -->
+
+<div class="charts">
+
+  <div class="chart-card">
+
+    <h3>Procurement Cost Analysis</h3>
+
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="'bar'">
+    </canvas>
+
+  </div>
+
+  <div class="chart-card">
+
+    <h3>Delivery Status</h3>
+
+    <canvas
+      baseChart
+      [data]="deliveryChartData"
+      [options]="deliveryChartOptions"
+      [type]="'doughnut'">
+    </canvas>
+
+  </div>
+
+</div>

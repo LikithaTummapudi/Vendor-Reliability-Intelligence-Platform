@@ -1,0 +1,20 @@
+.header {
+  height: 70px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+.header input {
+  width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.profile {
+  font-weight: 600;
+}

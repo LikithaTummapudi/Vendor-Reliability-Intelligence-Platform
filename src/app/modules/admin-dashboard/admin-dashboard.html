@@ -1,0 +1,88 @@
+<h2>Admin Dashboard</h2>
+
+<div class="cards">
+
+  <div class="card">
+    <h4>Total Users</h4>
+    <h2>{{totalUsers}}</h2>
+  </div>
+
+  <div class="card">
+    <h4>Active Vendors</h4>
+    <h2>{{activeVendors}}</h2>
+  </div>
+
+  <div class="card">
+    <h4>Pending Approvals</h4>
+    <h2>{{pendingApprovals}}</h2>
+  </div>
+
+  <div class="card">
+    <h4>System Uptime</h4>
+    <h2>{{systemUptime}}</h2>
+  </div>
+
+</div>
+
+<div class="charts">
+
+  <div class="chart-card">
+    <h3>Vendor Analytics</h3>
+
+    <canvas
+      baseChart
+      [data]="vendorAnalyticsData"
+      [type]="'bar'">
+    </canvas>
+  </div>
+
+  <div class="chart-card">
+    <h3>Compliance Monitoring</h3>
+
+    <canvas
+      baseChart
+      [data]="complianceData"
+      [type]="'doughnut'">
+    </canvas>
+  </div>
+
+</div>
+
+<div class="table-card">
+  <h3>User Management</h3>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Status</th>
+    </tr>
+
+    <tr *ngFor="let user of users">
+      <td>{{user.name}}</td>
+      <td>{{user.role}}</td>
+      <td>{{user.status}}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="table-card">
+  <h3>Procurement Reports</h3>
+
+  <ul>
+    <li *ngFor="let report of reports">
+      {{report}}
+    </li>
+  </ul>
+</div>
+
+<div class="table-card">
+  <h3>System Statistics</h3>
+
+  <table>
+    <tr *ngFor="let stat of systemStats">
+      <td>{{stat.label}}</td>
+      <td>{{stat.value}}</td>
+    </tr>
+  </table>
+</div>

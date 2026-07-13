@@ -1,0 +1,21 @@
+<p>notifications works!</p>
+<h2>Notification Center</h2>
+
+<div class="notification-container">
+
+  <div class="notification-card" *ngFor="let item of notifications">
+
+    <div class="notification-header">
+      <h4>{{item.title}}</h4>
+      <span>{{item.time}}</span>
+    </div>
+
+    <p>{{item.message}}</p>
+
+    <div class="badge">
+      {{item.type}}
+    </div>
+
+  </div>
+
+</div>

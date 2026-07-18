@@ -1,0 +1,144 @@
+<div class="login-container">
+
+  <!-- Left Section -->
+  <div class="left-panel">
+
+    <h1>
+      Enterprise Grade
+      <span>Reliability</span>
+    </h1>
+
+    <p>
+      Intelligent procurement decisions powered by advanced vendor intelligence.
+    </p>
+
+    <img
+      src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=700"
+      alt="Vendor Platform">
+
+  </div>
+
+  <!-- Right Section -->
+  <div class="right-panel">
+
+    <h2>Smarter Procurement</h2>
+
+    <h1>Welcome Back</h1>
+
+    <p>Sign in to access your vendor dashboard.</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+      <!-- Email -->
+
+      <div class="input-group">
+
+  <label>Corporate Email</label>
+
+  <input
+    type="email"
+    placeholder="name@company.com"
+    formControlName="email">
+
+  <div
+    class="error"
+    *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">
+
+    Email is required
+
+  </div>
+
+  <div
+    class="error"
+    *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.hasError('email')">
+
+    Enter a valid email address
+
+  </div>
+
+</div>
+      <!-- Password -->
+
+      <div class="input-group">
+
+  <label>Password</label>
+
+  <div class="password-wrapper">
+
+    <input
+      [type]="hidePassword ? 'password' : 'text'"
+      placeholder="Password"
+      formControlName="password">
+
+    <button
+      type="button"
+      class="eye-btn"
+      (click)="hidePassword = !hidePassword">
+
+      {{ hidePassword ? '👁️' : '🙈' }}
+
+    </button>
+
+  </div>
+
+  <div
+    class="error"
+    *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
+
+    Password is required
+
+  </div>
+
+  <div
+    class="error"
+    *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')">
+
+    Password must contain at least 8 characters
+
+  </div>
+
+
+
+</div>
+
+      <div class="options">
+
+        <label>
+          <input type="checkbox" formControlName="rememberMe">
+          Remember Me
+        </label>
+
+        <a href="#">Forgot Password?</a>
+
+      </div>
+
+      <button type="submit">
+        Sign In
+      </button>
+
+    </form>
+
+    <div class="divider">
+      <span>or continue with</span>
+    </div>
+
+    <div class="social-buttons">
+
+      <button type="button">
+        SSO
+      </button>
+
+      <button type="button">
+        SmartCard
+      </button>
+
+    </div>
+
+    <p class="register-text">
+      Don't have an account?
+      <a routerLink="/register">Register</a>
+    </p>
+
+  </div>
+
+</div>

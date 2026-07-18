@@ -1,0 +1,223 @@
+<div class="login-container">
+
+  <!-- Left Section -->
+  <div class="left-panel">
+
+    <h1>
+      Enterprise Grade
+      <span>Reliability</span>
+    </h1>
+
+    <p>
+      Intelligent procurement decisions powered by advanced vendor intelligence.
+    </p>
+
+    <img
+      src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=700"
+      alt="Vendor Platform"
+      class="hero-image">
+
+  </div>
+
+  <!-- Right Section -->
+  <div class="right-panel">
+
+    <h2>Smarter Procurement</h2>
+
+    <h1>Create Account</h1>
+
+    <p>Create your account to access the Vendor Reliability Platform.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <!-- Full Name -->
+      <div class="input-group">
+
+        <label>Full Name</label>
+
+        <input
+          type="text"
+          placeholder="Enter your full name"
+          formControlName="fullName">
+
+        <div
+          class="error"
+          *ngIf="registerForm.get('fullName')?.touched &&
+                 registerForm.get('fullName')?.hasError('required')">
+
+          Full Name is required
+
+        </div>
+
+        <div
+          class="error"
+          *ngIf="registerForm.get('fullName')?.touched &&
+                 registerForm.get('fullName')?.hasError('minlength')">
+
+          Minimum 3 characters required
+
+        </div>
+
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+
+        <label>Corporate Email</label>
+
+        <input
+          type="email"
+          placeholder="name@company.com"
+          formControlName="email">
+
+        <div
+          class="error"
+          *ngIf="registerForm.get('email')?.touched &&
+                 registerForm.get('email')?.hasError('required')">
+
+          Email is required
+
+        </div>
+
+        <div
+          class="error"
+          *ngIf="registerForm.get('email')?.touched &&
+                 registerForm.get('email')?.hasError('email')">
+
+          Enter a valid email address
+
+        </div>
+
+      </div>
+
+      <!-- Phone -->
+      <div class="input-group">
+
+        <label>Phone Number</label>
+
+        <input
+          type="text"
+          placeholder="Enter 10-digit phone number"
+          formControlName="phone">
+
+        <div
+          class="error"
+          *ngIf="registerForm.get('phone')?.touched &&
+                 registerForm.get('phone')?.hasError('required')">
+
+          Phone Number is required
+
+        </div>
+
+        <div
+          class="error"
+          *ngIf="registerForm.get('phone')?.touched &&
+                 registerForm.get('phone')?.hasError('pattern')">
+
+          Enter a valid 10-digit phone number
+
+        </div>
+
+      </div>
+
+      <!-- Password -->
+    
+<div class="input-group">
+
+  <label>Password</label>
+
+  <div class="password-wrapper">
+
+    <input
+      [type]="hidePassword ? 'password' : 'text'"
+      placeholder="Enter your password"
+      formControlName="password">
+
+    <button
+      type="button"
+      class="eye-btn"
+      (click)="hidePassword = !hidePassword">
+
+      {{ hidePassword ? 'Show' : 'Hide' }}
+
+    </button>
+
+  </div>
+
+  <div
+    class="error"
+    *ngIf="registerForm.get('password')?.touched &&
+           registerForm.get('password')?.hasError('required')">
+    Password is required
+  </div>
+
+  <div
+    class="error"
+    *ngIf="registerForm.get('password')?.touched &&
+           registerForm.get('password')?.hasError('minlength')">
+    Minimum 8 characters required
+  </div>
+
+  <div
+    class="error"
+    *ngIf="registerForm.get('password')?.touched &&
+           registerForm.get('password')?.hasError('pattern')">
+    Password must contain uppercase, lowercase, number and special character
+  </div>
+
+</div>
+
+      <!-- Confirm Password -->
+    
+<div class="input-group">
+
+  <label>Confirm Password</label>
+
+  <div class="password-wrapper">
+
+    <input
+      [type]="hideConfirmPassword ? 'password' : 'text'"
+      placeholder="Confirm your password"
+      formControlName="confirmPassword">
+
+    <button
+      type="button"
+      class="eye-btn"
+      (click)="hideConfirmPassword = !hideConfirmPassword">
+
+      {{ hideConfirmPassword ? 'Show' : 'Hide' }}
+
+    </button>
+
+  </div>
+
+  <div
+    class="error"
+    *ngIf="registerForm.get('confirmPassword')?.touched &&
+           registerForm.get('confirmPassword')?.hasError('required')">
+    Confirm Password is required
+  </div>
+
+  <div
+    class="error"
+    *ngIf="registerForm.hasError('passwordMismatch') &&
+           registerForm.get('confirmPassword')?.touched">
+    Passwords do not match.
+  </div>
+
+</div>
+
+      <button type="submit">
+        Register
+      </button>
+
+    </form>
+
+    <p class="register-text">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+
+  </div>
+
+</div>

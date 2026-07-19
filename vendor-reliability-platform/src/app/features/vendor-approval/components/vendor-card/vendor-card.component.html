@@ -1,0 +1,94 @@
+<mat-card class="vendor-card">
+
+    <div class="top">
+
+        <div>
+
+            <h2>
+
+                {{ vendor.companyName }}
+
+            </h2>
+
+            <p>
+
+                {{ vendor.category }}
+
+            </p>
+
+        </div>
+
+        <app-status-chip
+            [status]="vendor.status">
+        </app-status-chip>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div class="details">
+
+        <div>
+
+            <mat-icon>person</mat-icon>
+
+            {{ vendor.contactPerson }}
+
+        </div>
+
+        <div>
+
+            <mat-icon>mail</mat-icon>
+
+            {{ vendor.email }}
+
+        </div>
+
+        <div>
+
+            <mat-icon>phone</mat-icon>
+
+            {{ vendor.phone }}
+
+        </div>
+
+        <div>
+
+            <mat-icon>location_on</mat-icon>
+
+            {{ vendor.city }}, {{ vendor.country }}
+
+        </div>
+
+    </div>
+
+    <div class="scores">
+
+        <div>
+
+            <span>Reliability</span>
+
+            <strong>{{ vendor.reliabilityScore }}%</strong>
+
+        </div>
+
+        <div>
+
+            <span>Risk</span>
+
+            <strong>{{ vendor.riskScore }}%</strong>
+
+        </div>
+
+    </div>
+
+    <button
+        mat-flat-button
+        color="primary"
+        (click)="openVendor()">
+
+        View Details
+
+    </button>
+
+</mat-card>

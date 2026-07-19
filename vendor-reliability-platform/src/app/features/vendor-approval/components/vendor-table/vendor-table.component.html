@@ -1,0 +1,303 @@
+<mat-card class="vendor-table-card">
+
+    <table
+        mat-table
+        [dataSource]="dataSource"
+        matSort>
+
+        <!-- Checkbox -->
+
+        <ng-container matColumnDef="select">
+
+            <th
+                mat-header-cell
+                *matHeaderCellDef>
+
+                <mat-checkbox
+                    (change)="toggleAllRows()"
+                    [checked]="isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+
+            </th>
+
+            <td
+                mat-cell
+                *matCellDef="let vendor">
+
+                <mat-checkbox
+                    (click)="$event.stopPropagation()"
+                    (change)="selection.toggle(vendor)"
+                    [checked]="selection.isSelected(vendor)">
+                </mat-checkbox>
+
+            </td>
+
+        </ng-container>
+
+        <!-- Vendor -->
+
+        <ng-container matColumnDef="company">
+
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+
+                Vendor Name
+
+            </th>
+
+            <td
+                mat-cell
+                *matCellDef="let vendor">
+
+                <div class="vendor-info">
+
+                    <div class="vendor-avatar">
+
+                        {{ getInitials(vendor.companyName) }}
+
+                    </div>
+
+                    <div>
+
+                        <div class="vendor-name">
+
+                            {{ vendor.companyName }}
+
+                        </div>
+
+                        <div class="vendor-id">
+
+                            ID : {{ vendor.id }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+        </ng-container>
+
+        <!-- Category -->
+
+        <ng-container matColumnDef="category">
+
+            <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header>
+
+                Category
+
+            </th>
+
+            <td
+                mat-cell
+                *matCellDef="let vendor">
+
+                {{ vendor.category }}
+
+            </td>
+
+        </ng-container>
+
+        <!-- Reliability -->
+
+        <ng-container matColumnDef="reliability">
+
+            <th
+                mat-header-cell
+                *matHeaderCellDef>
+
+                Reliability
+
+            </th>
+
+            <td
+                mat-cell
+                *matCellDef="let vendor">
+
+                <div
+                    class="score-circle"
+                    [ngClass]="getReliabilityClass(vendor.reliabilityScore)">
+
+                    {{ vendor.reliabilityScore }}
+
+                </div>
+
+            </td>
+
+        </ng-container>
+
+        <!-- Risk -->
+
+        <ng-container matColumnDef="risk">
+
+            <th
+                mat-header-cell
+                *matHeaderCellDef>
+
+                Risk Level
+
+            </th>
+
+            <td
+                mat-cell
+                *matCellDef="let vendor">
+
+                <span
+                    class="risk-pill"
+                    [ngClass]="getRiskClass(vendor.riskScore)">
+
+                    {{ getRiskLabel(vendor.riskScore) }}
+
+                </span>
+
+            </td>
+
+        </ng-container>
+
+        <!-- Performance -->
+
+        <ng-container matColumnDef="performance">
+
+            <th
+                mat-header-cell
+                *matHeaderCellDef>
+
+                Performance
+
+            </th>
+
+            <td
+                mat-cell
+                *matCellDef="let vendor">
+
+                <div class="performance">
+
+                    <div class="stars">
+
+                        <mat-icon
+                            *ngFor="let star of getStars(vendor.reliabilityScore)"
+                            [class.filled]="star">
+
+                            star
+
+                        </mat-icon>
+
+                    </div>
+
+                    <span>
+
+                        {{ getRating(vendor.reliabilityScore) }}
+
+                    </span>
+
+                </div>
+
+            </td>
+
+        </ng-container>
+
+        <!-- Status -->
+
+        <ng-container matColumnDef="status">
+
+            <th
+                mat-header-cell
+                *matHeaderCellDef>
+
+                Status
+
+            </th>
+
+            <td
+                mat-cell
+                *matCellDef="let vendor">
+
+                <span
+                    class="status-pill"
+                    [ngClass]="vendor.status.toLowerCase().replace(' ','-')">
+
+                    {{ vendor.status }}
+
+                </span>
+
+            </td>
+
+        </ng-container>
+
+        <!-- Actions -->
+
+        <ng-container matColumnDef="actions">
+
+    <th
+        mat-header-cell
+        *matHeaderCellDef>
+
+        Actions
+
+    </th>
+
+    <td
+        mat-cell
+        *matCellDef="let vendor">
+
+        <div class="table-actions">
+
+            <button
+                mat-icon-button
+                class="view-btn"
+                (click)="view.emit(vendor.id)">
+
+                <mat-icon>visibility</mat-icon>
+
+            </button>
+
+            <button
+                mat-icon-button
+                class="approve-btn"
+                (click)="approve.emit(vendor.id)">
+
+                <mat-icon>check</mat-icon>
+
+            </button>
+
+            <button
+                mat-icon-button
+                class="reject-btn"
+                (click)="reject.emit(vendor.id)">
+
+                <mat-icon>close</mat-icon>
+
+            </button>
+
+        </div>
+
+    </td>
+
+</ng-container>
+
+        <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns">
+        </tr>
+
+        <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+
+    </table>
+
+    <mat-paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[10,20,50]"
+        showFirstLastButtons>
+    </mat-paginator>
+
+</mat-card>

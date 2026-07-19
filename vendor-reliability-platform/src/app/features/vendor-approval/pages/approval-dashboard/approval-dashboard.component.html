@@ -1,0 +1,168 @@
+<div class="vendor-page">
+
+  <div class="page-header">
+
+    <div>
+
+      <h1>Vendor Management</h1>
+
+      <p>
+        Manage, evaluate and monitor all vendors from one centralized location.
+      </p>
+
+    </div>
+
+    <div class="header-actions">
+
+      <button mat-stroked-button>
+        <mat-icon>refresh</mat-icon>
+        Refresh
+      </button>
+
+      <button mat-stroked-button>
+        <mat-icon>download</mat-icon>
+        Export
+      </button>
+
+      <button mat-stroked-button>
+        <mat-icon>upload</mat-icon>
+        Import
+      </button>
+
+      <button mat-flat-button color="primary">
+        <mat-icon>add</mat-icon>
+        Add Vendor
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="stats-layout">
+
+    <div class="large-cards">
+
+        <mat-card class="stat-card large">
+
+            <div class="card-top">
+
+                <div class="icon purple">
+                    <mat-icon>groups</mat-icon>
+                </div>
+
+                <span class="growth positive">
+                    +12%
+                </span>
+
+            </div>
+
+            <div class="label">
+                Total Vendors
+            </div>
+
+            <h2>
+                {{ total }}
+            </h2>
+
+        </mat-card>
+
+        <mat-card class="stat-card large">
+
+            <div class="card-top">
+
+                <div class="icon green">
+                    <mat-icon>verified</mat-icon>
+                </div>
+
+                <span class="growth success">
+                    +5%
+                </span>
+
+            </div>
+
+            <div class="label">
+                Approved Vendors
+            </div>
+
+            <h2>
+                {{ approved }}
+            </h2>
+
+        </mat-card>
+
+    </div>
+
+    <div class="small-cards">
+
+        <mat-card class="stat-card small">
+
+            <div class="small-title">
+                Pending
+            </div>
+
+            <h3>
+                {{ pending }}
+            </h3>
+
+        </mat-card>
+
+        <mat-card class="stat-card small">
+
+            <div class="small-title">
+                Rejected
+            </div>
+
+            <h3>
+                {{ rejected }}
+            </h3>
+
+        </mat-card>
+
+        <mat-card class="stat-card small">
+
+            <div class="small-title">
+                Avg Reliability
+            </div>
+
+            <h3 class="purple-text">
+                {{ averageReliability }}%
+            </h3>
+
+        </mat-card>
+
+        <mat-card class="stat-card small">
+
+            <div class="small-title">
+                High Risk
+            </div>
+
+            <h3>
+                {{ highRisk }}
+            </h3>
+
+        </mat-card>
+
+    </div>
+
+</div>
+
+  <mat-card class="filter-card">
+
+    <app-filter-toolbar
+      (filtersChanged)="onFiltersChanged($event)">
+    </app-filter-toolbar>
+
+  </mat-card>
+
+  <section>
+
+    <app-vendor-table
+      [vendors]="filteredVendors"
+      (approve)="approveVendor($event)"
+      (reject)="rejectVendor($event)"
+      (view)="viewVendor($event)">
+    </app-vendor-table>
+
+  </section>
+
+</div>

@@ -1,0 +1,282 @@
+<div
+    class="review-page"
+    *ngIf="vendor">
+
+    <div class="top-section">
+
+        <div class="company-card">
+
+            <div class="avatar">
+
+                {{ vendor.companyName.substring(0,2).toUpperCase() }}
+
+            </div>
+
+            <div>
+
+                <h1>
+
+                    {{ vendor.companyName }}
+
+                </h1>
+
+                <p>
+
+                    {{ vendor.category }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                mat-flat-button
+                color="primary">
+
+                Approve
+
+            </button>
+
+            <button
+                mat-flat-button
+                color="accent">
+
+                Request Changes
+
+            </button>
+
+            <button
+                mat-flat-button
+                color="warn">
+
+                Reject
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="grid">
+
+        <mat-card>
+
+            <h2>
+
+                Company Information
+
+            </h2>
+
+            <mat-divider></mat-divider>
+
+            <div class="info-grid">
+
+                <div>
+
+                    <label>Registration</label>
+
+                    <span>
+
+                        {{ vendor.registrationNumber }}
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <label>Established</label>
+
+                    <span>
+
+                        {{ vendor.establishedYear }}
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <label>Contact</label>
+
+                    <span>
+
+                        {{ vendor.contactPerson }}
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <label>Email</label>
+
+                    <span>
+
+                        {{ vendor.email }}
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <label>Phone</label>
+
+                    <span>
+
+                        {{ vendor.phone }}
+
+                    </span>
+
+                </div>
+
+                <div>
+
+                    <label>Location</label>
+
+                    <span>
+
+                        {{ vendor.city }},
+                        {{ vendor.country }}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </mat-card>
+
+        <div class="score-column">
+
+            <mat-card>
+
+                <h3>
+
+                    Reliability Score
+
+                </h3>
+
+                <h1>
+
+                    {{ vendor.reliabilityScore }}%
+
+                </h1>
+
+                <mat-progress-bar
+                    mode="determinate"
+                    [value]="vendor.reliabilityScore">
+                </mat-progress-bar>
+
+            </mat-card>
+
+            <mat-card>
+
+                <h3>
+
+                    Risk Score
+
+                </h3>
+
+                <h1>
+
+                    {{ vendor.riskScore }}%
+
+                </h1>
+
+                <mat-progress-bar
+                    mode="determinate"
+                    [value]="vendor.riskScore">
+                </mat-progress-bar>
+
+            </mat-card>
+
+        </div>
+
+    </div>
+
+    <div class="bottom-grid">
+
+        <mat-card>
+
+            <h2>
+
+                Uploaded Documents
+
+            </h2>
+
+            <div
+                class="document"
+                *ngFor="let doc of vendor.documents">
+
+                <div>
+
+                    <mat-icon>
+
+                        description
+
+                    </mat-icon>
+
+                    {{ doc.name }}
+
+                </div>
+
+                <button mat-button>
+
+                    View
+
+                </button>
+
+            </div>
+
+        </mat-card>
+
+        <mat-card>
+
+            <h2>
+
+                Activity Timeline
+
+            </h2>
+
+            <div
+                class="timeline-item"
+                *ngFor="let event of vendor.timeline">
+
+                <div class="dot">
+
+                </div>
+
+                <div>
+
+                    <strong>
+
+                        {{ event.title }}
+
+                    </strong>
+
+                    <p>
+
+                        {{ event.description }}
+
+                    </p>
+
+                    <small>
+
+                        {{ event.date | date:'medium' }}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </mat-card>
+
+    </div>
+
+</div>

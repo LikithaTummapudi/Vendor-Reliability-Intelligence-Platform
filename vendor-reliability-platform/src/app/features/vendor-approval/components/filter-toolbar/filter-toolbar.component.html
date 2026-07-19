@@ -1,0 +1,98 @@
+<form
+  class="filter-toolbar"
+  [formGroup]="form">
+
+  <div class="search-box">
+
+    <mat-icon>search</mat-icon>
+
+    <input
+      type="text"
+      placeholder="Search vendors..."
+      formControlName="search">
+
+  </div>
+
+  <mat-form-field appearance="outline">
+
+    <mat-label>Category</mat-label>
+
+    <mat-select formControlName="category">
+
+      <mat-option
+        *ngFor="let category of categories"
+        [value]="category">
+
+        {{ category }}
+
+      </mat-option>
+
+    </mat-select>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+
+    <mat-label>Status</mat-label>
+
+    <mat-select formControlName="status">
+
+      <mat-option
+        *ngFor="let status of statuses"
+        [value]="status">
+
+        {{ status }}
+
+      </mat-option>
+
+    </mat-select>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+
+    <mat-label>Risk</mat-label>
+
+    <mat-select formControlName="risk">
+
+      <mat-option
+        *ngFor="let risk of risks"
+        [value]="risk">
+
+        {{ risk }}
+
+      </mat-option>
+
+    </mat-select>
+
+  </mat-form-field>
+
+  <button
+    mat-stroked-button
+    type="button">
+
+    <mat-icon>tune</mat-icon>
+
+    More Filters
+
+  </button>
+
+  <button
+    mat-button
+    type="button"
+    (click)="clearFilters()">
+
+    Clear
+
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    type="button">
+
+    Save Filter
+
+  </button>
+
+</form>

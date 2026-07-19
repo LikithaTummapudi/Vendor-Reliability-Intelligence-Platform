@@ -1,0 +1,25 @@
+<div class="conversation-panel">
+
+    <div class="search-box">
+
+        <mat-icon>
+
+            search
+
+        </mat-icon>
+
+        <input
+            placeholder="Search conversations...">
+
+    </div>
+
+    <div class="conversation-scroll">
+
+        <app-conversation-card
+            *ngFor="let conversation of conversations"
+            [conversation]="conversation">
+        </app-conversation-card>
+
+    </div>
+
+</div>

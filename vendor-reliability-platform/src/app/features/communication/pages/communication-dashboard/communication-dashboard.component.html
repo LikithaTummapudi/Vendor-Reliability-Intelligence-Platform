@@ -1,0 +1,36 @@
+<div class="communication-layout">
+
+    <app-side-navigation></app-side-navigation>
+
+    <div class="main-content">
+
+        <app-top-navbar></app-top-navbar>
+
+        <div class="content-grid">
+
+            <app-conversation-list></app-conversation-list>
+
+            <div class="chat-section">
+
+                <app-chat-header></app-chat-header>
+
+                <div class="messages-container">
+
+                    <app-message-bubble
+                        *ngFor="let message of messages"
+                        [message]="message">
+                    </app-message-bubble>
+
+                </div>
+
+                <app-message-composer></app-message-composer>
+
+            </div>
+
+            <app-right-sidebar></app-right-sidebar>
+
+        </div>
+
+    </div>
+
+</div>

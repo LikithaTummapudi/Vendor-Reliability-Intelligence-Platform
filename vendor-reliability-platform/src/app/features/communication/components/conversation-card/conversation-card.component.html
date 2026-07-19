@@ -1,0 +1,70 @@
+<div class="conversation-card">
+
+    <div class="avatar-wrapper">
+
+        <div class="avatar">
+
+            {{ getInitials(conversation.name) }}
+
+        </div>
+
+        <span
+            *ngIf="conversation.online"
+            class="online-dot">
+        </span>
+
+    </div>
+
+    <div class="conversation-content">
+
+        <div class="top-row">
+
+            <h3>
+
+                {{ conversation.name }}
+
+            </h3>
+
+            <span class="time">
+
+                {{ conversation.time }}
+
+            </span>
+
+        </div>
+
+        <div class="company">
+
+            {{ conversation.company }}
+
+        </div>
+
+        <div class="message">
+
+            {{ conversation.message }}
+
+        </div>
+
+        <div class="bottom-row">
+
+            <span
+                *ngIf="conversation.priority"
+                class="priority">
+
+                {{ conversation.priority }}
+
+            </span>
+
+            <span
+                *ngIf="conversation.unread>0"
+                class="unread">
+
+                {{ conversation.unread }}
+
+            </span>
+
+        </div>
+
+    </div>
+
+</div>

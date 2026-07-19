@@ -1,0 +1,29 @@
+<div
+class="message-row"
+[class.own]="message.mine">
+
+    <div
+    class="avatar"
+    *ngIf="!message.mine">
+
+        {{message.initials}}
+
+    </div>
+
+    <div class="bubble-column">
+
+        <div class="bubble">
+
+            {{message.text}}
+
+        </div>
+
+        <span class="time">
+
+            {{message.time}}
+
+        </span>
+
+    </div>
+
+</div>

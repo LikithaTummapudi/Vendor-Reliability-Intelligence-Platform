@@ -1,91 +1,256 @@
-<div class="sidebar">
+<div
+  class="sidebar"
+  [class.collapsed]="collapsed">
 
-    <div>
+    <!-- ==========================
+         HEADER
+    =========================== -->
 
-        <div class="logo">
+    <div class="sidebar-header">
 
-            <h1>Vendor Intelligence</h1>
+        <div class="brand">
 
-            <div class="module">
+            <div class="logo">
 
-                Communications
+                VR
+
+            </div>
+
+            <div
+                class="brand-info"
+                *ngIf="!collapsed">
+
+                <h2>
+
+                    VendorHub
+
+                </h2>
+
+                <span>
+
+                    Communication
+
+                </span>
 
             </div>
 
         </div>
 
         <button
-            mat-flat-button
-            color="primary"
-            class="new-message">
+            mat-icon-button
+            (click)="toggleSidebar()">
 
-            <mat-icon>edit_square</mat-icon>
+            <mat-icon>
 
-            New Message
+                {{collapsed ? 'chevron_right' : 'chevron_left'}}
+
+            </mat-icon>
 
         </button>
 
-        <nav>
+    </div>
 
-            <a class="active">
+    <!-- ==========================
+         WORKSPACE
+    =========================== -->
 
-                <mat-icon>chat</mat-icon>
+    <div
+        class="workspace"
+        *ngIf="!collapsed">
 
-                Messages
+        <small>
 
-            </a>
+            WORKSPACE
 
-            <a>
+        </small>
 
-                <mat-icon>forum</mat-icon>
+        <div class="workspace-card">
 
-                Threads
+            <div>
 
-            </a>
+                <h3>
 
-            <a>
+                    12
 
-                <mat-icon>archive</mat-icon>
+                </h3>
 
-                Archive
+                <span>
 
-            </a>
+                    Active Chats
 
-            <a>
+                </span>
 
-                <mat-icon>folder</mat-icon>
+            </div>
 
-                Files
+            <div>
 
-            </a>
+                <h3>
 
-            <a>
+                    156
 
-                <mat-icon>history</mat-icon>
+                </h3>
 
-                Logs
+                <span>
 
-            </a>
+                    Files
 
-        </nav>
+                </span>
+
+            </div>
+
+            <div>
+
+                <h3>
+
+                    28
+
+                </h3>
+
+                <span>
+
+                    Threads
+
+                </span>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <div class="bottom">
+    <!-- ==========================
+         NAVIGATION
+    =========================== -->
 
-        <a>
+    <nav>
 
-            <mat-icon>help</mat-icon>
+        <a
 
-            Support
+            *ngFor="let item of menu"
+
+            class="nav-item"
+
+            [routerLink]="item.route"
+
+            routerLinkActive="active">
+
+            <mat-icon>
+
+                {{item.icon}}
+
+            </mat-icon>
+
+            <span *ngIf="!collapsed">
+
+                {{item.title}}
+
+            </span>
 
         </a>
 
-        <a>
+    </nav>
 
-            <mat-icon>person</mat-icon>
+    <!-- ==========================
+         CONTACTS
+    =========================== -->
 
-            Account
+    <div
+        class="contacts"
+        *ngIf="!collapsed">
+
+        <small>
+
+            QUICK CONTACTS
+
+        </small>
+
+        <div
+            class="contact"
+            *ngFor="let person of contacts">
+
+            <div class="avatar">
+
+                {{person.name.charAt(0)}}
+
+                <span
+                    class="online"
+                    *ngIf="person.online">
+
+                </span>
+
+            </div>
+
+            <div class="contact-info">
+
+                <strong>
+
+                    {{person.name}}
+
+                </strong>
+
+                <small>
+
+                    {{person.online ? 'Online' : 'Offline'}}
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================
+         FOOTER
+    =========================== -->
+
+    <div class="sidebar-footer">
+
+        <a class="nav-item">
+
+            <mat-icon>
+
+                settings
+
+            </mat-icon>
+
+            <span *ngIf="!collapsed">
+
+                Settings
+
+            </span>
+
+        </a>
+
+        <a class="nav-item">
+
+            <mat-icon>
+
+                help
+
+            </mat-icon>
+
+            <span *ngIf="!collapsed">
+
+                Help
+
+            </span>
+
+        </a>
+
+        <a class="nav-item logout">
+
+            <mat-icon>
+
+                logout
+
+            </mat-icon>
+
+            <span *ngIf="!collapsed">
+
+                Logout
+
+            </span>
 
         </a>
 

@@ -1,0 +1,454 @@
+:host {
+    display: block;
+    height: 100%;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar {
+
+    width: 280px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    border-right: 1px solid #e8eaf1;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: width .3s ease;
+
+    overflow: hidden;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+
+}
+
+/* ==========================================
+   COLLAPSED
+========================================== */
+
+.sidebar.collapsed {
+
+    width: 84px;
+
+}
+
+/* ==========================================
+   BRAND
+========================================== */
+
+.brand {
+
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 18px;
+
+    border-bottom: 1px solid #eceff5;
+
+}
+
+.brand-logo {
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg,#6d4aff,#8d67ff);
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: 700;
+
+    font-size: 18px;
+
+    flex-shrink: 0;
+
+}
+
+.brand-text {
+
+    flex: 1;
+
+}
+
+.brand-text h2 {
+
+    margin: 0;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: #222;
+
+}
+
+.brand-text span {
+
+    font-size: 12px;
+
+    color: #8b8b8b;
+
+}
+
+.collapse-btn {
+
+    margin-left: auto;
+
+}
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+.navigation {
+
+    flex: 1;
+
+    padding: 16px 10px;
+
+    overflow-y: auto;
+
+}
+
+.navigation::-webkit-scrollbar {
+
+    width: 6px;
+
+}
+
+.navigation::-webkit-scrollbar-thumb {
+
+    background: #d9d9d9;
+
+    border-radius: 20px;
+
+}
+
+.nav-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 16px;
+
+    margin-bottom: 6px;
+
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    color: #555;
+
+    transition: .25s;
+
+    position: relative;
+
+}
+
+.nav-item mat-icon {
+
+    flex-shrink: 0;
+
+}
+
+.nav-item:hover {
+
+    background: #f4f1ff;
+
+    color: #6d4aff;
+
+}
+
+.nav-item.active {
+
+    background: #ede8ff;
+
+    color: #6d4aff;
+
+    font-weight: 600;
+
+}
+
+.nav-item.active::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -10px;
+
+    width: 5px;
+
+    height: 30px;
+
+    border-radius: 20px;
+
+    background: #6d4aff;
+
+}
+
+/* ==========================================
+   BADGE
+========================================== */
+
+.badge {
+
+    margin-left: auto;
+
+    min-width: 22px;
+
+    height: 22px;
+
+    border-radius: 999px;
+
+    background: #6d4aff;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 0 6px;
+
+}
+
+/* ==========================================
+   PROFILE
+========================================== */
+
+.profile-section {
+
+    border-top: 1px solid #eceff5;
+
+    padding: 14px;
+
+}
+
+.profile-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+.avatar {
+
+    width: 48px;
+
+    height: 48px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg,#6d4aff,#8d67ff);
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: 700;
+
+    flex-shrink: 0;
+
+}
+
+.profile-info h4 {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #222;
+
+}
+
+.profile-info span {
+
+    font-size: 12px;
+
+    color: #32b768;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+/* ==========================================
+   PROFILE MENU
+========================================== */
+
+.profile-menu{
+
+    margin-top:12px;
+
+    border-radius:14px;
+
+    background:white;
+
+    border:1px solid #eceff5;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+}
+
+.menu-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    color:#444;
+
+    text-decoration:none;
+
+}
+
+.menu-item:hover{
+
+    background:#f5f3ff;
+
+    color:#6d4aff;
+
+}
+
+.menu-item.logout{
+
+    color:#d32f2f;
+
+}
+
+.menu-item.logout:hover{
+
+    background:#fff3f3;
+
+}
+
+.expand{
+
+    margin-left:auto;
+
+    color:#999;
+
+}
+
+
+.logout:hover {
+
+    background: #fff3f3;
+
+    color: #d32f2f;
+
+}
+
+/* ==========================================
+   COLLAPSED MODE
+========================================== */
+
+.sidebar.collapsed .nav-item {
+
+    justify-content: center;
+
+    padding: 14px 0;
+
+}
+
+.sidebar.collapsed .profile-card {
+
+    justify-content: center;
+
+}
+
+.sidebar.collapsed .footer .nav-item {
+
+    justify-content: center;
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 992px) {
+
+    .sidebar {
+
+        position: fixed;
+
+        left: 0;
+
+        top: 0;
+
+        z-index: 1200;
+
+    }
+
+}
+
+/* ==========================================
+   SECTION TITLES
+========================================== */
+
+.section-title{
+
+    font-size:11px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#9aa0b4;
+
+    margin:18px 14px 8px;
+
+    text-transform:uppercase;
+
+}

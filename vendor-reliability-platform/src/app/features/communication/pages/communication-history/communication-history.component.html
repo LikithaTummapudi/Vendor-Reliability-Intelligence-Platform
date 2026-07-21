@@ -1,0 +1,251 @@
+<div class="history-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Communication History</h1>
+
+            <p>
+                View, search and export all communication records across the platform.
+            </p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                mat-stroked-button>
+
+                <mat-icon>print</mat-icon>
+
+                Print
+
+            </button>
+
+            <button
+                mat-flat-button
+                color="primary">
+
+                <mat-icon>download</mat-icon>
+
+                Export
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Filters -->
+
+    <div class="toolbar">
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Search</mat-label>
+
+            <input
+                matInput
+                placeholder="Search communication history">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>User</mat-label>
+
+            <mat-select>
+
+                <mat-option>All Users</mat-option>
+
+                <mat-option>Sarah Chen</mat-option>
+
+                <mat-option>Marcus Reed</mat-option>
+
+                <mat-option>Finance Team</mat-option>
+
+                <mat-option>Emily Ross</mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Communication Type</mat-label>
+
+            <mat-select>
+
+                <mat-option>All</mat-option>
+
+                <mat-option>Message</mat-option>
+
+                <mat-option>Discussion</mat-option>
+
+                <mat-option>Contract</mat-option>
+
+                <mat-option>Invoice</mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Status</mat-label>
+
+            <mat-select>
+
+                <mat-option>All</mat-option>
+
+                <mat-option>Read</mat-option>
+
+                <mat-option>Delivered</mat-option>
+
+                <mat-option>Pending</mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+    </div>
+
+    <!-- Timeline -->
+
+    <div class="timeline">
+
+        <mat-card
+            class="history-card"
+            *ngFor="let item of history">
+
+            <div class="timeline-marker">
+
+                <mat-icon>
+
+                    chat
+
+                </mat-icon>
+
+            </div>
+
+            <div class="history-content">
+
+                <div class="history-header">
+
+                    <div>
+
+                        <h3>
+
+                            {{item.user}}
+
+                        </h3>
+
+                        <span>
+
+                            {{item.company}}
+
+                        </span>
+
+                    </div>
+
+                    <mat-chip>
+
+                        {{item.status}}
+
+                    </mat-chip>
+
+                </div>
+
+                <p class="preview">
+
+                    {{item.preview}}
+
+                </p>
+
+                <div class="details">
+
+                    <span>
+
+                        <mat-icon>
+
+                            schedule
+
+                        </mat-icon>
+
+                        {{item.date}}
+
+                    </span>
+
+                    <span>
+
+                        <mat-icon>
+
+                            category
+
+                        </mat-icon>
+
+                        {{item.type}}
+
+                    </span>
+
+                    <span>
+
+                        <mat-icon>
+
+                            workspaces
+
+                        </mat-icon>
+
+                        {{item.project}}
+
+                    </span>
+
+                    <span *ngIf="item.attachment">
+
+                        <mat-icon>
+
+                            attach_file
+
+                        </mat-icon>
+
+                        Attachment
+
+                    </span>
+
+                </div>
+
+                <div class="actions">
+
+                    <button
+                        mat-button>
+
+                        View
+
+                    </button>
+
+                    <button
+                        mat-button>
+
+                        Reply
+
+                    </button>
+
+                    <button
+                        mat-button>
+
+                        Open Thread
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </mat-card>
+
+    </div>
+
+</div>

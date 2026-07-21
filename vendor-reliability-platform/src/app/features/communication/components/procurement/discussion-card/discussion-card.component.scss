@@ -1,0 +1,37 @@
+.card{
+padding:16px;
+cursor:pointer;
+border-bottom:1px solid #eee;
+background:white;
+transition:.2s;
+}
+
+.card:hover{
+background:#f7f9fc;
+}
+
+.selected{
+background:#e8f0fe;
+}
+
+.header,
+.footer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.status{
+font-size:12px;
+font-weight:600;
+color:#1565c0;
+}
+
+h5{
+margin:8px 0;
+}
+
+p{
+font-size:13px;
+color:#666;
+}

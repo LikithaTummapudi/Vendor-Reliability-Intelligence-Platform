@@ -1,0 +1,117 @@
+<header class="chat-header">
+
+  <div class="conversation-info">
+
+    <div class="avatar">
+
+      @if (conversation.avatarUrl) {
+
+        <img
+          [src]="conversation.avatarUrl"
+          [alt]="conversation.name">
+
+      } @else {
+
+        <div class="avatar-placeholder">
+          {{ conversation.name.charAt(0) }}
+        </div>
+
+      }
+
+    </div>
+
+    <div class="details">
+
+      <h2>{{ conversation.name }}</h2>
+
+      <div class="status">
+
+        @if (conversation.isGroup) {
+
+          {{ conversation.participantCount ?? 0 }} Members
+
+        } @else {
+
+          <span
+            class="status-dot"
+            [class.online]="conversation.isOnline">
+          </span>
+
+          {{ conversation.isOnline ? 'Online' : 'Offline' }}
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="actions">
+
+    <button
+      mat-icon-button
+      matTooltip="Voice Call"
+      (click)="voiceCall.emit()">
+
+      <mat-icon>call</mat-icon>
+
+    </button>
+
+    <button
+      mat-icon-button
+      matTooltip="Video Call"
+      (click)="videoCall.emit()">
+
+      <mat-icon>videocam</mat-icon>
+
+    </button>
+
+    <button
+      mat-icon-button
+      matTooltip="Search"
+      (click)="search.emit()">
+
+      <mat-icon>search</mat-icon>
+
+    </button>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu">
+
+      <mat-icon>more_vert</mat-icon>
+
+    </button>
+
+    <mat-menu #menu="matMenu">
+
+      <button mat-menu-item>
+
+        <mat-icon>push_pin</mat-icon>
+
+        <span>Pin Conversation</span>
+
+      </button>
+
+      <button mat-menu-item>
+
+        <mat-icon>notifications_off</mat-icon>
+
+        <span>Mute Notifications</span>
+
+      </button>
+
+      <button mat-menu-item>
+
+        <mat-icon>archive</mat-icon>
+
+        <span>Archive</span>
+
+      </button>
+
+    </mat-menu>
+
+  </div>
+
+</header>

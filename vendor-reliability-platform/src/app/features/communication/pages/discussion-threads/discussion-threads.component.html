@@ -1,0 +1,326 @@
+<div class="threads-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Discussion Threads</h1>
+
+            <p>
+                Collaborate with vendors and internal teams through structured discussions.
+            </p>
+
+        </div>
+
+        <button
+            mat-flat-button
+            color="primary">
+
+            <mat-icon>add</mat-icon>
+
+            New Thread
+
+        </button>
+
+    </div>
+
+    <!-- Filters -->
+
+    <div class="toolbar">
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Search Discussions</mat-label>
+
+            <input
+                matInput
+                placeholder="Search by topic or participant">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Status</mat-label>
+
+            <mat-select>
+
+                <mat-option>All</mat-option>
+
+                <mat-option>Open</mat-option>
+
+                <mat-option>In Review</mat-option>
+
+                <mat-option>Resolved</mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+
+            <mat-label>Priority</mat-label>
+
+            <mat-select>
+
+                <mat-option>All</mat-option>
+
+                <mat-option>High</mat-option>
+
+                <mat-option>Medium</mat-option>
+
+                <mat-option>Low</mat-option>
+
+            </mat-select>
+
+        </mat-form-field>
+
+    </div>
+
+    <!-- Main Layout -->
+
+    <div class="thread-layout">
+
+        <!-- LEFT PANEL -->
+
+        <div class="thread-list">
+
+            <mat-card
+                class="thread-card"
+                *ngFor="let thread of threads"
+                (click)="selectThread(thread)"
+                [class.active]="selectedThread.id === thread.id">
+
+                <div class="thread-top">
+
+                    <h3>{{ thread.title }}</h3>
+
+                    <mat-chip>
+
+                        {{ thread.status }}
+
+                    </mat-chip>
+
+                </div>
+
+                <p class="category">
+
+                    {{ thread.category }}
+
+                </p>
+
+                <div class="thread-meta">
+
+                    <span>
+
+                        <mat-icon>group</mat-icon>
+
+                        {{ thread.participants }}
+
+                    </span>
+
+                    <span>
+
+                        <mat-icon>chat</mat-icon>
+
+                        {{ thread.replies }}
+
+                    </span>
+
+                    <span>
+
+                        <mat-icon>schedule</mat-icon>
+
+                        {{ thread.updated }}
+
+                    </span>
+
+                </div>
+
+            </mat-card>
+
+        </div>
+
+        <!-- CENTER PANEL -->
+
+        <div class="discussion-panel">
+
+            <mat-card>
+
+                <div class="discussion-header">
+
+                    <div>
+
+                        <h2>
+
+                            {{ selectedThread.title }}
+
+                        </h2>
+
+                        <p>
+
+                            {{ selectedThread.category }}
+
+                        </p>
+
+                    </div>
+
+                    <mat-chip>
+
+                        {{ selectedThread.priority }}
+
+                    </mat-chip>
+
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="timeline">
+
+                    <div
+                        class="comment"
+                        *ngFor="let comment of selectedThread.comments">
+
+                        <div class="avatar">
+
+                            {{ comment.user.charAt(0) }}
+
+                        </div>
+
+                        <div class="comment-body">
+
+                            <div class="comment-header">
+
+                                <strong>
+
+                                    {{ comment.user }}
+
+                                </strong>
+
+                                <span>
+
+                                    {{ comment.role }}
+
+                                </span>
+
+                                <small>
+
+                                    {{ comment.time }}
+
+                                </small>
+
+                            </div>
+
+                            <p>
+
+                                {{ comment.message }}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </mat-card>
+
+        </div>
+
+        <!-- RIGHT PANEL -->
+
+        <div class="details-panel">
+
+            <mat-card>
+
+                <h3>
+
+                    Action Items
+
+                </h3>
+
+                <mat-list>
+
+                    <mat-list-item
+                        *ngFor="let item of selectedThread.actionItems">
+
+                        <mat-icon matListItemIcon>
+
+                            task_alt
+
+                        </mat-icon>
+
+                        <span matListItemTitle>
+
+                            {{ item }}
+
+                        </span>
+
+                    </mat-list-item>
+
+                </mat-list>
+
+            </mat-card>
+
+            <mat-card class="decision-card">
+
+                <h3>
+
+                    Decision Summary
+
+                </h3>
+
+                <p>
+
+                    {{ selectedThread.decision }}
+
+                </p>
+
+            </mat-card>
+
+            <mat-card>
+
+                <h3>
+
+                    Quick Actions
+
+                </h3>
+
+                <button
+                    mat-flat-button
+                    color="primary">
+
+                    Reply
+
+                </button>
+
+                <button
+                    mat-stroked-button>
+
+                    Mention Team
+
+                </button>
+
+                <button
+                    mat-stroked-button>
+
+                    Pin Discussion
+
+                </button>
+
+                <button
+                    mat-flat-button
+                    color="accent">
+
+                    Resolve
+
+                </button>
+
+            </mat-card>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+
+  padding: 16px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+.message-input {
+  flex: 1;
+}
+
+textarea {
+  resize: none;
+}

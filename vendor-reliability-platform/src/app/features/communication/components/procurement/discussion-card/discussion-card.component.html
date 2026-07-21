@@ -1,0 +1,34 @@
+<div
+  class="card"
+  [class.selected]="selected"
+  (click)="select()">
+
+  <div class="header">
+
+    <h4>{{ discussion.referenceNo }}</h4>
+
+    <span class="status">
+
+      {{ discussion.status }}
+
+    </span>
+
+  </div>
+
+  <h5>{{ discussion.title }}</h5>
+
+  <p>
+
+    {{ discussion.lastMessage }}
+
+  </p>
+
+  <div class="footer">
+
+    <span>{{ discussion.vendorName }}</span>
+
+    <span>{{ discussion.unreadCount }}</span>
+
+  </div>
+
+</div>

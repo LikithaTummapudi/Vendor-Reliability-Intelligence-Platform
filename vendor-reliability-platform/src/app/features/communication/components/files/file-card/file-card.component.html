@@ -1,0 +1,37 @@
+<div class="file-card">
+
+  <div class="icon">
+
+    {{ fileIcon }}
+
+  </div>
+
+  <div class="content">
+
+    <h4>{{ file.fileName }}</h4>
+
+    <p>{{ file.description }}</p>
+
+    <div class="meta">
+
+      <span>{{ file.uploadedBy }}</span>
+
+      <span>{{ file.fileSize }}</span>
+
+      <span>{{ file.uploadedAt }}</span>
+
+      <span>{{ file.version }}</span>
+
+    </div>
+
+  </div>
+
+  <button
+    class="download-btn"
+    (click)="onDownload()">
+
+    Download
+
+  </button>
+
+</div>

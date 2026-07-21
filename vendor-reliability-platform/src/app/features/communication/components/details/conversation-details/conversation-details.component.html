@@ -1,0 +1,61 @@
+<div class="details-panel">
+
+  <section>
+
+    <h3>Members</h3>
+
+    @for (member of participants; track member.id) {
+
+      <div class="member">
+
+        <div class="avatar">
+
+          {{ member.name.charAt(0) }}
+
+        </div>
+
+        <div>
+
+          <div class="name">
+            {{ member.name }}
+          </div>
+
+          <div class="role">
+            {{ member.role || 'Member' }}
+          </div>
+
+        </div>
+
+      </div>
+
+    }
+
+  </section>
+
+  <mat-divider></mat-divider>
+
+  <section>
+
+    <h3>Shared Files</h3>
+
+    @for (file of sharedFiles; track file.id) {
+
+      <div class="file">
+
+        <mat-icon>description</mat-icon>
+
+        <div>
+
+          <div>{{ file.fileName }}</div>
+
+          <small>{{ file.fileSize }}</small>
+
+        </div>
+
+      </div>
+
+    }
+
+  </section>
+
+</div>

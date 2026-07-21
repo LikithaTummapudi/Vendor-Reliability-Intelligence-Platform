@@ -1,0 +1,253 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.history-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ==========================================
+   FILTERS
+========================================== */
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 18px;
+}
+
+.toolbar mat-form-field {
+  width: 100%;
+}
+
+/* ==========================================
+   TIMELINE
+========================================== */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #d8d8d8;
+}
+
+/* ==========================================
+   HISTORY CARD
+========================================== */
+
+.history-card {
+  display: flex;
+  gap: 22px;
+  border-radius: 18px;
+  padding: 22px;
+  position: relative;
+  transition: .25s;
+}
+
+.history-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   MARKER
+========================================== */
+
+.timeline-marker {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  border-radius: 50%;
+  background: #ede8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.timeline-marker mat-icon {
+  color: #5b3fb3;
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.history-content {
+  flex: 1;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.history-header span {
+  color: #777;
+  font-size: 13px;
+}
+
+.preview {
+  margin: 18px 0;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   DETAILS
+========================================== */
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-bottom: 20px;
+}
+
+.details span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 13px;
+}
+
+.details mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* ==========================================
+   CHIP
+========================================== */
+
+mat-chip {
+  font-weight: 600;
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+
+  .toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 768px) {
+
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline::before {
+    display: none;
+  }
+
+  .history-card {
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .timeline-marker {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+  }
+
+  .history-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .details {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+
+  .header-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

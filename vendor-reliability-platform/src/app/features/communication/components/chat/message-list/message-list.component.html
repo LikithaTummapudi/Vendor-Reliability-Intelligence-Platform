@@ -1,0 +1,22 @@
+<div class="message-list">
+
+  @for (message of messages; track trackByMessageId($index, message)) {
+
+<app-message-bubble
+  [message]="message"
+  [showSenderName]="isGroupConversation">
+</app-message-bubble>
+
+  } @empty {
+
+    <div class="empty-state">
+
+      <p>No messages yet.</p>
+
+      <span>Start the conversation.</span>
+
+    </div>
+
+  }
+
+</div>

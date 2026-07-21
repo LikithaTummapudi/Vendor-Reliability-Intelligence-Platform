@@ -1,0 +1,15 @@
+<div class="file-list">
+
+  @for(file of files; track file.id){
+
+    <app-file-card
+
+      [file]="file"
+
+      (download)="download.emit($event)">
+
+    </app-file-card>
+
+  }
+
+</div>

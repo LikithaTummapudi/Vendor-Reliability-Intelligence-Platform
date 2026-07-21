@@ -1,0 +1,44 @@
+<div class="conversation-list">
+
+  <div class="search-container">
+
+    <input
+      type="text"
+      placeholder="Search conversations"
+      [(ngModel)]="searchText">
+
+  </div>
+
+  <div
+    class="list-container"
+    *ngIf="filteredConversations.length; else emptyState">
+
+    <app-conversation-card
+
+      *ngFor="
+      let conversation of filteredConversations;
+      trackBy: trackByConversationId"
+
+      [conversation]="conversation"
+
+      [selected]="conversation.id === selectedConversationId"
+
+      (conversationSelected)="onConversationSelected($event)">
+
+    </app-conversation-card>
+
+  </div>
+
+  <ng-template #emptyState>
+
+    <div class="empty-state">
+
+      <h3>No conversations found</h3>
+
+      <p>Try searching with another keyword.</p>
+
+    </div>
+
+  </ng-template>
+
+</div>

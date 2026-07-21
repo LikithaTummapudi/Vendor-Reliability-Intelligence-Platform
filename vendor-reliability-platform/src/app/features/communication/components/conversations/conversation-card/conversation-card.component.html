@@ -1,0 +1,53 @@
+<div
+  class="conversation-card"
+  [class.selected]="selected"
+  (click)="selectConversation()">
+
+  <!-- Avatar -->
+  <div class="avatar-wrapper">
+
+    <div class="avatar-placeholder">
+      {{ conversation.name.charAt(0) }}
+    </div>
+
+    <span
+      class="status-dot"
+      [class.online]="conversation.isOnline">
+    </span>
+
+  </div>
+
+  <!-- Content -->
+  <div class="conversation-content">
+
+    <div class="top-row">
+
+      <h4>
+        {{ conversation.name }}
+      </h4>
+
+      <span class="time">
+        {{ conversation.lastMessageTime | date:'shortTime' }}
+      </span>
+
+    </div>
+
+    <div class="bottom-row">
+
+      <p class="preview">
+        {{ conversation.lastMessage }}
+      </p>
+
+      <span
+        class="badge"
+        *ngIf="conversation.unreadCount > 0">
+
+        {{ conversation.unreadCount }}
+
+      </span>
+
+    </div>
+
+  </div>
+
+</div>

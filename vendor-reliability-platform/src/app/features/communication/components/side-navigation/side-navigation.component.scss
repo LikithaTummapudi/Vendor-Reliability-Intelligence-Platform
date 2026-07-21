@@ -1,107 +1,339 @@
-.sidebar{
+:host {
+  display: block;
+  height: 100%;
+}
 
-height:100%;
+/* ===================================================
+   SIDEBAR
+=================================================== */
 
-display:flex;
+.sidebar {
 
-flex-direction:column;
+  width: 290px;
+  min-width: 290px;
+  max-width: 290px;
 
-justify-content:space-between;
+  height: 100vh;
 
-padding:18px;
+  background: #ffffff;
 
-background:white;
+  border-right: 1px solid #ececec;
 
-border-right:1px solid #ececec;
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  transition: .3s ease;
+
+  flex-shrink: 0;
 
 }
 
-.logo h1{
+.sidebar.collapsed{
 
-margin:0;
+  width:82px;
 
-font-size:20px;
+  min-width:82px;
 
-font-weight:700;
-
-color:#5b3fb3;
+  max-width:82px;
 
 }
 
-.module{
+/* ===================================================
+   HEADER
+=================================================== */
 
-margin-top:6px;
+.sidebar-header {
+  height: 76px;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eeeeee;
+}
 
-font-size:13px;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
 
-color:#888;
+.logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg,#6d4aff,#8d67ff);
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-info {
+  overflow: hidden;
+}
+
+.brand-info h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+}
+
+.brand-info span {
+  color: #777;
+  font-size: 13px;
+}
+
+/* ===================================================
+   WORKSPACE
+=================================================== */
+
+.workspace {
+  padding: 18px;
+}
+
+.workspace small {
+  display: block;
+  color: #8b8b8b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.workspace-card {
+  background: linear-gradient(135deg,#6d4aff,#8d67ff);
+  color: white;
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.workspace-card h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.workspace-card span {
+  font-size: 12px;
+  opacity: .9;
+}
+
+/* ===================================================
+   NAVIGATION
+=================================================== */
+
+nav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  gap: 6px;
+}
+
+.nav-item {
+  height: 48px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #4a4a4a;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 16px;
+  transition: .25s;
+  position: relative;
+}
+
+.nav-item mat-icon {
+  color: #6d6d6d;
+}
+
+.nav-item:hover {
+  background: #f5f3ff;
+  color: #5b3fb3;
+}
+
+.nav-item:hover mat-icon {
+  color: #5b3fb3;
+}
+
+.nav-item.active {
+  background: #ede8ff;
+  color: #5b3fb3;
+  font-weight: 600;
+}
+
+.nav-item.active mat-icon {
+  color: #5b3fb3;
+}
+
+.nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: #6d4aff;
+}
+
+/* ===================================================
+   CONTACTS
+=================================================== */
+
+.contacts {
+  padding: 20px 18px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.contacts small {
+  display: block;
+  color: #8a8a8a;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding: 10px;
+  border-radius: 12px;
+  transition: .25s;
+}
+
+.contact:hover {
+  background: #f7f7f7;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #6d4aff;
+  color: white;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.online {
+  width: 10px;
+  height: 10px;
+  background: #2ecc71;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: absolute;
+  right: 1px;
+  bottom: 2px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info strong {
+  font-size: 14px;
+}
+
+.contact-info small {
+  margin: 0;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ===================================================
+   FOOTER
+=================================================== */
+
+.sidebar-footer {
+  border-top: 1px solid #ececec;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.logout {
+  color: #d32f2f;
+}
+
+.logout mat-icon {
+  color: #d32f2f;
+}
+
+/* ===================================================
+   COLLAPSED
+=================================================== */
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar.collapsed .sidebar-footer .nav-item {
+  justify-content: center;
+}
+
+.sidebar.collapsed .workspace,
+.sidebar.collapsed .contacts,
+.sidebar.collapsed .brand-info {
+  display: none;
+}
+
+/* ===================================================
+   SCROLLBAR
+=================================================== */
+
+.contacts::-webkit-scrollbar {
+  width: 6px;
+}
+
+.contacts::-webkit-scrollbar-thumb {
+  background: #d5d5d5;
+  border-radius: 20px;
+}
+
+/* ===================================================
+   MOBILE
+=================================================== */
+
+@media (max-width: 992px) {
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1200;
+    box-shadow: 0 12px 35px rgba(0,0,0,.18);
+  }
 
 }
 
-.new-message{
+@media (max-width:768px){
 
-width:100%;
+  .sidebar{
+    width:260px;
+  }
 
-margin:26px 0;
-
-height:46px;
-
-border-radius:12px;
-
-}
-
-nav{
-
-display:flex;
-
-flex-direction:column;
-
-gap:8px;
-
-}
-
-nav a,
-
-.bottom a{
-
-display:flex;
-
-align-items:center;
-
-gap:14px;
-
-padding:14px;
-
-border-radius:12px;
-
-cursor:pointer;
-
-transition:.2s;
-
-font-weight:500;
-
-}
-
-nav a:hover{
-
-background:#f4efff;
-
-}
-
-.active{
-
-background:#5b3fb3;
-
-color:white;
-
-}
-
-.bottom{
-
-display:flex;
-
-flex-direction:column;
-
-gap:8px;
+  .sidebar.collapsed{
+    width:72px;
+  }
 
 }

@@ -1,0 +1,345 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.threads-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #202124;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ===========================
+   TOOLBAR
+=========================== */
+
+.toolbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 18px;
+}
+
+.toolbar mat-form-field {
+  width: 100%;
+}
+
+/* ===========================
+   MAIN GRID
+=========================== */
+
+.thread-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 360px 1fr 330px;
+  gap: 24px;
+  min-height: 0;
+}
+
+/* ===========================
+   LEFT PANEL
+=========================== */
+
+.thread-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.thread-card {
+  border-radius: 16px;
+  cursor: pointer;
+  transition: .25s;
+  border: 2px solid transparent;
+}
+
+.thread-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+}
+
+.thread-card.active {
+  border-color: #5B3FB3;
+}
+
+.thread-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.thread-top h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.category {
+  color: #7b7b7b;
+  margin: 14px 0;
+  font-size: 14px;
+}
+
+.thread-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  color: #777;
+  font-size: 13px;
+}
+
+.thread-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.thread-meta mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+/* ===========================
+   CENTER PANEL
+=========================== */
+
+.discussion-panel {
+  overflow: hidden;
+}
+
+.discussion-panel mat-card {
+  height: 100%;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.discussion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.discussion-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.discussion-header p {
+  margin-top: 6px;
+  color: #757575;
+}
+
+.timeline {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  overflow-y: auto;
+}
+
+/* ===========================
+   COMMENT
+=========================== */
+
+.comment {
+  display: flex;
+  gap: 16px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  background: #5B3FB3;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comment-body {
+  flex: 1;
+  background: #fafafa;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.comment-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.comment-header strong {
+  font-size: 15px;
+}
+
+.comment-header span {
+  color: #666;
+  font-size: 13px;
+}
+
+.comment-header small {
+  margin-left: auto;
+  color: #999;
+}
+
+.comment-body p {
+  margin: 12px 0 0;
+  line-height: 1.6;
+}
+
+/* ===========================
+   RIGHT PANEL
+=========================== */
+
+.details-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.details-panel mat-card {
+  border-radius: 18px;
+}
+
+.details-panel h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 18px;
+}
+
+.decision-card p {
+  margin: 0;
+  color: #555;
+  line-height: 1.7;
+}
+
+.details-panel button {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* ===========================
+   MATERIAL CHIP
+=========================== */
+
+mat-chip {
+  font-weight: 600;
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+.thread-list::-webkit-scrollbar,
+.timeline::-webkit-scrollbar {
+  width: 8px;
+}
+
+.thread-list::-webkit-scrollbar-thumb,
+.timeline::-webkit-scrollbar-thumb {
+  background: #d2d2d2;
+  border-radius: 10px;
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width: 1200px) {
+
+  .thread-layout {
+    grid-template-columns: 320px 1fr;
+  }
+
+  .details-panel {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .details-panel mat-card {
+    min-width: 320px;
+  }
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 768px) {
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .thread-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .thread-list,
+  .discussion-panel,
+  .details-panel {
+    width: 100%;
+  }
+
+  .discussion-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .comment {
+    align-items: flex-start;
+  }
+
+  .comment-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comment-header small {
+    margin-left: 0;
+  }
+
+}

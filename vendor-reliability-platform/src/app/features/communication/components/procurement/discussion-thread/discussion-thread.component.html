@@ -1,0 +1,31 @@
+<div class="thread">
+
+  @for(message of messages; track message.id){
+
+    <div
+      class="message"
+      [class.mine]="message.isCurrentUser">
+
+      <div class="sender">
+
+        {{ message.sender }}
+
+      </div>
+
+      <div class="bubble">
+
+        {{ message.message }}
+
+      </div>
+
+      <small>
+
+        {{ message.sentAt }}
+
+      </small>
+
+    </div>
+
+  }
+
+</div>

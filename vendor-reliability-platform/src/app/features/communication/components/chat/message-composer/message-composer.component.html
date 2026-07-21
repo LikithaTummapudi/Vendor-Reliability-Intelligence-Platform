@@ -1,0 +1,52 @@
+<div class="composer">
+
+  <button
+    mat-icon-button
+    type="button"
+    aria-label="Attach file">
+
+    <mat-icon>attach_file</mat-icon>
+
+  </button>
+
+  <mat-form-field
+    appearance="outline"
+    class="message-input">
+
+    <textarea
+
+      matInput
+
+      rows="1"
+
+      placeholder="Type a message..."
+
+      [(ngModel)]="message"
+
+      (keydown)="onKeyDown($event)">
+
+    </textarea>
+
+  </mat-form-field>
+
+  <button
+    mat-icon-button
+    type="button"
+    aria-label="Emoji">
+
+    <mat-icon>mood</mat-icon>
+
+  </button>
+
+  <button
+    mat-fab
+    color="primary"
+    type="button"
+    (click)="onSend()"
+    [disabled]="!message.trim()">
+
+    <mat-icon>send</mat-icon>
+
+  </button>
+
+</div>

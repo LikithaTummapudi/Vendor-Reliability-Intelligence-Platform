@@ -1,0 +1,17 @@
+<div class="discussion-list">
+
+  @for(discussion of discussions; track discussion.id){
+
+    <app-discussion-card
+
+      [discussion]="discussion"
+
+      [selected]="discussion.id===selectedDiscussionId"
+
+      (selectedChange)="select($event)">
+
+    </app-discussion-card>
+
+  }
+
+</div>

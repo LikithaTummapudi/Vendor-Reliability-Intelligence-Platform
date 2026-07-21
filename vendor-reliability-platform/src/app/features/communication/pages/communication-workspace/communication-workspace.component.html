@@ -1,0 +1,123 @@
+<div class="workspace">
+
+  <app-communication-tabs
+    [selectedIndex]="selectedTab"
+    (selectedIndexChange)="selectedTab = $event">
+  </app-communication-tabs>
+
+  @switch (selectedTab) {
+
+    @case (0) {
+
+      <div class="messages-layout">
+
+  <aside class="conversation-panel">
+
+    <app-conversation-list
+      [conversations]="conversations"
+      [selectedConversationId]="selectedConversation.id"
+      (conversationSelected)="selectConversation($event)">
+    </app-conversation-list>
+
+  </aside>
+
+  <section class="chat-panel">
+
+    <app-chat-header
+      [conversation]="selectedConversation">
+    </app-chat-header>
+
+    <app-message-list
+      [messages]="messages"
+      [isGroupConversation]="selectedConversation.isGroup">
+    </app-message-list>
+
+    <app-message-composer
+      (sendMessage)="sendMessage($event)">
+    </app-message-composer>
+
+  </section>
+
+  <aside class="details-panel">
+
+    <app-conversation-details
+      [conversation]="selectedConversation"
+      [participants]="participants"
+      [sharedFiles]="sharedFiles">
+    </app-conversation-details>
+
+  </aside>
+
+</div>
+
+    }
+
+    @case (1) {
+
+      <div class="messages-layout">
+
+  <aside class="conversation-panel">
+
+    <app-discussion-list
+      [discussions]="discussions"
+      [selectedDiscussionId]="selectedDiscussion.id">
+    </app-discussion-list>
+
+  </aside>
+
+  <section class="chat-panel">
+
+    <app-discussion-thread
+      [messages]="discussionMessages">
+    </app-discussion-thread>
+
+    <app-discussion-composer>
+    </app-discussion-composer>
+
+  </section>
+
+  <aside class="details-panel">
+
+    <app-discussion-details
+      [discussion]="selectedDiscussion">
+    </app-discussion-details>
+
+  </aside>
+
+</div>
+
+    }
+
+    @case (2) {
+
+      <app-file-sharing></app-file-sharing>
+
+    }
+
+    @case (3) {
+
+      <div class="placeholder">
+        Communication History
+      </div>
+
+    }
+
+    @case (4) {
+
+      <div class="placeholder">
+        Email Notifications
+      </div>
+
+    }
+
+    @case (5) {
+
+      <div class="placeholder">
+        Activity Logs
+      </div>
+
+    }
+
+  }
+
+</div>

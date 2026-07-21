@@ -1,0 +1,22 @@
+<div class="file-sharing-page">
+
+    <app-file-toolbar></app-file-toolbar>
+
+    <app-file-list
+        [files]="files"
+        (download)="download($event)">
+    </app-file-list>
+
+    <div class="upload-section">
+
+        <button
+            class="upload-btn"
+            (click)="upload()">
+
+            + Upload File
+
+        </button>
+
+    </div>
+
+</div>

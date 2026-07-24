@@ -1,0 +1,125 @@
+<div class="details-page">
+
+  <div class="page-header">
+
+      <div>
+          <h2>Contract Details</h2>
+          <p>View complete contract information.</p>
+      </div>
+
+      <div>
+          <button class="btn btn-warning me-2">Edit</button>
+          <button class="btn btn-primary">Download</button>
+      </div>
+
+  </div>
+
+  <div class="row">
+
+      <div class="col-lg-4">
+
+          <div class="profile-card">
+
+              <div class="contract-icon">
+
+                  📄
+
+              </div>
+
+              <h3>{{contract.contractName}}</h3>
+
+              <p>{{contract.vendor}}</p>
+
+              <span class="badge bg-success">
+                  {{contract.status}}
+              </span>
+
+          </div>
+
+      </div>
+
+      <div class="col-lg-8">
+
+          <div class="info-card">
+
+              <h4>Contract Information</h4>
+
+              <div class="info-grid">
+
+                  <div>
+
+                      <label>Contract ID</label>
+
+                      <p>{{contract.contractId}}</p>
+
+                  </div>
+
+                  <div>
+
+                      <label>Vendor</label>
+
+                      <p>{{contract.vendor}}</p>
+
+                  </div>
+
+                  <div>
+
+                      <label>Contract Type</label>
+
+                      <p>{{contract.contractType}}</p>
+
+                  </div>
+
+                  <div>
+
+                      <label>Contract Value</label>
+
+                      <p>{{contract.amount}}</p>
+
+                  </div>
+
+                  <div>
+
+                      <label>Start Date</label>
+
+                      <p>{{contract.startDate}}</p>
+
+                  </div>
+
+                  <div>
+
+                      <label>End Date</label>
+
+                      <p>{{contract.endDate}}</p>
+
+                  </div>
+
+                  <div>
+
+                      <label>Payment Terms</label>
+
+                      <p>{{contract.paymentTerms}}</p>
+
+                  </div>
+
+                  <div>
+
+                      <label>Contract Manager</label>
+
+                      <p>{{contract.manager}}</p>
+
+                  </div>
+
+              </div>
+
+              <h5 class="mt-4">Description</h5>
+
+              <p>{{contract.description}}</p>
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>

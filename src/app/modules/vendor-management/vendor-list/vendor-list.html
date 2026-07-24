@@ -1,0 +1,305 @@
+<div class="vendor-container">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <h2>Vendor Repository</h2>
+      <p>Manage all registered vendors and monitor their performance.</p>
+    </div>
+
+    <div class="header-actions">
+      <input
+        type="text"
+        class="form-control search-box"
+        placeholder="Search vendor..."
+      />
+
+      <button class="btn btn-light">
+        <i class="bi bi-funnel"></i>
+        Filter
+      </button>
+
+      <button class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i>
+        Add Vendor
+      </button>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+
+  <div class="row mt-4">
+
+    <div class="col-md-3">
+      <div class="summary-card">
+        <h6>Total Vendors</h6>
+        <h2>248</h2>
+        <span class="text-success">+12 this month</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="summary-card">
+        <h6>Active Vendors</h6>
+        <h2>218</h2>
+        <span class="text-success">87% Active</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="summary-card">
+        <h6>Pending Approval</h6>
+        <h2>16</h2>
+        <span class="text-warning">Waiting Review</span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="summary-card">
+        <h6>Blocked Vendors</h6>
+        <h2>14</h2>
+        <span class="text-danger">Need Attention</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Vendor Table -->
+
+  <div class="table-card mt-4">
+
+    <table class="table table-hover align-middle">
+
+      <thead>
+
+      <tr>
+
+        <th>ID</th>
+        <th>Vendor Name</th>
+        <th>Category</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Score</th>
+        <th>Status</th>
+        <th>Action</th>
+
+      </tr>
+
+      </thead>
+
+      <tbody>
+
+      <tr>
+
+        <td>V001</td>
+        <td>Global Logistics</td>
+        <td>Transport</td>
+        <td>global@gmail.com</td>
+        <td>9876543210</td>
+
+        <td>
+          <div class="progress">
+            <div
+              class="progress-bar bg-success"
+              style="width:94%">
+            </div>
+          </div>
+
+          <small>94%</small>
+
+        </td>
+
+        <td>
+
+          <span class="badge bg-success">
+            Active
+          </span>
+
+        </td>
+
+        <td>
+
+          <button class="btn btn-sm btn-outline-primary">
+            View
+          </button>
+
+          <button class="btn btn-sm btn-outline-warning">
+            Edit
+          </button>
+
+        </td>
+
+      </tr>
+
+      <tr>
+
+        <td>V002</td>
+        <td>Apex Manufacturing</td>
+        <td>Manufacturing</td>
+        <td>apex@gmail.com</td>
+        <td>9123456780</td>
+
+        <td>
+
+          <div class="progress">
+
+            <div
+              class="progress-bar bg-info"
+              style="width:89%">
+            </div>
+
+          </div>
+
+          <small>89%</small>
+
+        </td>
+
+        <td>
+
+          <span class="badge bg-primary">
+            Approved
+          </span>
+
+        </td>
+
+        <td>
+
+          <button class="btn btn-sm btn-outline-primary">
+            View
+          </button>
+
+          <button class="btn btn-sm btn-outline-warning">
+            Edit
+          </button>
+
+        </td>
+
+      </tr>
+
+      <tr>
+
+        <td>V003</td>
+        <td>Quantum Systems</td>
+        <td>Software</td>
+        <td>quantum@gmail.com</td>
+        <td>9988776655</td>
+
+        <td>
+
+          <div class="progress">
+
+            <div
+              class="progress-bar bg-warning"
+              style="width:75%">
+            </div>
+
+          </div>
+
+          <small>75%</small>
+
+        </td>
+
+        <td>
+
+          <span class="badge bg-warning text-dark">
+            Pending
+          </span>
+
+        </td>
+
+        <td>
+
+          <button class="btn btn-sm btn-outline-primary">
+            View
+          </button>
+
+          <button class="btn btn-sm btn-outline-warning">
+            Edit
+          </button>
+
+        </td>
+
+      </tr>
+
+      <tr>
+
+        <td>V004</td>
+        <td>Horizon Supplies</td>
+        <td>Retail</td>
+        <td>horizon@gmail.com</td>
+        <td>9011223344</td>
+
+        <td>
+
+          <div class="progress">
+
+            <div
+              class="progress-bar bg-danger"
+              style="width:60%">
+            </div>
+
+          </div>
+
+          <small>60%</small>
+
+        </td>
+
+        <td>
+
+          <span class="badge bg-danger">
+            Blocked
+          </span>
+
+        </td>
+
+        <td>
+
+          <button class="btn btn-sm btn-outline-primary">
+            View
+          </button>
+
+          <button class="btn btn-sm btn-outline-warning">
+            Edit
+          </button>
+
+        </td>
+
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- Pagination -->
+
+  <nav class="mt-4">
+
+    <ul class="pagination justify-content-end">
+
+      <li class="page-item">
+        <a class="page-link">Previous</a>
+      </li>
+
+      <li class="page-item active">
+        <a class="page-link">1</a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link">2</a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link">3</a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link">Next</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
+</div>

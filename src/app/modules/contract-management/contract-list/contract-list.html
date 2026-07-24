@@ -1,0 +1,190 @@
+<div class="contract-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Contract Repository</h2>
+
+            <p>Manage vendor contracts and monitor their lifecycle.</p>
+
+        </div>
+
+        <div class="header-actions">
+
+            <input
+            class="form-control search-box"
+            placeholder="Search Contract">
+
+            <button class="btn btn-light">
+
+                Filter
+
+            </button>
+
+            <button class="btn btn-primary">
+
+                + Add Contract
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="row">
+
+        <div class="col-md-3">
+
+            <div class="summary-card">
+
+                <h6>Total Contracts</h6>
+
+                <h2>156</h2>
+
+                <small>+8 this month</small>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="summary-card">
+
+                <h6>Active</h6>
+
+                <h2>132</h2>
+
+                <small>84%</small>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="summary-card">
+
+                <h6>Pending</h6>
+
+                <h2>18</h2>
+
+                <small>Review Required</small>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="summary-card">
+
+                <h6>Expired</h6>
+
+                <h2>6</h2>
+
+                <small>Renew Soon</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="table-card mt-4">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Vendor</th>
+
+                <th>Type</th>
+
+                <th>Start</th>
+
+                <th>End</th>
+
+                <th>Amount</th>
+
+                <th>Status</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let contract of contracts">
+
+                <td>{{contract.id}}</td>
+
+                <td>{{contract.vendor}}</td>
+
+                <td>{{contract.type}}</td>
+
+                <td>{{contract.start}}</td>
+
+                <td>{{contract.end}}</td>
+
+                <td>{{contract.amount}}</td>
+
+                <td>
+
+                    <span
+                    class="badge"
+
+                    [ngClass]="{
+
+                    'bg-success':contract.status=='Active',
+
+                    'bg-warning text-dark':contract.status=='Pending',
+
+                    'bg-danger':contract.status=='Expired'
+
+                    }">
+
+                    {{contract.status}}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button class="btn btn-outline-primary btn-sm me-2">
+
+                        View
+
+                    </button>
+
+                    <button class="btn btn-outline-warning btn-sm">
+
+                        Edit
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

@@ -1,0 +1,176 @@
+<div class="compliance-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Compliance Monitoring</h2>
+
+            <p>Track vendor certifications and compliance status.</p>
+
+        </div>
+
+        <button class="btn btn-primary">
+
+            Generate Report
+
+        </button>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <h3>156</h3>
+
+            <p>Total Vendors</p>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>132</h3>
+
+            <p>Compliant</p>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>18</h3>
+
+            <p>Expiring Certificates</p>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>6</h3>
+
+            <p>Expired</p>
+
+        </div>
+
+    </div>
+
+    <!-- Compliance Table -->
+
+    <div class="table-card">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+            <tr>
+
+                <th>Vendor</th>
+
+                <th>Certificate</th>
+
+                <th>Expiry Date</th>
+
+                <th>Compliance Score</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let item of compliances">
+
+                <td>{{item.vendor}}</td>
+
+                <td>{{item.certificate}}</td>
+
+                <td>{{item.expiry}}</td>
+
+                <td>
+
+                    <div class="progress">
+
+                        <div
+                        class="progress-bar bg-success"
+                        [style.width.%]="item.score">
+
+                        </div>
+
+                    </div>
+
+                    <small>{{item.score}}%</small>
+
+                </td>
+
+                <td>
+
+                    <span
+                    class="badge"
+
+                    [ngClass]="{
+
+                    'bg-success':item.status=='Compliant',
+
+                    'bg-warning text-dark':item.status=='Expiring',
+
+                    'bg-danger':item.status=='Expired'
+
+                    }">
+
+                    {{item.status}}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- Recent Alerts -->
+
+    <div class="alerts-card mt-4">
+
+        <h4>Recent Compliance Alerts</h4>
+
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item">
+
+                ⚠ ISO 14001 certificate expires in 15 days.
+
+            </li>
+
+            <li class="list-group-item">
+
+                ✔ Global Logistics compliance verified successfully.
+
+            </li>
+
+            <li class="list-group-item">
+
+                ❌ Security Audit certificate has expired.
+
+            </li>
+
+            <li class="list-group-item">
+
+                ✔ Prime Industries uploaded new certification.
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>

@@ -1,0 +1,167 @@
+.vendor-container {
+    padding: 25px;
+    background: #f8f8fc;
+    min-height: 100vh;
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #4b2aad;
+    margin-bottom: 5px;
+}
+
+.header p {
+    color: #777;
+    margin: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-box {
+    width: 250px;
+    border-radius: 25px;
+}
+
+/* Buttons */
+
+.btn-primary {
+    background: #6c4ab6;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #5b3aa5;
+}
+
+/* Summary Cards */
+
+.summary-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+    transition: .3s;
+    margin-bottom: 20px;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+}
+
+.summary-card h6 {
+    color: #777;
+    font-size: 14px;
+}
+
+.summary-card h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #4b2aad;
+    margin: 10px 0;
+}
+
+/* Table */
+
+.table-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.table thead {
+    background: #6c4ab6;
+    color: white;
+}
+
+.table thead th {
+    border: none;
+    padding: 15px;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 15px;
+}
+
+.table-hover tbody tr:hover {
+    background: #f4f0ff;
+}
+
+/* Progress */
+
+.progress {
+    height: 8px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+/* Badges */
+
+.badge {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Buttons */
+
+.btn-outline-primary,
+.btn-outline-warning {
+    margin-right: 5px;
+    border-radius: 20px;
+}
+
+/* Pagination */
+
+.pagination .page-link {
+    color: #6c4ab6;
+}
+
+.pagination .active .page-link {
+    background: #6c4ab6;
+    border-color: #6c4ab6;
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+.header{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.header-actions{
+margin-top:15px;
+flex-wrap:wrap;
+}
+
+.search-box{
+width:100%;
+}
+
+.summary-card{
+margin-bottom:15px;
+}
+
+.table-card{
+overflow-x:auto;
+}
+
+}

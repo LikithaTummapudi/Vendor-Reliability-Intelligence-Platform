@@ -1,0 +1,107 @@
+<div class="vendor-form-container">
+
+  <div class="page-header">
+    <div>
+      <h2>Add Vendor</h2>
+      <p>Register a new vendor in the system.</p>
+    </div>
+  </div>
+
+  <div class="card form-card">
+
+    <div class="card-header">
+      Vendor Information
+    </div>
+
+    <div class="card-body">
+
+      <form (ngSubmit)="saveVendor()">
+
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+            <label>Vendor Name</label>
+            <input type="text" class="form-control" placeholder="Enter vendor name">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Company Name</label>
+            <input type="text" class="form-control" placeholder="Enter company name">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Vendor Category</label>
+
+            <select class="form-select">
+              <option>Select Category</option>
+              <option>Raw Material Supplier</option>
+              <option>IT Vendor</option>
+              <option>Service Provider</option>
+              <option>Logistics Partner</option>
+              <option>Maintenance Vendor</option>
+            </select>
+
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Contact Person</label>
+            <input type="text" class="form-control" placeholder="Contact person">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="Email address">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" placeholder="Phone number">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>GST Number</label>
+            <input type="text" class="form-control" placeholder="GST Number">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Vendor Status</label>
+
+            <select class="form-select">
+              <option>Active</option>
+              <option>Pending</option>
+              <option>Blocked</option>
+            </select>
+
+          </div>
+
+          <div class="col-12 mb-3">
+            <label>Address</label>
+            <textarea rows="3" class="form-control" placeholder="Vendor address"></textarea>
+          </div>
+
+          <div class="col-12 mb-3">
+            <label>Description</label>
+            <textarea rows="4" class="form-control" placeholder="Vendor description"></textarea>
+          </div>
+
+        </div>
+
+        <div class="text-end">
+
+          <button class="btn btn-secondary me-2" type="reset">
+            Cancel
+          </button>
+
+          <button class="btn btn-primary" type="submit">
+            Save Vendor
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

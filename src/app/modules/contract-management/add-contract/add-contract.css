@@ -1,0 +1,73 @@
+.contract-page{
+    background:#f6f4fb;
+    min-height:100vh;
+    padding:30px;
+}
+
+.page-header{
+    margin-bottom:30px;
+}
+
+.page-header h2{
+    color:#5b2ca0;
+    font-weight:700;
+}
+
+.page-header p{
+    color:#777;
+}
+
+.form-card{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+}
+
+label{
+    font-weight:600;
+    color:#5b2ca0;
+    margin-bottom:8px;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+    height:48px;
+}
+
+textarea.form-control{
+    height:auto;
+}
+
+.buttons{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.btn{
+    min-width:140px;
+    border-radius:10px;
+}
+
+.btn-primary{
+    background:#6f42c1;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#5b2ca0;
+}
+
+@media(max-width:768px){
+
+.buttons{
+    flex-direction:column;
+}
+
+.btn{
+    width:100%;
+}
+
+}

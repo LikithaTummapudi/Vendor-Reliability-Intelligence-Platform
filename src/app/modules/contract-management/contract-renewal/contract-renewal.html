@@ -1,0 +1,145 @@
+<div class="renewal-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Contract Renewal</h2>
+
+            <p>Manage contract renewals and expiry dates.</p>
+
+        </div>
+
+        <button class="btn btn-primary">
+
+            Renewal Report
+
+        </button>
+
+    </div>
+
+    <!-- Summary -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+
+            <h3>156</h3>
+
+            <p>Total Contracts</p>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>18</h3>
+
+            <p>Expiring Soon</p>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>132</h3>
+
+            <p>Renewed</p>
+
+        </div>
+
+        <div class="summary-card">
+
+            <h3>6</h3>
+
+            <p>Expired</p>
+
+        </div>
+
+    </div>
+
+    <!-- Table -->
+
+    <div class="table-card">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Vendor</th>
+
+                <th>Expiry</th>
+
+                <th>Renewal</th>
+
+                <th>Amount</th>
+
+                <th>Status</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let contract of renewals">
+
+                <td>{{contract.id}}</td>
+
+                <td>{{contract.vendor}}</td>
+
+                <td>{{contract.expiry}}</td>
+
+                <td>{{contract.renewal}}</td>
+
+                <td>{{contract.amount}}</td>
+
+                <td>
+
+                    <span
+                    class="badge"
+
+                    [ngClass]="{
+
+                    'bg-warning text-dark':contract.status=='Expiring Soon',
+
+                    'bg-success':contract.status=='Renewed',
+
+                    'bg-danger':contract.status=='Expired'
+
+                    }">
+
+                    {{contract.status}}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                    class="btn btn-success btn-sm"
+
+                    (click)="renew(contract)"
+
+                    [disabled]="contract.status=='Renewed'">
+
+                    Renew
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

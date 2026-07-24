@@ -1,0 +1,147 @@
+<div class="approval-page">
+
+    <!-- Header -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Vendor Approval</h2>
+
+            <p>Review and approve vendor registrations.</p>
+
+        </div>
+
+        <button class="btn btn-primary">
+            Pending Requests
+        </button>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="summary-grid">
+
+        <div class="summary-card">
+            <h3>32</h3>
+            <p>Total Requests</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>18</h3>
+            <p>Pending</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>10</h3>
+            <p>Approved</p>
+        </div>
+
+        <div class="summary-card">
+            <h3>4</h3>
+            <p>Rejected</p>
+        </div>
+
+    </div>
+
+    <!-- Vendor Table -->
+
+    <div class="table-card">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Vendor</th>
+                <th>Category</th>
+                <th>Submitted Date</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Actions</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let vendor of vendors">
+
+                <td>{{vendor.id}}</td>
+
+                <td>{{vendor.name}}</td>
+
+                <td>{{vendor.category}}</td>
+
+                <td>{{vendor.submitted}}</td>
+
+                <td>
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar bg-success"
+                            [style.width.%]="vendor.score">
+
+                        </div>
+
+                    </div>
+
+                    <small>{{vendor.score}}%</small>
+
+                </td>
+
+                <td>
+
+                    <span
+                        class="badge"
+                        [ngClass]="{
+
+                        'bg-warning text-dark': vendor.status=='Pending',
+
+                        'bg-success': vendor.status=='Approved',
+
+                        'bg-danger': vendor.status=='Rejected'
+
+                        }">
+
+                        {{vendor.status}}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-success btn-sm me-2"
+                        (click)="approve(vendor)"
+                        [disabled]="vendor.status=='Approved'">
+
+                        Approve
+
+                    </button>
+
+                    <button
+                        class="btn btn-danger btn-sm"
+                        (click)="reject(vendor)"
+                        [disabled]="vendor.status=='Rejected'">
+
+                        Reject
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

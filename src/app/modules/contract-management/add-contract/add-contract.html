@@ -1,0 +1,196 @@
+<div class="contract-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Add Contract</h2>
+
+            <p>Create a new vendor contract.</p>
+
+        </div>
+
+    </div>
+
+    <div class="form-card">
+
+        <form>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-4">
+
+                    <label>Contract Name</label>
+
+                    <input
+                    class="form-control"
+                    [(ngModel)]="contract.contractName"
+                    name="contractName">
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label>Vendor</label>
+
+                    <select
+                    class="form-select"
+                    [(ngModel)]="contract.vendor"
+                    name="vendor">
+
+                        <option>Select Vendor</option>
+                        <option>Global Logistics</option>
+                        <option>ABC Suppliers</option>
+                        <option>Prime Industries</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label>Contract Type</label>
+
+                    <select
+                    class="form-select"
+                    [(ngModel)]="contract.contractType"
+                    name="contractType">
+
+                        <option>Supply</option>
+                        <option>Service</option>
+                        <option>Maintenance</option>
+                        <option>Logistics</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label>Contract Value</label>
+
+                    <input
+                    class="form-control"
+                    type="number"
+                    [(ngModel)]="contract.contractValue"
+                    name="contractValue">
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label>Start Date</label>
+
+                    <input
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="contract.startDate"
+                    name="startDate">
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label>End Date</label>
+
+                    <input
+                    type="date"
+                    class="form-control"
+                    [(ngModel)]="contract.endDate"
+                    name="endDate">
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label>Payment Terms</label>
+
+                    <select
+                    class="form-select"
+                    [(ngModel)]="contract.paymentTerms"
+                    name="paymentTerms">
+
+                        <option>30 Days</option>
+                        <option>45 Days</option>
+                        <option>60 Days</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6 mb-4">
+
+                    <label>Status</label>
+
+                    <select
+                    class="form-select"
+                    [(ngModel)]="contract.status"
+                    name="status">
+
+                        <option>Active</option>
+                        <option>Pending</option>
+                        <option>Expired</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-12 mb-4">
+
+                    <label>Description</label>
+
+                    <textarea
+                    rows="4"
+                    class="form-control"
+                    [(ngModel)]="contract.description"
+                    name="description"></textarea>
+
+                </div>
+
+                <div class="col-12 mb-4">
+
+                    <label>Upload Contract Document</label>
+
+                    <input
+                    type="file"
+                    class="form-control">
+
+                </div>
+
+            </div>
+
+            <div class="buttons">
+
+                <button
+                type="button"
+                class="btn btn-primary"
+                (click)="saveContract()">
+
+                Save Contract
+
+                </button>
+
+                <button
+                type="button"
+                class="btn btn-warning"
+                (click)="resetForm()">
+
+                Reset
+
+                </button>
+
+                <button
+                type="reset"
+                class="btn btn-secondary">
+
+                Cancel
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

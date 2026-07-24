@@ -1,0 +1,110 @@
+<div class="dashboard-page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h2>Contract Dashboard</h2>
+
+            <p>Monitor contract status and renewals.</p>
+
+        </div>
+
+        <button class="btn btn-primary">
+
+            + New Contract
+
+        </button>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="card-grid">
+
+        <div
+        class="summary-card"
+        *ngFor="let card of cards">
+
+            <div class="icon">
+
+                {{card.icon}}
+
+            </div>
+
+            <h3>{{card.value}}</h3>
+
+            <p>{{card.title}}</p>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Contracts -->
+
+    <div class="table-card">
+
+        <div class="table-header">
+
+            <h4>Recent Contracts</h4>
+
+        </div>
+
+        <table class="table table-hover">
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Vendor</th>
+                <th>Expiry</th>
+                <th>Amount</th>
+                <th>Status</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <tr *ngFor="let contract of contracts">
+
+                <td>{{contract.id}}</td>
+
+                <td>{{contract.vendor}}</td>
+
+                <td>{{contract.expiry}}</td>
+
+                <td>{{contract.amount}}</td>
+
+                <td>
+
+                    <span
+                    class="badge"
+
+                    [ngClass]="{
+
+                    'bg-success':contract.status=='Active',
+
+                    'bg-warning text-dark':contract.status=='Expiring',
+
+                    'bg-danger':contract.status=='Expired'
+
+                    }">
+
+                    {{contract.status}}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

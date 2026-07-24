@@ -1,0 +1,163 @@
+<div class="vendor-form-container">
+
+    <div class="page-header">
+
+        <h2>Edit Vendor</h2>
+
+        <p>Update vendor information.</p>
+
+    </div>
+
+    <div class="card form-card">
+
+        <div class="card-header">
+
+            Edit Vendor Details
+
+        </div>
+
+        <div class="card-body">
+
+            <form (ngSubmit)="updateVendor()">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label>Vendor Name</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="vendor.vendorName"
+                            name="vendorName">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Company Name</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="vendor.companyName"
+                            name="companyName">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Vendor Category</label>
+
+                        <select
+                            class="form-select"
+                            [(ngModel)]="vendor.category"
+                            name="category">
+
+                            <option>Raw Material Supplier</option>
+                            <option>IT Vendor</option>
+                            <option>Service Provider</option>
+                            <option>Logistics Partner</option>
+                            <option>Maintenance Vendor</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Contact Person</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="vendor.contactPerson"
+                            name="contactPerson">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            [(ngModel)]="vendor.email"
+                            name="email">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Phone Number</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="vendor.phone"
+                            name="phone">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>GST Number</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="vendor.gst"
+                            name="gst">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Status</label>
+
+                        <select
+                            class="form-select"
+                            [(ngModel)]="vendor.status"
+                            name="status">
+
+                            <option>Active</option>
+                            <option>Pending</option>
+                            <option>Blocked</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label>Address</label>
+
+                        <textarea
+                            rows="3"
+                            class="form-control"
+                            [(ngModel)]="vendor.address"
+                            name="address"></textarea>
+
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label>Description</label>
+
+                        <textarea
+                            rows="4"
+                            class="form-control"
+                            [(ngModel)]="vendor.description"
+                            name="description"></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="text-end">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary me-2">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+
+                        Update Vendor
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

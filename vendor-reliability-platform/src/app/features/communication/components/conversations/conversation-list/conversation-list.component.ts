@@ -30,7 +30,7 @@ export class ConversationListComponent {
   conversations: Conversation[] = [];
 
   @Input()
-  selectedConversationId: string | null = null;
+  selectedConversationId: number | null = null;
 
   @Output()
   conversationSelected = new EventEmitter<Conversation>();
@@ -54,7 +54,7 @@ export class ConversationListComponent {
     this.conversationSelected.emit(conversation);
   }
 
-  trackByConversationId(_: number, conversation: Conversation): string {
+  trackByConversationId(_: number, conversation: Conversation): number {
     return conversation.id;
   }
 

@@ -1,0 +1,13 @@
+<div class="timeline">
+
+    @for(event of events; track event.id){
+
+        <app-history-card
+
+            [event]="event">
+
+        </app-history-card>
+
+    }
+
+</div>

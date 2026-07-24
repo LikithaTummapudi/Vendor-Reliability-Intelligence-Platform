@@ -1,246 +1,69 @@
-:host {
-  display: block;
-  height: 100%;
-}
+.activity-page{
 
-.activity-page {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+padding:24px;
 
-/* ===================================================
-   HEADER
-=================================================== */
+background:#f6f8fb;
 
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.page-header h1 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 700;
-  color: #202124;
-}
-
-.page-header p {
-  margin-top: 6px;
-  color: #6b7280;
-  font-size: 15px;
-}
-
-.header-actions {
-  display: flex;
-  gap: 12px;
-}
-
-/* ===================================================
-   FILTER BAR
-=================================================== */
-
-.toolbar {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 18px;
-}
-
-.toolbar mat-form-field {
-  width: 100%;
-}
-
-/* ===================================================
-   TIMELINE
-=================================================== */
-
-.timeline {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 34px;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: #e2e8f0;
-}
-
-/* ===================================================
-   CARD
-=================================================== */
-
-.activity-card {
-  display: flex;
-  gap: 22px;
-  padding: 22px;
-  border-radius: 18px;
-  transition: .25s;
-  position: relative;
-}
-
-.activity-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 28px rgba(0,0,0,.08);
-}
-
-/* ===================================================
-   ICON
-=================================================== */
-
-.activity-icon {
-  width: 68px;
-  height: 68px;
-  min-width: 68px;
-  border-radius: 50%;
-  background: #ede8ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-}
-
-.activity-icon mat-icon {
-  color: #5b3fb3;
-  width: 34px;
-  height: 34px;
-  font-size: 34px;
-}
-
-/* ===================================================
-   CONTENT
-=================================================== */
-
-.activity-content {
-  flex: 1;
-}
-
-.activity-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.activity-header h3 {
-  margin: 0;
-  font-size: 19px;
-  font-weight: 600;
-}
-
-.activity-header span {
-  display: block;
-  margin-top: 6px;
-  color: #757575;
-  font-size: 13px;
-}
-
-.activity-content p {
-  margin: 18px 0;
-  color: #555;
-  line-height: 1.7;
-}
-
-/* ===================================================
-   FOOTER
-=================================================== */
-
-.activity-footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;
-}
-
-.activity-footer span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #666;
-  font-size: 13px;
-}
-
-.activity-footer mat-icon {
-  width: 18px;
-  height: 18px;
-  font-size: 18px;
-}
-
-/* ===================================================
-   CHIP
-=================================================== */
-
-mat-chip {
-  font-weight: 600;
-}
-
-/* ===================================================
-   TABLET
-=================================================== */
-
-@media (max-width: 1100px) {
-
-  .toolbar {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
-  }
+height:100%;
 
 }
 
-/* ===================================================
-   MOBILE
-=================================================== */
+.header{
 
-@media (max-width: 768px) {
+display:flex;
 
-  .toolbar {
-    grid-template-columns: 1fr;
-  }
+justify-content:space-between;
 
-  .timeline::before {
-    display: none;
-  }
+margin-bottom:20px;
 
-  .activity-card {
-    flex-direction: column;
-    padding: 18px;
-  }
+}
 
-  .activity-icon {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-  }
+.header input{
 
-  .activity-icon mat-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 28px;
-  }
+width:320px;
 
-  .activity-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+padding:10px;
 
-  .activity-footer {
-    flex-direction: column;
-    gap: 12px;
-  }
+border-radius:8px;
 
-  .header-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
+border:1px solid #ddd;
+
+}
+
+table{
+
+width:100%;
+
+background:white;
+
+border-collapse:collapse;
+
+border-radius:12px;
+
+overflow:hidden;
+
+}
+
+th{
+
+background:#f4f6f8;
+
+text-align:left;
+
+padding:14px;
+
+}
+
+td{
+
+padding:16px;
+
+border-top:1px solid #eee;
+
+}
+
+tr:hover{
+
+background:#fafafa;
 
 }

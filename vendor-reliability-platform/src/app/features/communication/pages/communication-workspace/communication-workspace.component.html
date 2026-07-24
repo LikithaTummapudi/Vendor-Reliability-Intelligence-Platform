@@ -1,123 +1,104 @@
-<div class="workspace">
+<div class="workspace-container">
 
-  <app-communication-tabs
-    [selectedIndex]="selectedTab"
-    (selectedIndexChange)="selectedTab = $event">
-  </app-communication-tabs>
+    <app-communication-tabs
+        [selectedIndex]="selectedTab"
+        (selectedIndexChange)="onTabChanged($event)">
+    </app-communication-tabs>
 
-  @switch (selectedTab) {
+    <div [ngSwitch]="selectedTab">
 
-    @case (0) {
+        <!-- Vendor Messaging -->
 
-      <div class="messages-layout">
+        <div
+            *ngSwitchCase="0"
+            class="workspace-body">
 
-  <aside class="conversation-panel">
+            <aside class="left-panel">
 
-    <app-conversation-list
-      [conversations]="conversations"
-      [selectedConversationId]="selectedConversation.id"
-      (conversationSelected)="selectConversation($event)">
-    </app-conversation-list>
+                <app-conversation-list
+                    [conversations]="conversations"
+                    [selectedConversationId]="selectedConversation?.id"
+                    (conversationSelected)="selectConversation($event)">
+                </app-conversation-list>
 
-  </aside>
+            </aside>
 
-  <section class="chat-panel">
+            <main
+    class="center-panel"
+    *ngIf="selectedConversation">
 
     <app-chat-header
-      [conversation]="selectedConversation">
+        [conversation]="selectedConversation">
     </app-chat-header>
 
     <app-message-list
-      [messages]="messages"
-      [isGroupConversation]="selectedConversation.isGroup">
+        [messages]="messages">
     </app-message-list>
 
     <app-message-composer
-      (sendMessage)="sendMessage($event)">
+        (sendMessage)="sendMessage($event)">
     </app-message-composer>
 
-  </section>
+</main>
 
-  <aside class="details-panel">
+            <aside class="right-panel">
 
-    <app-conversation-details
-      [conversation]="selectedConversation"
-      [participants]="participants"
-      [sharedFiles]="sharedFiles">
-    </app-conversation-details>
+                <app-right-sidebar></app-right-sidebar>
 
-  </aside>
+            </aside>
 
-</div>
+        </div>
 
-    }
+        <!-- Procurement -->
 
-    @case (1) {
+        <div
+            *ngSwitchCase="1"
+            class="feature-page">
 
-      <div class="messages-layout">
+            <app-discussion-threads></app-discussion-threads>
 
-  <aside class="conversation-panel">
+        </div>
 
-    <app-discussion-list
-      [discussions]="discussions"
-      [selectedDiscussionId]="selectedDiscussion.id">
-    </app-discussion-list>
+        <!-- Files -->
 
-  </aside>
+        <div
+            *ngSwitchCase="2"
+            class="feature-page">
 
-  <section class="chat-panel">
+            <app-file-sharing></app-file-sharing>
 
-    <app-discussion-thread
-      [messages]="discussionMessages">
-    </app-discussion-thread>
+        </div>
 
-    <app-discussion-composer>
-    </app-discussion-composer>
+        <!-- History -->
 
-  </section>
+        <div
+            *ngSwitchCase="3"
+            class="feature-page">
 
-  <aside class="details-panel">
+            <app-communication-history></app-communication-history>
 
-    <app-discussion-details
-      [discussion]="selectedDiscussion">
-    </app-discussion-details>
+        </div>
 
-  </aside>
+        <!-- Email -->
 
-</div>
+        <div
+            *ngSwitchCase="4"
+            class="feature-page">
 
-    }
+            <app-email-notifications></app-email-notifications>
 
-    @case (2) {
+        </div>
 
-      <app-file-sharing></app-file-sharing>
+        <!-- Activity -->
 
-    }
+        <div
+            *ngSwitchCase="5"
+            class="feature-page">
 
-    @case (3) {
+            <app-activity-logs></app-activity-logs>
 
-      <div class="placeholder">
-        Communication History
-      </div>
+        </div>
 
-    }
-
-    @case (4) {
-
-      <div class="placeholder">
-        Email Notifications
-      </div>
-
-    }
-
-    @case (5) {
-
-      <div class="placeholder">
-        Activity Logs
-      </div>
-
-    }
-
-  }
+    </div>
 
 </div>

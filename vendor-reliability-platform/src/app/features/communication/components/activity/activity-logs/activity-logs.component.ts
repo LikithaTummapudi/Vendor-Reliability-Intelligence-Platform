@@ -1,15 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-
-interface ActivityLog {
+interface ActivityLog{
 
   id:number;
 
@@ -21,112 +13,84 @@ interface ActivityLog {
 
   time:string;
 
-  details:string;
-
-  severity:'Low'|'Medium'|'High';
-
-  icon:string;
-
 }
 
 @Component({
   selector:'app-activity-logs',
   standalone:true,
   imports:[
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatChipsModule
+    CommonModule
   ],
   templateUrl:'./activity-logs.component.html',
-  styleUrls:['./activity-logs.component.scss']
+  styleUrls:['./activity-logs.component.scss'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class ActivityLogsComponent {
+export class ActivityLogsComponent{
 
   logs:ActivityLog[]=[
 
     {
-
       id:1,
-
       user:'Sarah Chen',
-
-      action:'Message Sent',
-
-      module:'Communication',
-
-      time:'10:42 AM',
-
-      details:'Sent updated compliance document to Procurement Team.',
-
-      severity:'Low',
-
-      icon:'send'
-
-    },
-
-    {
-
-      id:2,
-
-      user:'Marcus Reed',
-
-      action:'File Uploaded',
-
+      action:'Uploaded Vendor_Contract_2026.pdf',
       module:'File Sharing',
-
-      time:'10:15 AM',
-
-      details:'Uploaded Supplier_Agreement_v2.pdf',
-
-      severity:'Medium',
-
-      icon:'upload_file'
-
+      time:'Today • 10:42 AM'
     },
 
     {
+      id:2,
+      user:'You',
+      action:'Replied to RFQ-1042 discussion',
+      module:'Procurement',
+      time:'Today • 10:18 AM'
+    },
 
+    {
       id:3,
-
-      user:'Emily Ross',
-
-      action:'Discussion Resolved',
-
-      module:'Discussion Thread',
-
-      time:'Yesterday',
-
-      details:'Contract clarification discussion marked as resolved.',
-
-      severity:'Low',
-
-      icon:'task_alt'
-
+      user:'Finance Team',
+      action:'Approved Purchase Order PO-1042',
+      module:'Approvals',
+      time:'Today • 09:57 AM'
     },
 
     {
-
       id:4,
+      user:'Marcus Reed',
+      action:'Started Shipment Delay discussion',
+      module:'Discussion',
+      time:'Yesterday'
+    },
 
-      user:'Finance Team',
+    {
+      id:5,
+      user:'Legal Team',
+      action:'Updated Vendor Contract',
+      module:'Contracts',
+      time:'18 Jul'
+    },
 
-      action:'Invoice Shared',
+    {
+      id:6,
+      user:'QA Team',
+      action:'Updated Vendor Reliability Score',
+      module:'Vendor Management',
+      time:'17 Jul'
+    },
 
-      module:'Communication',
+    {
+      id:7,
+      user:'System',
+      action:'Email notification delivered',
+      module:'Notifications',
+      time:'17 Jul'
+    },
 
-      time:'Yesterday',
-
-      details:'Invoice INV-2026-017 shared with Vendor.',
-
-      severity:'High',
-
-      icon:'receipt_long'
-
+    {
+      id:8,
+      user:'Procurement Team',
+      action:'Shared RFQ documents',
+      module:'File Sharing',
+      time:'16 Jul'
     }
 
   ];

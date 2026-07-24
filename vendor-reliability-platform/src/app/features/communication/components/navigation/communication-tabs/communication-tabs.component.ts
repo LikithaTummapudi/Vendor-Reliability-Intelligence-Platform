@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -7,18 +6,18 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
+
+interface CommunicationTab {
+  label: string;
+  icon: string;
+}
 
 @Component({
   selector: 'app-communication-tabs',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatTabsModule
-  ],
+  imports: [CommonModule],
   templateUrl: './communication-tabs.component.html',
-  styleUrls: ['./communication-tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./communication-tabs.component.scss']
 })
 export class CommunicationTabsComponent {
 
@@ -28,7 +27,35 @@ export class CommunicationTabsComponent {
   @Output()
   selectedIndexChange = new EventEmitter<number>();
 
+  readonly tabs: CommunicationTab[] = [
+    {
+      label: 'Vendor Messaging',
+      icon: '💬'
+    },
+    {
+      label: 'Procurement Discussions',
+      icon: '📋'
+    },
+    {
+      label: 'File Sharing',
+      icon: '📁'
+    },
+    {
+      label: 'Communication History',
+      icon: '🕒'
+    },
+    {
+      label: 'Email Notifications',
+      icon: '✉️'
+    },
+    {
+      label: 'Activity Logs',
+      icon: '📊'
+    }
+  ];
+
   changeTab(index: number): void {
+    this.selectedIndex = index;
     this.selectedIndexChange.emit(index);
   }
 

@@ -1,144 +1,90 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { HistoryTimelineComponent } from '../../components/history/history-timeline/history-timeline.component';
+
+import { HistoryEvent } from '../../models/history-event.model';
+
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-interface CommunicationHistory {
-
-  id:number;
-
-  user:string;
-
-  company:string;
-
-  date:string;
-
-  type:string;
-
-  preview:string;
-
-  attachment:boolean;
-
-  project:string;
-
-  status:'Delivered'|'Read'|'Pending';
-
-}
-
 @Component({
-  selector:'app-communication-history',
-  standalone:true,
-  imports:[
+  selector: 'app-communication-history',
+  standalone: true,
+  imports: [
     CommonModule,
-    MatCardModule,
+    HistoryTimelineComponent,
     MatButtonModule,
+    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatChipsModule
+    MatSelectModule
   ],
-  templateUrl:'./communication-history.component.html',
-  styleUrls:['./communication-history.component.scss']
+  templateUrl: './communication-history.component.html',
+  styleUrls: ['./communication-history.component.scss']
 })
-export class CommunicationHistoryComponent{
+export class CommunicationHistoryComponent {
 
-  history:CommunicationHistory[]=[
+  events: HistoryEvent[] = [
 
     {
-
-      id:1,
-
+      id:'1',
+      type:'file',
+      title:'Vendor Contract Uploaded',
+      description:'Sarah Chen uploaded Vendor_Contract_2026.pdf',
       user:'Sarah Chen',
-
-      company:'Nimbus Global',
-
-      date:'Today • 10:42 AM',
-
-      type:'Message',
-
-      preview:'Updated compliance document has been uploaded for review.',
-
-      attachment:true,
-
-      project:'Supplier Onboarding',
-
-      status:'Read'
-
+      timestamp:'Today • 10:42 AM'
     },
 
     {
+      id:'2',
+      type:'discussion',
+      title:'RFQ Discussion Updated',
+      description:'You replied in RFQ-1042 procurement discussion.',
+      user:'You',
+      timestamp:'Today • 10:18 AM'
+    },
 
-      id:2,
+    {
+      id:'3',
+      type:'message',
+      title:'Vendor Message Sent',
+      description:'Shipment schedule confirmed with Marcus Reed.',
+      user:'You',
+      timestamp:'Today • 09:54 AM'
+    },
 
+    {
+      id:'4',
+      type:'email',
+      title:'Approval Email Sent',
+      description:'Purchase Order approval email sent to Finance Team.',
+      user:'System',
+      timestamp:'Yesterday'
+    },
+
+    {
+      id:'5',
+      type:'status',
+      title:'Vendor Reliability Updated',
+      description:'Reliability score increased from 89% to 92%.',
+      user:'System',
+      timestamp:'18 Jul'
+    },
+
+    {
+      id:'6',
+      type:'file',
+      title:'Invoice Uploaded',
+      description:'Invoice_July_2026.pdf uploaded by Finance Team.',
       user:'Finance Team',
-
-      company:'Internal',
-
-      date:'Today • 09:10 AM',
-
-      type:'Invoice',
-
-      preview:'Invoice INV-2026-019 has been shared.',
-
-      attachment:true,
-
-      project:'Payment Processing',
-
-      status:'Delivered'
-
-    },
-
-    {
-
-      id:3,
-
-      user:'Marcus Reed',
-
-      company:'Vertex Industries',
-
-      date:'Yesterday',
-
-      type:'Discussion',
-
-      preview:'Clarified delivery schedule and transportation timeline.',
-
-      attachment:false,
-
-      project:'Shipment Planning',
-
-      status:'Read'
-
-    },
-
-    {
-
-      id:4,
-
-      user:'Emily Ross',
-
-      company:'Legal',
-
-      date:'Yesterday',
-
-      type:'Contract',
-
-      preview:'Legal review completed. Awaiting procurement approval.',
-
-      attachment:true,
-
-      project:'Contract Review',
-
-      status:'Pending'
-
+      timestamp:'17 Jul'
     }
 
   ];
 
 }
+

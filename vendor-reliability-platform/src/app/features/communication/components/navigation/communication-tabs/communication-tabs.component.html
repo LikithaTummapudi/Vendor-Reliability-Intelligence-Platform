@@ -1,21 +1,20 @@
-<mat-tab-group
+<div class="tabs-container">
 
-[selectedIndex]="selectedIndex"
+    <button
+        *ngFor="let tab of tabs; let i = index"
+        type="button"
+        class="pill"
+        [class.active]="selectedIndex === i"
+        (click)="changeTab(i)">
 
-(selectedIndexChange)="changeTab($event)"
+        <span class="icon">
+            {{ tab.icon }}
+        </span>
 
-animationDuration="200ms">
+        <span>
+            {{ tab.label }}
+        </span>
 
-    <mat-tab label="Messages"></mat-tab>
+    </button>
 
-    <mat-tab label="Procurement"></mat-tab>
-
-    <mat-tab label="Files"></mat-tab>
-
-    <mat-tab label="History"></mat-tab>
-
-    <mat-tab label="Email"></mat-tab>
-
-    <mat-tab label="Activity"></mat-tab>
-
-</mat-tab-group>
+</div>

@@ -1,117 +1,70 @@
 <header class="chat-header">
 
-  <div class="conversation-info">
+    <div class="left-section">
 
-    <div class="avatar">
+        <div class="avatar">
 
-      @if (conversation.avatarUrl) {
+            {{ conversation.avatar }}
 
-        <img
-          [src]="conversation.avatarUrl"
-          [alt]="conversation.name">
-
-      } @else {
-
-        <div class="avatar-placeholder">
-          {{ conversation.name.charAt(0) }}
         </div>
 
-      }
+        <div class="info">
+
+            <h3>{{ conversation.name }}</h3>
+
+            <p>
+
+                {{ conversation.company }}
+
+                •
+
+                <span
+                    [class.online]="conversation.isOnline">
+
+                    {{ conversation.isOnline ? 'Online' : 'Offline' }}
+
+                </span>
+
+            </p>
+
+        </div>
 
     </div>
 
-    <div class="details">
+    <div class="actions">
 
-      <h2>{{ conversation.name }}</h2>
+        <button
+            mat-icon-button
+            (click)="voiceCall.emit()">
 
-      <div class="status">
+            <mat-icon>call</mat-icon>
 
-        @if (conversation.isGroup) {
+        </button>
 
-          {{ conversation.participantCount ?? 0 }} Members
+        <button
+            mat-icon-button
+            (click)="videoCall.emit()">
 
-        } @else {
+            <mat-icon>videocam</mat-icon>
 
-          <span
-            class="status-dot"
-            [class.online]="conversation.isOnline">
-          </span>
+        </button>
 
-          {{ conversation.isOnline ? 'Online' : 'Offline' }}
+        <button
+            mat-icon-button
+            (click)="search.emit()">
 
-        }
+            <mat-icon>search</mat-icon>
 
-      </div>
+        </button>
+
+        <button
+            mat-icon-button
+            (click)="moreActions.emit()">
+
+            <mat-icon>more_vert</mat-icon>
+
+        </button>
 
     </div>
-
-  </div>
-
-  <div class="actions">
-
-    <button
-      mat-icon-button
-      matTooltip="Voice Call"
-      (click)="voiceCall.emit()">
-
-      <mat-icon>call</mat-icon>
-
-    </button>
-
-    <button
-      mat-icon-button
-      matTooltip="Video Call"
-      (click)="videoCall.emit()">
-
-      <mat-icon>videocam</mat-icon>
-
-    </button>
-
-    <button
-      mat-icon-button
-      matTooltip="Search"
-      (click)="search.emit()">
-
-      <mat-icon>search</mat-icon>
-
-    </button>
-
-    <button
-      mat-icon-button
-      [matMenuTriggerFor]="menu">
-
-      <mat-icon>more_vert</mat-icon>
-
-    </button>
-
-    <mat-menu #menu="matMenu">
-
-      <button mat-menu-item>
-
-        <mat-icon>push_pin</mat-icon>
-
-        <span>Pin Conversation</span>
-
-      </button>
-
-      <button mat-menu-item>
-
-        <mat-icon>notifications_off</mat-icon>
-
-        <span>Mute Notifications</span>
-
-      </button>
-
-      <button mat-menu-item>
-
-        <mat-icon>archive</mat-icon>
-
-        <span>Archive</span>
-
-      </button>
-
-    </mat-menu>
-
-  </div>
 
 </header>

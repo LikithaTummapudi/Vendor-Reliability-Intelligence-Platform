@@ -1,38 +1,37 @@
-export type MessageType = 'text' | 'image' | 'file' | 'system';
-
-export interface MessageReaction {
-  emoji: string;
-  count: number;
-  reactedByCurrentUser: boolean;
-}
+export type MessageStatus = 'sent' | 'delivered' | 'seen';
 
 export interface MessageAttachment {
+
   id: string;
+
   fileName: string;
+
   fileSize: string;
+
   fileType: string;
+
   url: string;
+
 }
 
 export interface Message {
-  id: string;
-  conversationId: string;
 
-  senderId: string;
-  senderName: string;
-  senderAvatar?: string;
+  id: number;
 
-  content: string;
-  type: MessageType;
+  conversationId: number;
+
+  sender: string;
+
+  senderAvatar: string;
+
+  mine: boolean;
+
+  text?: string;
 
   sentAt: string;
 
-  isCurrentUser: boolean;
-  isEdited: boolean;
-  isRead: boolean;
+  status: MessageStatus;
 
-  attachments?: MessageAttachment[];
-  reactions?: MessageReaction[];
+  attachment?: MessageAttachment;
 
-  replyToMessageId?: string;
 }

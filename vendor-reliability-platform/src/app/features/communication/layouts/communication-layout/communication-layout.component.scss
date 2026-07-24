@@ -58,15 +58,11 @@ app-top-navbar {
 =========================================== */
 
 .page-content {
-
   flex: 1;
-
-  overflow-y: auto;
-
+  min-height: 0;
+  overflow: hidden;
   padding: 24px;
-
   background: #f5f7fb;
-
 }
 
 /* ===========================================

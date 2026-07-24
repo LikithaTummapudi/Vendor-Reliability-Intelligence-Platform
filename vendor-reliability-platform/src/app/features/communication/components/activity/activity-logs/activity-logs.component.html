@@ -1,200 +1,52 @@
 <div class="activity-page">
 
-    <!-- Header -->
+    <div class="header">
 
-    <div class="page-header">
+        <h2>Activity Logs</h2>
 
-        <div>
-
-            <h1>Activity Logs</h1>
-
-            <p>
-                Monitor every communication activity performed across the platform.
-            </p>
-
-        </div>
-
-        <div class="header-actions">
-
-            <button
-                mat-stroked-button>
-
-                <mat-icon>download</mat-icon>
-
-                Export
-
-            </button>
-
-            <button
-                mat-flat-button
-                color="primary">
-
-                <mat-icon>print</mat-icon>
-
-                Print
-
-            </button>
-
-        </div>
+        <input
+            placeholder="Search activity...">
 
     </div>
 
-    <!-- Filters -->
+    <table>
 
-    <div class="toolbar">
+        <thead>
 
-        <mat-form-field appearance="outline">
+            <tr>
 
-            <mat-label>Search Activity</mat-label>
+                <th>User</th>
 
-            <input
-                matInput
-                placeholder="Search user or action">
+                <th>Action</th>
 
-        </mat-form-field>
+                <th>Module</th>
 
-        <mat-form-field appearance="outline">
+                <th>Time</th>
 
-            <mat-label>User</mat-label>
+            </tr>
 
-            <mat-select>
+        </thead>
 
-                <mat-option>All Users</mat-option>
+        <tbody>
 
-                <mat-option>Sarah Chen</mat-option>
+            @for(log of logs;track log.id){
 
-                <mat-option>Marcus Reed</mat-option>
+            <tr>
 
-                <mat-option>Finance Team</mat-option>
+                <td>{{log.user}}</td>
 
-                <mat-option>Emily Ross</mat-option>
+                <td>{{log.action}}</td>
 
-            </mat-select>
+                <td>{{log.module}}</td>
 
-        </mat-form-field>
+                <td>{{log.time}}</td>
 
-        <mat-form-field appearance="outline">
+            </tr>
 
-            <mat-label>Severity</mat-label>
+            }
 
-            <mat-select>
+        </tbody>
 
-                <mat-option>All</mat-option>
-
-                <mat-option>Low</mat-option>
-
-                <mat-option>Medium</mat-option>
-
-                <mat-option>High</mat-option>
-
-            </mat-select>
-
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-
-            <mat-label>Module</mat-label>
-
-            <mat-select>
-
-                <mat-option>All Modules</mat-option>
-
-                <mat-option>Communication</mat-option>
-
-                <mat-option>Discussion Thread</mat-option>
-
-                <mat-option>File Sharing</mat-option>
-
-            </mat-select>
-
-        </mat-form-field>
-
-    </div>
-
-    <!-- Timeline -->
-
-    <div class="timeline">
-
-        <mat-card
-            class="activity-card"
-            *ngFor="let log of logs">
-
-            <div class="activity-icon">
-
-                <mat-icon>
-
-                    {{log.icon}}
-
-                </mat-icon>
-
-            </div>
-
-            <div class="activity-content">
-
-                <div class="activity-header">
-
-                    <div>
-
-                        <h3>
-
-                            {{log.action}}
-
-                        </h3>
-
-                        <span>
-
-                            {{log.user}}
-
-                        </span>
-
-                    </div>
-
-                    <mat-chip>
-
-                        {{log.severity}}
-
-                    </mat-chip>
-
-                </div>
-
-                <p>
-
-                    {{log.details}}
-
-                </p>
-
-                <div class="activity-footer">
-
-                    <span>
-
-                        <mat-icon>
-
-                            schedule
-
-                        </mat-icon>
-
-                        {{log.time}}
-
-                    </span>
-
-                    <span>
-
-                        <mat-icon>
-
-                            dashboard
-
-                        </mat-icon>
-
-                        {{log.module}}
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        </mat-card>
-
-    </div>
+    </table>
 
 </div>

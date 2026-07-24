@@ -1,24 +1,23 @@
 export interface Conversation {
-  id: string;
-  name: string;
 
-  avatarUrl?: string;
+  id:number;
 
-  isGroup: boolean;
+  name:string;
 
-  isOnline: boolean;
+  avatar:string;
 
-  lastMessage: string;
+  company:string;
 
-  lastMessageTime: string;
+  isOnline:boolean;
 
-  unreadCount: number;
+  lastMessage:string;
 
-  isPinned: boolean;
+  lastMessageTime:string;
 
-  isMuted: boolean;
+  unreadCount:number;
 
-  participantCount?: number;
+  priority:'Low'|'Medium'|'High';
 
-  lastSeen?: string;
+  isGroup:boolean;
+
 }

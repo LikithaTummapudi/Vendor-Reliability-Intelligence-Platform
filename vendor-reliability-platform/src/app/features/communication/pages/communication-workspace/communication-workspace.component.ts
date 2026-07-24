@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef
+} from '@angular/core';
 
-import { Conversation } from '../../models/conversation.model';
-import { Message } from '../../models/message.model';
+import { CommonModule } from '@angular/common';
 
 import { CommunicationTabsComponent } from '../../components/navigation/communication-tabs/communication-tabs.component';
 
@@ -10,18 +13,15 @@ import { ConversationListComponent } from '../../components/conversations/conver
 import { ChatHeaderComponent } from '../../components/chat/chat-header/chat-header.component';
 import { MessageListComponent } from '../../components/chat/message-list/message-list.component';
 import { MessageComposerComponent } from '../../components/chat/message-composer/message-composer.component';
+import { RightSidebarComponent } from '../../components/right-sidebar/right-sidebar.component';
 
-import { ConversationDetailsComponent } from '../../components/details/conversation-details/conversation-details.component';
-import { Participant } from '../../models/participant.model';
-
-import { DiscussionListComponent } from '../../components/procurement/discussion-list/discussion-list.component';
-import { DiscussionThreadComponent } from '../../components/procurement/discussion-thread/discussion-thread.component';
-import { DiscussionDetailsComponent } from '../../components/procurement/discussion-details/discussion-details.component';
-import { DiscussionComposerComponent } from '../../components/procurement/discussion-composer/discussion-composer.component';
-
-import { ProcurementDiscussion } from '../../models/procurement-discussion.model';
-import { DiscussionMessage } from '../../models/discussion-message.model';
+import { DiscussionThreadsComponent } from '../discussion-threads/discussion-threads.component';
 import { FileSharingComponent } from '../../components/files/file-sharing/file-sharing.component';
+import { CommunicationHistoryComponent } from '../communication-history/communication-history.component';
+import { EmailNotificationsComponent } from '../../components/email/email-notifications/email-notifications.component';
+import { ActivityLogsComponent } from '../../components/activity/activity-logs/activity-logs.component';
+
+import { CommunicationService } from '../../services/communication.service';
 
 @Component({
   selector: 'app-communication-workspace',
@@ -33,115 +33,87 @@ import { FileSharingComponent } from '../../components/files/file-sharing/file-s
     ChatHeaderComponent,
     MessageListComponent,
     MessageComposerComponent,
-    ConversationDetailsComponent,
-    DiscussionListComponent,
-    DiscussionThreadComponent,
-    DiscussionDetailsComponent,
-    DiscussionComposerComponent,
-    FileSharingComponent
+    RightSidebarComponent,
+    DiscussionThreadsComponent,
+    FileSharingComponent,
+    CommunicationHistoryComponent,
+    EmailNotificationsComponent,
+    ActivityLogsComponent
   ],
   templateUrl: './communication-workspace.component.html',
   styleUrls: ['./communication-workspace.component.scss']
 })
-export class CommunicationWorkspaceComponent {
+export class CommunicationWorkspaceComponent
+  implements OnInit, AfterViewInit {
 
   selectedTab = 0;
 
-  conversations: Conversation[] = [
-    {
-      id: '1',
-      name: 'Procurement Team',
-      isGroup: true,
-      isOnline: true,
-      lastMessage: 'Contract approved.',
-      lastMessageTime: new Date().toISOString(),
-      unreadCount: 2,
-      isPinned: true,
-      isMuted: false,
-      participantCount: 12
-    }
-  ];
+  conversations: any[] = [];
+  messages: any[] = [];
+  selectedConversation: any = null;
 
-  participants: Participant[] = [
-  {
-    id: '1',
-    name: 'Rahul',
-    isOnline: true,
-    role: 'Procurement Manager'
-  },
-  {
-    id: '2',
-    name: 'Sneha',
-    isOnline: true,
-    role: 'Vendor Manager'
+  constructor(
+    private communicationService: CommunicationService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+
+    this.communicationService.conversations$
+      .subscribe(data => {
+
+        this.conversations = data;
+
+        if (!this.selectedConversation && data.length) {
+
+          this.selectedConversation = data[0];
+
+          this.communicationService.loadConversation(
+            this.selectedConversation.id
+          );
+
+        }
+
+      });
+
+    this.communicationService.messages$
+      .subscribe(data => {
+
+        this.messages = data;
+
+      });
+
   }
-];
 
-discussions: ProcurementDiscussion[] = [
-  {
-    id: '1',
-    title: 'RFQ for Office Laptops',
-    referenceNo: 'RFQ-1042',
-    vendorName: 'Dell Technologies',
-    status: 'Active',
-    priority: 'High',
-    lastMessage: 'Quotation received from vendor.',
-    lastUpdated: '10:45 AM',
-    dueDate: '25 Jul 2026',
-    unreadCount: 2
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
   }
-];
 
-selectedDiscussion = this.discussions[0];
-
-discussionMessages: DiscussionMessage[] = [
-  {
-    id: '1',
-    discussionId: '1',
-    sender: 'Procurement Manager',
-    message: 'Please review the quotation before approval.',
-    sentAt: '10:30 AM',
-    isCurrentUser: false
+  onTabChanged(index: number): void {
+    this.selectedTab = index;
   }
-];
 
+  selectConversation(conversation: any): void {
 
-  selectedConversation = this.conversations[0];
-
-  messages: Message[] = [
-    {
-      id: '1',
-      conversationId: '1',
-      senderId: '101',
-      senderName: 'Rahul',
-      content: 'The contract has been approved.',
-      type: 'text',
-      sentAt: new Date().toISOString(),
-      isCurrentUser: false,
-      isEdited: false,
-      isRead: true
-    }
-  ];
-
-  selectConversation(conversation: Conversation): void {
     this.selectedConversation = conversation;
+
+    this.communicationService.loadConversation(
+      conversation.id
+    );
+
   }
 
   sendMessage(text: string): void {
-    this.messages = [
-      ...this.messages,
-      {
-        id: crypto.randomUUID(),
-        conversationId: this.selectedConversation.id,
-        senderId: 'me',
-        senderName: 'Me',
-        content: text,
-        type: 'text',
-        sentAt: new Date().toISOString(),
-        isCurrentUser: true,
-        isEdited: false,
-        isRead: false
-      }
-    ];
+
+    if (!this.selectedConversation) {
+      return;
+    }
+
+    this.communicationService.sendMessage(
+      this.selectedConversation.id,
+      text
+    );
+
   }
+
 }

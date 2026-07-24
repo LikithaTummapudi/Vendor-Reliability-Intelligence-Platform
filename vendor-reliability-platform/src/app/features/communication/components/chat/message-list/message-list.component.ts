@@ -28,7 +28,7 @@ export class MessageListComponent {
   @Input()
   isGroupConversation = false;
 
-  trackByMessageId(index: number, message: Message): string {
+  trackByMessageId(index: number, message: Message): number {
     return message.id;
   }
 

@@ -1,0 +1,43 @@
+<div class="email-page">
+
+    <div class="header">
+
+        <h2>Email Notifications</h2>
+
+        <input
+            type="text"
+            placeholder="Search emails...">
+
+    </div>
+
+    <div class="email-list">
+
+        @for(email of emails; track email.id){
+
+            <div class="email-card">
+
+                <div class="top">
+
+                    <h3>{{email.subject}}</h3>
+
+                    <span>{{email.timestamp}}</span>
+
+                </div>
+
+                <h4>{{email.sender}}</h4>
+
+                <p>{{email.preview}}</p>
+
+                <span class="status">
+
+                    {{email.status}}
+
+                </span>
+
+            </div>
+
+        }
+
+    </div>
+
+</div>

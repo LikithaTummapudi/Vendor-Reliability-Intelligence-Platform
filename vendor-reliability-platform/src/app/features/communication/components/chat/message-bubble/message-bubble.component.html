@@ -1,70 +1,53 @@
 <div
-  class="message-wrapper"
-  [class.own-message]="message.isCurrentUser">
+    class="message-wrapper"
+    [class.mine]="message.mine">
 
-  <!-- Avatar (Incoming Messages Only) -->
-  @if (!message.isCurrentUser && showAvatar) {
-    <div class="avatar-container">
+    <div class="avatar">
 
-      @if (message.senderAvatar) {
-        <img
-          class="avatar"
-          [src]="message.senderAvatar"
-          [alt]="message.senderName">
-      } @else {
-        <div class="avatar-placeholder">
-          {{ message.senderName.charAt(0) }}
-        </div>
-      }
+        {{ message.senderAvatar }}
 
     </div>
-  }
 
-  <div class="message-content">
-
-    <!-- Sender Name (Groups only) -->
-    @if (showSenderName && !message.isCurrentUser) {
-      <div class="sender-name">
-        {{ message.senderName }}
-      </div>
-    }
-
-    <!-- Message Bubble -->
     <div class="bubble">
 
-      {{ message.content }}
+        <div class="sender">
+
+            {{ message.sender }}
+
+        </div>
+
+        <div
+            class="text"
+            *ngIf="message.text">
+
+            {{ message.text }}
+
+        </div>
+
+        <div
+            class="attachment"
+            *ngIf="message.attachment">
+
+            <mat-icon>
+
+                attach_file
+
+            </mat-icon>
+
+            <span>
+
+                {{ message.attachment.fileName }}
+
+            </span>
+
+        </div>
+
+        <div class="time">
+
+            {{ message.sentAt }}
+
+        </div>
 
     </div>
-
-    <!-- Footer -->
-    <div class="message-footer">
-
-      <span class="time">
-
-        {{ message.sentAt | date:'shortTime' }}
-
-      </span>
-
-      @if (message.isEdited) {
-        <span class="edited">
-          Edited
-        </span>
-      }
-
-      @if (message.isCurrentUser) {
-
-        <mat-icon
-          class="read-status"
-          [matTooltip]="message.isRead ? 'Read' : 'Sent'">
-
-          {{ message.isRead ? 'done_all' : 'done' }}
-
-        </mat-icon>
-
-      }
-
-    </div>
-
-  </div>
 
 </div>

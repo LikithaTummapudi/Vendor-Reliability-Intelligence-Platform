@@ -1,1 +1,199 @@
-<p>vendor-dashboard works!</p>
+<div class="vm-page">
+
+  <!-- Top Navigation -->
+  <div class="vm-topbar">
+    <div class="vm-topbar-heading">
+      <h1>Vendor Management</h1>
+      <p>Monitor vendor health, approvals and performance across the network</p>
+    </div>
+    <nav class="vm-tabs">
+      <a routerLink="/vendor-management/dashboard" routerLinkActive="active" class="vm-tab">Vendor Dashboard</a>
+      <a routerLink="/vendor-management/list" routerLinkActive="active" class="vm-tab">Vendor List</a>
+      
+      <a routerLink="/vendor-management/details" routerLinkActive="active" class="vm-tab">Vendor Details</a>
+      <a routerLink="/vendor-management/approval" routerLinkActive="active" class="vm-tab">Vendor Approval</a>
+    </nav>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="vm-stat-grid">
+    <div class="vm-stat-card" *ngFor="let card of statCards" [ngClass]="'accent-' + card.accent">
+      <div class="vm-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path [attr.d]="card.icon"></path>
+        </svg>
+      </div>
+      <div class="vm-stat-body">
+        <span class="vm-stat-label">{{ card.label }}</span>
+        <span class="vm-stat-value">{{ card.value }}</span>
+        <span class="vm-stat-trend" [class.down]="!card.trendUp">
+          <svg *ngIf="card.trendUp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 15l7-7 7 7"/></svg>
+          <svg *ngIf="!card.trendUp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          {{ card.trend }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="vm-panel-grid">
+
+    <!-- Recent Vendor Activity -->
+    <section class="vm-panel span-2">
+      <div class="vm-panel-head">
+        <h2>Recent Vendor Activity</h2>
+        <span class="vm-panel-sub">Live feed</span>
+      </div>
+      <ul class="vm-activity-list">
+        <li *ngFor="let item of recentActivity">
+          <span class="vm-activity-dot" [ngClass]="'accent-' + item.accent"></span>
+          <div class="vm-activity-content">
+            <p><strong>{{ item.vendor }}</strong> — {{ item.action }}</p>
+            <span>{{ item.time }}</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Vendor Categories -->
+    <section class="vm-panel">
+      <div class="vm-panel-head">
+        <h2>Vendor Categories</h2>
+      </div>
+      <div class="vm-category-list">
+        <div class="vm-category-row" *ngFor="let cat of categories">
+          <div class="vm-category-label">
+            <span class="vm-dot" [ngClass]="'accent-' + cat.color"></span>
+            {{ cat.name }}
+          </div>
+          <div class="vm-category-bar-track">
+            <div class="vm-category-bar-fill" [ngClass]="'accent-' + cat.color" [style.width.%]="cat.value"></div>
+          </div>
+          <span class="vm-category-count">{{ cat.count }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Registrations -->
+    <section class="vm-panel span-2">
+      <div class="vm-panel-head">
+        <h2>Recent Registrations</h2>
+        <a routerLink="/vendor-management/list" class="vm-panel-link">View all</a>
+      </div>
+      <table class="vm-mini-table">
+        <thead>
+          <tr><th>Vendor ID</th><th>Name</th><th>Company</th><th>Category</th><th>Date</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reg of recentRegistrations">
+            <td class="mono">{{ reg.id }}</td>
+            <td>{{ reg.name }}</td>
+            <td>{{ reg.company }}</td>
+            <td>{{ reg.category }}</td>
+            <td>{{ reg.date }}</td>
+            <td><span class="vm-badge" [ngClass]="'badge-' + reg.status.toLowerCase()">{{ reg.status }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Vendor Approval Summary -->
+    <section class="vm-panel">
+      <div class="vm-panel-head">
+        <h2>Vendor Approval Summary</h2>
+      </div>
+      <div class="vm-approval-summary">
+        <div class="vm-approval-item" *ngFor="let a of approvalSummary">
+          <span class="vm-dot" [ngClass]="'accent-' + a.color"></span>
+          <span class="vm-approval-label">{{ a.label }}</span>
+          <span class="vm-approval-value">{{ a.value }}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vendor Performance Summary -->
+    <section class="vm-panel span-2">
+      <div class="vm-panel-head">
+        <h2>Vendor Performance Summary</h2>
+      </div>
+      <table class="vm-mini-table">
+        <thead>
+          <tr><th>Metric</th><th>Current</th><th>Target</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of performance">
+            <td>{{ p.metric }}</td>
+            <td class="mono">{{ p.value }}</td>
+            <td class="mono">{{ p.target }}</td>
+            <td><span class="vm-status-pill" [ngClass]="'pill-' + p.status">{{ p.status }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Vendor Status Distribution -->
+    <section class="vm-panel">
+      <div class="vm-panel-head">
+        <h2>Vendor Status Distribution</h2>
+      </div>
+      <div class="vm-distribution-list">
+        <div class="vm-distribution-row" *ngFor="let d of statusDistribution">
+          <div class="vm-category-label">
+            <span class="vm-dot" [ngClass]="'accent-' + d.color"></span>
+            {{ d.status }}
+          </div>
+          <div class="vm-category-bar-track">
+            <div class="vm-category-bar-fill" [ngClass]="'accent-' + d.color" [style.width.%]="d.percent"></div>
+          </div>
+          <span class="vm-category-count">{{ d.percent }}%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Approved Vendors -->
+    <section class="vm-panel span-2">
+      <div class="vm-panel-head">
+        <h2>Latest Approved Vendors</h2>
+        <a routerLink="/vendor-management/approval" class="vm-panel-link">View queue</a>
+      </div>
+      <table class="vm-mini-table">
+        <thead>
+          <tr><th>Vendor ID</th><th>Company</th><th>Category</th><th>Approved On</th><th>Rating</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of latestApproved">
+            <td class="mono">{{ v.id }}</td>
+            <td>{{ v.company }}</td>
+            <td>{{ v.category }}</td>
+            <td>{{ v.approvedOn }}</td>
+            <td>
+              <span class="vm-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.75l-6.172 3.245 1.179-6.873L2 9.755l6.9-1.002L12 2.5l3.1 6.253 6.9 1.002-5.007 4.367 1.179 6.873z"/></svg>
+                {{ v.rating }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Recent Vendor Requests -->
+    <section class="vm-panel">
+      <div class="vm-panel-head">
+        <h2>Recent Vendor Requests</h2>
+      </div>
+      <ul class="vm-request-list">
+        <li *ngFor="let r of recentRequests">
+          <div class="vm-request-top">
+            <span class="mono">{{ r.id }}</span>
+            <span class="vm-priority" [ngClass]="'priority-' + r.priority.toLowerCase()">{{ r.priority }}</span>
+          </div>
+          <p class="vm-request-name">{{ r.company }}</p>
+          <p class="vm-request-type">{{ r.requestType }}</p>
+          <span class="vm-request-date">Submitted {{ r.submitted }}</span>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+</div>

@@ -1,305 +1,111 @@
-<div class="vendor-container">
+<div class="vm-page">
 
-  <!-- Header -->
-  <div class="header">
-    <div>
-      <h2>Vendor Repository</h2>
-      <p>Manage all registered vendors and monitor their performance.</p>
+  <!-- Top Navigation -->
+  <div class="vm-topbar">
+    <div class="vm-topbar-heading">
+      <h1>Vendor Management</h1>
+      <p>Browse, search and manage every vendor in the network</p>
     </div>
-
-    <div class="header-actions">
-      <input
-        type="text"
-        class="form-control search-box"
-        placeholder="Search vendor..."
-      />
-
-      <button class="btn btn-light">
-        <i class="bi bi-funnel"></i>
-        Filter
-      </button>
-
-      <button class="btn btn-primary">
-        <i class="bi bi-plus-circle"></i>
-        Add Vendor
-      </button>
-    </div>
+    <nav class="vm-tabs">
+      <a routerLink="/vendor-management/dashboard" routerLinkActive="active" class="vm-tab">Vendor Dashboard</a>
+      <a routerLink="/vendor-management/list" routerLinkActive="active" class="vm-tab">Vendor List</a>
+      <a routerLink="/vendor-management/add" routerLinkActive="active" class="vm-tab">Add Vendor</a>
+      <a routerLink="/vendor-management/details" routerLinkActive="active" class="vm-tab">Vendor Details</a>
+      <a routerLink="/vendor-management/approval" routerLinkActive="active" class="vm-tab">Vendor Approval</a>
+    </nav>
   </div>
 
-  <!-- Summary Cards -->
-
-  <div class="row mt-4">
-
-    <div class="col-md-3">
-      <div class="summary-card">
-        <h6>Total Vendors</h6>
-        <h2>248</h2>
-        <span class="text-success">+12 this month</span>
-      </div>
+  <!-- Toolbar -->
+  <div class="vm-toolbar">
+    <div class="vm-search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search vendor by name, company or ID" [(ngModel)]="searchTerm" />
     </div>
 
-    <div class="col-md-3">
-      <div class="summary-card">
-        <h6>Active Vendors</h6>
-        <h2>218</h2>
-        <span class="text-success">87% Active</span>
-      </div>
-    </div>
+    <select class="vm-select" [(ngModel)]="categoryFilter">
+      <option *ngFor="let c of categories" [value]="c">{{ c === 'All' ? 'All Categories' : c }}</option>
+    </select>
 
-    <div class="col-md-3">
-      <div class="summary-card">
-        <h6>Pending Approval</h6>
-        <h2>16</h2>
-        <span class="text-warning">Waiting Review</span>
-      </div>
-    </div>
+    <select class="vm-select" [(ngModel)]="statusFilter">
+      <option *ngFor="let s of statuses" [value]="s">{{ s === 'All' ? 'All Statuses' : s }}</option>
+    </select>
 
-    <div class="col-md-3">
-      <div class="summary-card">
-        <h6>Blocked Vendors</h6>
-        <h2>14</h2>
-        <span class="text-danger">Need Attention</span>
-      </div>
-    </div>
+    <div class="vm-toolbar-spacer"></div>
 
+    <button class="vm-btn vm-btn-ghost" (click)="exportVendors()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+      Export
+    </button>
+    <button class="vm-btn vm-btn-ghost" (click)="refresh()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A9 9 0 006.582 9M20 20v-5h-.581m0 0a9 9 0 01-14.856 2"/></svg>
+      Refresh
+    </button>
+    <a routerLink="/vendor-management/add" class="vm-btn vm-btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      New Vendor
+    </a>
   </div>
 
-  <!-- Vendor Table -->
-
-  <div class="table-card mt-4">
-
-    <table class="table table-hover align-middle">
-
+  <!-- Table -->
+  <div class="vm-table-card">
+    <table class="vm-table">
       <thead>
-
-      <tr>
-
-        <th>ID</th>
-        <th>Vendor Name</th>
-        <th>Category</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Score</th>
-        <th>Status</th>
-        <th>Action</th>
-
-      </tr>
-
+        <tr>
+          <th>Vendor ID</th>
+          <th>Vendor Name</th>
+          <th>Company</th>
+          <th>Category</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>City</th>
+          <th>Registration Date</th>
+          <th>Rating</th>
+          <th>Status</th>
+          <th class="col-actions">Actions</th>
+        </tr>
       </thead>
-
       <tbody>
-
-      <tr>
-
-        <td>V001</td>
-        <td>Global Logistics</td>
-        <td>Transport</td>
-        <td>global@gmail.com</td>
-        <td>9876543210</td>
-
-        <td>
-          <div class="progress">
-            <div
-              class="progress-bar bg-success"
-              style="width:94%">
+        <tr *ngFor="let v of filteredVendors">
+          <td class="mono">{{ v.vendorId }}</td>
+          <td class="cell-strong">{{ v.name }}</td>
+          <td>{{ v.company }}</td>
+          <td>{{ v.category }}</td>
+          <td>{{ v.email }}</td>
+          <td>{{ v.phone }}</td>
+          <td>{{ v.city }}</td>
+          <td>{{ v.registrationDate }}</td>
+          <td>
+            <span class="vm-rating">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.75l-6.172 3.245 1.179-6.873L2 9.755l6.9-1.002L12 2.5l3.1 6.253 6.9 1.002-5.007 4.367 1.179 6.873z"/></svg>
+              {{ v.rating }}
+            </span>
+          </td>
+          <td>
+            <span class="vm-badge" [ngClass]="'badge-' + v.status.toLowerCase()">{{ v.status }}</span>
+          </td>
+          <td class="col-actions">
+            <div class="vm-row-actions">
+              <a routerLink="/vendor-management/details" class="vm-icon-btn" title="View">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </a>
+              <a routerLink="/vendor-management/edit" class="vm-icon-btn" title="Edit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </a>
+              <button class="vm-icon-btn danger" title="Delete" (click)="deleteVendor(v.vendorId)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6h14z"/></svg>
+              </button>
             </div>
-          </div>
-
-          <small>94%</small>
-
-        </td>
-
-        <td>
-
-          <span class="badge bg-success">
-            Active
-          </span>
-
-        </td>
-
-        <td>
-
-          <button class="btn btn-sm btn-outline-primary">
-            View
-          </button>
-
-          <button class="btn btn-sm btn-outline-warning">
-            Edit
-          </button>
-
-        </td>
-
-      </tr>
-
-      <tr>
-
-        <td>V002</td>
-        <td>Apex Manufacturing</td>
-        <td>Manufacturing</td>
-        <td>apex@gmail.com</td>
-        <td>9123456780</td>
-
-        <td>
-
-          <div class="progress">
-
-            <div
-              class="progress-bar bg-info"
-              style="width:89%">
-            </div>
-
-          </div>
-
-          <small>89%</small>
-
-        </td>
-
-        <td>
-
-          <span class="badge bg-primary">
-            Approved
-          </span>
-
-        </td>
-
-        <td>
-
-          <button class="btn btn-sm btn-outline-primary">
-            View
-          </button>
-
-          <button class="btn btn-sm btn-outline-warning">
-            Edit
-          </button>
-
-        </td>
-
-      </tr>
-
-      <tr>
-
-        <td>V003</td>
-        <td>Quantum Systems</td>
-        <td>Software</td>
-        <td>quantum@gmail.com</td>
-        <td>9988776655</td>
-
-        <td>
-
-          <div class="progress">
-
-            <div
-              class="progress-bar bg-warning"
-              style="width:75%">
-            </div>
-
-          </div>
-
-          <small>75%</small>
-
-        </td>
-
-        <td>
-
-          <span class="badge bg-warning text-dark">
-            Pending
-          </span>
-
-        </td>
-
-        <td>
-
-          <button class="btn btn-sm btn-outline-primary">
-            View
-          </button>
-
-          <button class="btn btn-sm btn-outline-warning">
-            Edit
-          </button>
-
-        </td>
-
-      </tr>
-
-      <tr>
-
-        <td>V004</td>
-        <td>Horizon Supplies</td>
-        <td>Retail</td>
-        <td>horizon@gmail.com</td>
-        <td>9011223344</td>
-
-        <td>
-
-          <div class="progress">
-
-            <div
-              class="progress-bar bg-danger"
-              style="width:60%">
-            </div>
-
-          </div>
-
-          <small>60%</small>
-
-        </td>
-
-        <td>
-
-          <span class="badge bg-danger">
-            Blocked
-          </span>
-
-        </td>
-
-        <td>
-
-          <button class="btn btn-sm btn-outline-primary">
-            View
-          </button>
-
-          <button class="btn btn-sm btn-outline-warning">
-            Edit
-          </button>
-
-        </td>
-
-      </tr>
-
+          </td>
+        </tr>
+        <tr *ngIf="filteredVendors.length === 0">
+          <td colspan="11" class="vm-empty">No vendors match your filters.</td>
+        </tr>
       </tbody>
-
     </table>
-
   </div>
 
-  <!-- Pagination -->
-
-  <nav class="mt-4">
-
-    <ul class="pagination justify-content-end">
-
-      <li class="page-item">
-        <a class="page-link">Previous</a>
-      </li>
-
-      <li class="page-item active">
-        <a class="page-link">1</a>
-      </li>
-
-      <li class="page-item">
-        <a class="page-link">2</a>
-      </li>
-
-      <li class="page-item">
-        <a class="page-link">3</a>
-      </li>
-
-      <li class="page-item">
-        <a class="page-link">Next</a>
-      </li>
-
-    </ul>
-
-  </nav>
+  <div class="vm-table-footer">
+    <span>Showing {{ filteredVendors.length }} of {{ vendors.length }} vendors</span>
+  </div>
 
 </div>

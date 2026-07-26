@@ -8,10 +8,10 @@ import {
 } from "./chunk-FOY5WODJ.js";
 import {
   DomSanitizer
-} from "./chunk-IGDU4HQP.js";
+} from "./chunk-PBUKNX2E.js";
 import {
   isPlatformBrowser
-} from "./chunk-3652SVX4.js";
+} from "./chunk-745FQF6R.js";
 import {
   ANIMATION_MODULE_TYPE,
   APP_ID,

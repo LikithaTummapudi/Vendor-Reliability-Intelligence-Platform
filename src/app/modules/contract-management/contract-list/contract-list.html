@@ -1,190 +1,90 @@
-<div class="contract-page">
+<div class="cm-root">
 
-    <!-- Header -->
+  <div class="page-head">
+    <h1>Contract List</h1>
+    <p>Browse, search and manage every contract on file.</p>
+  </div>
 
-    <div class="page-header">
-
-        <div>
-
-            <h2>Contract Repository</h2>
-
-            <p>Manage vendor contracts and monitor their lifecycle.</p>
-
-        </div>
-
-        <div class="header-actions">
-
-            <input
-            class="form-control search-box"
-            placeholder="Search Contract">
-
-            <button class="btn btn-light">
-
-                Filter
-
-            </button>
-
-            <button class="btn btn-primary">
-
-                + Add Contract
-
-            </button>
-
-        </div>
-
+  <div class="toolbar">
+    <div class="search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search by contract ID, vendor or type..." [(ngModel)]="searchTerm">
     </div>
+    <select class="btn" [(ngModel)]="selectedCategory">
+      <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+    </select>
+    <button class="btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 3H2l8 9.46V19l4 2v-8.54z"/></svg>
+      Filter
+    </button>
+    <button class="btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      Export
+    </button>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" [routerLink]="['/contract-management/add-contract']">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      New Contract
+    </button>
+  </div>
 
-    <!-- Summary Cards -->
-
-    <div class="row">
-
-        <div class="col-md-3">
-
-            <div class="summary-card">
-
-                <h6>Total Contracts</h6>
-
-                <h2>156</h2>
-
-                <small>+8 this month</small>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="summary-card">
-
-                <h6>Active</h6>
-
-                <h2>132</h2>
-
-                <small>84%</small>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="summary-card">
-
-                <h6>Pending</h6>
-
-                <h2>18</h2>
-
-                <small>Review Required</small>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-3">
-
-            <div class="summary-card">
-
-                <h6>Expired</h6>
-
-                <h2>6</h2>
-
-                <small>Renew Soon</small>
-
-            </div>
-
-        </div>
-
+  <div class="table-card">
+    <div class="table-card-head">
+      <h3>All Contracts</h3>
+      <div class="count">Showing {{ filteredContracts.length }} of {{ contracts.length }} contracts</div>
     </div>
-
-    <!-- Table -->
-
-    <div class="table-card mt-4">
-
-        <table class="table table-hover align-middle">
-
-            <thead>
-
-            <tr>
-
-                <th>ID</th>
-
-                <th>Vendor</th>
-
-                <th>Type</th>
-
-                <th>Start</th>
-
-                <th>End</th>
-
-                <th>Amount</th>
-
-                <th>Status</th>
-
-                <th>Action</th>
-
-            </tr>
-
-            </thead>
-
-            <tbody>
-
-            <tr *ngFor="let contract of contracts">
-
-                <td>{{contract.id}}</td>
-
-                <td>{{contract.vendor}}</td>
-
-                <td>{{contract.type}}</td>
-
-                <td>{{contract.start}}</td>
-
-                <td>{{contract.end}}</td>
-
-                <td>{{contract.amount}}</td>
-
-                <td>
-
-                    <span
-                    class="badge"
-
-                    [ngClass]="{
-
-                    'bg-success':contract.status=='Active',
-
-                    'bg-warning text-dark':contract.status=='Pending',
-
-                    'bg-danger':contract.status=='Expired'
-
-                    }">
-
-                    {{contract.status}}
-
-                    </span>
-
-                </td>
-
-                <td>
-
-                    <button class="btn btn-outline-primary btn-sm me-2">
-
-                        View
-
-                    </button>
-
-                    <button class="btn btn-outline-warning btn-sm">
-
-                        Edit
-
-                    </button>
-
-                </td>
-
-            </tr>
-
-            </tbody>
-
-        </table>
-
+    <table>
+      <thead>
+        <tr>
+          <th>Contract ID</th><th>Contract Name</th><th>Vendor</th><th>Type</th>
+          <th>Value</th><th>Start Date</th><th>End Date</th><th>Status</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of filteredContracts">
+          <td class="contract-id">{{ c.id }}</td>
+          <td>
+            <div class="contract-name-cell">
+              <div class="file-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <div>
+                <div class="cname-strong">{{ c.name }}</div>
+                <div class="cname-sub">{{ c.subtitle }}</div>
+              </div>
+            </div>
+          </td>
+          <td>{{ c.vendor }}</td>
+          <td>{{ c.type }}</td>
+          <td class="value-cell"><span class="cur">$</span>{{ c.value | number }}</td>
+          <td>{{ c.startDate }}</td>
+          <td>{{ c.endDate }}</td>
+          <td><span class="badge" [ngClass]="c.status">{{ c.statusLabel }}</span></td>
+          <td>
+            <div class="row-actions">
+              <button [routerLink]="['/contract-management/contract-details', c.id]" title="View details">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+              <button title="Edit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="table-footer">
+      <div class="info">Showing 1 to {{ filteredContracts.length }} of 742 entries</div>
+      <div class="pagination">
+        <div class="pg-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+        <div class="pg-btn active">1</div>
+        <div class="pg-btn">2</div>
+        <div class="pg-btn">3</div>
+        <div class="pg-btn">…</div>
+        <div class="pg-btn">93</div>
+        <div class="pg-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      </div>
     </div>
+  </div>
 
 </div>

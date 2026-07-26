@@ -1,45 +1,52 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-contract',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './add-contract.html',
   styleUrls: ['./add-contract.css']
 })
 export class AddContract {
 
-  contract = {
-    contractName: '',
-    vendor: '',
-    contractType: '',
-    startDate: '',
-    endDate: '',
-    contractValue: '',
-    paymentTerms: '',
-    status: '',
-    description: ''
-  };
+  vendors = ['Nexora Logistics', 'SteelCore Industries', 'Brightware Technologies', 'Orbit Packaging'];
+  contractTypes = ['Supply Contract', 'Service Agreement', 'Master Agreement', 'NDA'];
+  departments = ['Procurement', 'IT', 'Operations', 'Legal'];
+  paymentTerms = ['Net 30', 'Net 45', 'Net 60', 'Milestone-based'];
+  autoRenewalOptions = ['Disabled', 'Enabled — 12 month term', 'Enabled — 24 month term'];
+  noticePeriods = ['30 days before expiry', '60 days before expiry', '90 days before expiry'];
 
-  saveContract() {
-    alert('Contract Added Successfully!');
-    console.log(this.contract);
+  form: FormGroup;
+
+  constructor(private fb: FormBuilder, private router: Router) {
+    this.form = this.fb.group({
+      contractName: ['', Validators.required],
+      vendor: ['', Validators.required],
+      contractType: ['', Validators.required],
+      department: ['Procurement'],
+      contractValue: ['', Validators.required],
+      paymentTerms: ['Net 30'],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
+      autoRenewal: ['Disabled'],
+      noticePeriod: ['30 days before expiry'],
+      scope: ['']
+    });
   }
 
-  resetForm() {
-    this.contract = {
-      contractName: '',
-      vendor: '',
-      contractType: '',
-      startDate: '',
-      endDate: '',
-      contractValue: '',
-      paymentTerms: '',
-      status: '',
-      description: ''
-    };
+  saveDraft(): void {
+    console.log('Saved as draft', this.form.value);
   }
 
+  submitForApproval(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    console.log('Submitted for approval', this.form.value);
+    this.router.navigate(['/contract-management/contract-list']);
+  }
 }

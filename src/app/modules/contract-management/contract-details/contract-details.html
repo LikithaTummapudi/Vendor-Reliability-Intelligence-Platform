@@ -1,125 +1,89 @@
-<div class="details-page">
+<div class="cm-root">
 
-  <div class="page-header">
-
-      <div>
-          <h2>Contract Details</h2>
-          <p>View complete contract information.</p>
+  <div class="vd-header">
+    <div class="vd-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+    </div>
+    <div class="vd-info">
+      <h2>{{ contract.name }} — {{ contractId }}</h2>
+      <div class="meta">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          {{ contract.vendor }}
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          {{ contract.dateRange }}
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          {{ contract.value }} total value
+        </span>
       </div>
-
-      <div>
-          <button class="btn btn-warning me-2">Edit</button>
-          <button class="btn btn-primary">Download</button>
-      </div>
-
+    </div>
+    <div class="spacer"></div>
+    <span class="badge expiring" style="font-size:13px;padding:7px 16px;">Expiring in {{ contract.daysLeft }} days</span>
   </div>
 
-  <div class="row">
-
-      <div class="col-lg-4">
-
-          <div class="profile-card">
-
-              <div class="contract-icon">
-
-                  📄
-
-              </div>
-
-              <h3>{{contract.contractName}}</h3>
-
-              <p>{{contract.vendor}}</p>
-
-              <span class="badge bg-success">
-                  {{contract.status}}
-              </span>
-
-          </div>
-
+  <div class="vd-grid">
+    <div>
+      <div class="vd-panel">
+        <h4>Contract Overview</h4>
+        <div class="kv-grid">
+          <div class="kv-item"><div class="k">Contract Type</div><div class="v">{{ contract.type }}</div></div>
+          <div class="kv-item"><div class="k">Department</div><div class="v">{{ contract.department }}</div></div>
+          <div class="kv-item"><div class="k">Payment Terms</div><div class="v">{{ contract.paymentTerms }}</div></div>
+          <div class="kv-item"><div class="k">Auto-Renewal</div><div class="v">{{ contract.autoRenewal }}</div></div>
+          <div class="kv-item"><div class="k">Renewal Notice</div><div class="v">{{ contract.renewalNotice }}</div></div>
+          <div class="kv-item"><div class="k">Contract Owner</div><div class="v">{{ contract.owner }}</div></div>
+        </div>
       </div>
 
-      <div class="col-lg-8">
-
-          <div class="info-card">
-
-              <h4>Contract Information</h4>
-
-              <div class="info-grid">
-
-                  <div>
-
-                      <label>Contract ID</label>
-
-                      <p>{{contract.contractId}}</p>
-
-                  </div>
-
-                  <div>
-
-                      <label>Vendor</label>
-
-                      <p>{{contract.vendor}}</p>
-
-                  </div>
-
-                  <div>
-
-                      <label>Contract Type</label>
-
-                      <p>{{contract.contractType}}</p>
-
-                  </div>
-
-                  <div>
-
-                      <label>Contract Value</label>
-
-                      <p>{{contract.amount}}</p>
-
-                  </div>
-
-                  <div>
-
-                      <label>Start Date</label>
-
-                      <p>{{contract.startDate}}</p>
-
-                  </div>
-
-                  <div>
-
-                      <label>End Date</label>
-
-                      <p>{{contract.endDate}}</p>
-
-                  </div>
-
-                  <div>
-
-                      <label>Payment Terms</label>
-
-                      <p>{{contract.paymentTerms}}</p>
-
-                  </div>
-
-                  <div>
-
-                      <label>Contract Manager</label>
-
-                      <p>{{contract.manager}}</p>
-
-                  </div>
-
-              </div>
-
-              <h5 class="mt-4">Description</h5>
-
-              <p>{{contract.description}}</p>
-
-          </div>
-
+      <div class="vd-panel">
+        <h4>Key Clauses</h4>
+        <div class="clause-item" *ngFor="let c of clauses">
+          <div class="clause-title">{{ c.title }}</div>
+          <div class="clause-desc">{{ c.desc }}</div>
+        </div>
       </div>
 
+      <div class="vd-panel" style="margin-bottom:0;">
+        <h4>Activity Timeline</h4>
+        <div class="timeline-item" *ngFor="let a of activity">
+          <div class="timeline-dot" [style.background]="a.color"></div>
+          <div class="timeline-body">
+            <div class="t-title">{{ a.title }}</div>
+            <div class="t-date">{{ a.time }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="vd-panel">
+        <h4>Documents</h4>
+        <div class="doc-item" *ngFor="let d of documents">
+          <div class="doc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div class="doc-name">{{ d.name }}</div>
+            <div class="doc-size">{{ d.size }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vd-panel" style="margin-bottom:0;">
+        <h4>Approval Chain</h4>
+        <div class="timeline-item" *ngFor="let ap of approvalChain">
+          <div class="timeline-dot" style="background:var(--green-600);"></div>
+          <div class="timeline-body">
+            <div class="t-title">{{ ap.role }}</div>
+            <div class="t-date">{{ ap.by }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>

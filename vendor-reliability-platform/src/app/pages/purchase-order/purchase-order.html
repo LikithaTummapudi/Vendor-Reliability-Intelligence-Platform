@@ -1,0 +1,397 @@
+<div class="po-container">
+
+  <div class="po-header">
+    <h1>Create Purchase Order</h1>
+    <p>Generate and manage purchase orders for vendors</p>
+    <div class="status-box">
+
+  <strong>Status :</strong>
+
+  <span class="status-badge">
+
+    {{ poForm.get('status')?.value }}
+
+  </span>
+
+</div>
+  </div>
+
+  <form [formGroup]="poForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-grid">
+
+      <!-- PO Number -->
+      <div class="input-group">
+        <label>PO Number</label>
+        <input
+          type="text"
+          formControlName="poNumber"
+          readonly>
+          <div class="input-group">
+
+        <label>Order Date</label>
+
+       <input
+       type="text"
+       [value]="today"
+      readonly>
+
+</div>
+      </div>
+
+      <!-- Vendor -->
+      <div class="input-group">
+        <label>Vendor</label>
+
+        <select
+          formControlName="vendor"
+          (change)="onVendorChange()">
+
+          <option value="">Select Vendor</option>
+
+          <option
+            *ngFor="let vendor of vendors"
+            [value]="vendor">
+
+            {{ vendor }}
+
+          </option>
+
+        </select>
+        <small class="hint">
+
+           Choose a vendor to load available products.
+
+        </small>
+      </div>
+
+      <!-- Delivery Date -->
+      <div class="input-group">
+        <label>Delivery Date</label>
+
+        <input
+          type="date"
+          formControlName="deliveryDate"
+          [min]="today">
+
+      </div>
+
+      <!-- Payment Terms -->
+      <div class="input-group">
+        <label>Payment Terms</label>
+
+        <input
+          type="text"
+          formControlName="paymentTerms">
+
+      </div>
+    
+
+    </div>
+
+    <!-- Shipping Address -->
+
+    <div class="input-group full-width">
+
+      <label>Shipping Address</label>
+
+      <textarea
+          rows="3"
+          formControlName="shippingAddress"
+          placeholder="Enter complete shipping address">
+        </textarea>
+
+    </div>
+
+    <!-- Line Items -->
+
+    <div class="items-section">
+
+      <div class="section-header">
+
+        <h2>Line Items</h2>
+
+        <button
+          type="button"
+          class="add-btn"
+          (click)="addItem()">
+
+          + Add Item
+
+        </button>
+
+      </div>
+
+      <div formArrayName="items">
+
+        <div
+          class="item-row"
+          *ngFor="let item of items.controls; let i=index"
+          [formGroupName]="i">
+
+          <!-- Product -->
+
+          <div class="field-group">
+
+            <select
+              formControlName="itemName"
+              (change)="onProductChange(i)"
+              [disabled]="!poForm.get('vendor')?.value">
+
+              <option value="">Select Product</option>
+
+              <option
+                *ngFor="let product of products"
+                [value]="product.name">
+
+                {{ product.name }}
+
+              </option>
+
+            </select>
+
+            <small
+              class="error"
+              *ngIf="item.get('itemName')?.touched &&
+                     item.get('itemName')?.invalid">
+
+              Please select a product
+
+            </small>
+
+          </div>
+
+          <!-- Quantity -->
+
+          <div class="field-group">
+
+            <input
+              type="number"
+              placeholder="Quantity"
+              formControlName="quantity">
+
+            <small
+              class="error"
+              *ngIf="item.get('quantity')?.touched &&
+                     item.get('quantity')?.invalid">
+
+              Minimum quantity is 1
+
+            </small>
+
+          </div>
+
+          <!-- Unit Price -->
+
+          <div class="field-group">
+
+            <input
+             type="text"
+             [value]="formatCurrency(item.get('unitPrice')?.value)"
+             readonly>
+
+          </div>
+
+          <!-- Total -->
+
+          <div class="total-cell">
+
+            {{ formatCurrency(getItemTotal(i)) }}
+
+          </div>
+
+          <!-- Remove -->
+
+          <button
+            type="button"
+            class="remove-btn"
+            (click)="removeItem(i)">
+
+            Remove
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Summary Card -->
+
+    <div class="summary-card">
+
+      <div class="summary-row">
+
+        <span>Total Products</span>
+
+        <strong>{{ items.length }}</strong>
+
+      </div>
+
+      <div class="summary-row">
+
+        <span>Subtotal</span>
+
+        <strong>
+
+          {{ formatCurrency(getSubTotal()) }}
+
+        </strong>
+
+      </div>
+
+      <div class="summary-row">
+
+        <span>GST (18%)</span>
+
+        <strong>
+
+          {{ formatCurrency(getGST()) }}
+
+        </strong>
+
+      </div>
+
+      <div class="summary-row">
+
+        <span>Shipping Charges</span>
+
+        <strong>
+
+          {{ formatCurrency(getShipping()) }}
+
+        </strong>
+
+      </div>
+
+      <hr>
+
+      <div class="summary-row grand">
+         <p>
+
+           <strong>Status:</strong>
+
+              {{ poForm.value.status }}
+
+          </p>
+
+        <span>Grand Total</span>
+
+        <strong>
+
+          {{ formatCurrency(getGrandTotal()) }}
+
+        </strong>
+
+      </div>
+
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="actions">
+
+      <button
+        
+  type="button"
+  class="preview-btn"
+  (click)="previewPO()">
+
+  👁 Preview Purchase Order
+
+</button>
+
+
+
+      <button
+        type="submit"
+        class="submit-btn">
+        
+
+        📄 Generate Purchase Order
+
+      </button>
+
+    </div>
+
+  </form>
+  <div class="preview-overlay" *ngIf="showPreview">
+
+  <div class="preview-card">
+
+    <h2>Purchase Order Preview</h2>
+
+    <p><strong>PO Number:</strong> {{ poForm.value.poNumber }}</p>
+
+    <p><strong>Vendor:</strong> {{ poForm.value.vendor }}</p>
+
+    <p><strong>Delivery Date:</strong> {{ poForm.value.deliveryDate }}</p>
+
+    <p><strong>Payment Terms:</strong> {{ poForm.value.paymentTerms }}</p>
+
+    <p><strong>Shipping Address:</strong></p>
+
+    <p>{{ poForm.value.shippingAddress }}</p>
+
+    <hr>
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let item of poForm.value.items">
+
+          <td>{{ item.itemName }}</td>
+
+          <td>{{ item.quantity }}</td>
+
+          <td>{{ formatCurrency(item.unitPrice) }}</td>
+
+          <td>{{ formatCurrency(item.quantity * item.unitPrice) }}</td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+    <hr>
+
+    <h3>
+
+      Grand Total:
+      {{ formatCurrency(getGrandTotal()) }}
+
+    </h3>
+
+    <div class="preview-actions">
+
+      <button
+        class="close-btn"
+        (click)="closePreview()">
+
+        Close
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>

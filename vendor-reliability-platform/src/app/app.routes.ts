@@ -1,16 +1,23 @@
 import { Routes } from '@angular/router';
 
+import { Procurement } from './pages/procurement/procurement';
+import { PurchaseOrder } from './pages/purchase-order/purchase-order';
+import { Login } from './pages/login/login';
+import { Register } from './pages/register/register';
+
 import { MainLayoutComponent } from './shared/layout/main-layout/main-layout';
 import { CommunicationWorkspaceComponent } from './features/communication/pages/communication-workspace/communication-workspace.component';
 import { ApprovalDashboardComponent } from './features/vendor-approval/pages/approval-dashboard/approval-dashboard.component';
 import { CommunicationHistoryComponent } from './features/communication/pages/communication-history/communication-history.component';
-
 import { FileSharingComponent } from './features/communication/components/files/file-sharing/file-sharing.component';
 import { EmailNotificationsComponent } from './features/communication/components/email/email-notifications/email-notifications.component';
 import { ActivityLogsComponent } from './features/communication/components/activity/activity-logs/activity-logs.component';
 
-
 export const routes: Routes = [
+
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
 
   {
     path: '',
@@ -24,14 +31,22 @@ export const routes: Routes = [
         pathMatch: 'full'
       },
 
-      
-
       {
         path: 'communication',
         component: CommunicationWorkspaceComponent
       },
 
- ]
+      {
+        path: 'dashboard/procurement',
+        component: Procurement
+      },
+
+      {
+        path: 'dashboard/purchase-order',
+        component: PurchaseOrder
+      }
+
+    ]
 
   }
 

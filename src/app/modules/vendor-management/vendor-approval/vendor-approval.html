@@ -1,0 +1,89 @@
+<div class="vm-page">
+
+  <!-- Top Navigation -->
+  <div class="vm-topbar">
+    <div class="vm-topbar-heading">
+      <h1>Vendor Management</h1>
+      <p>Review, approve or reject vendors awaiting onboarding</p>
+    </div>
+    <nav class="vm-tabs">
+      <a routerLink="/vendor-management/dashboard" routerLinkActive="active" class="vm-tab">Vendor Dashboard</a>
+      <a routerLink="/vendor-management/list" routerLinkActive="active" class="vm-tab">Vendor List</a>
+      <a routerLink="/vendor-management/add" routerLinkActive="active" class="vm-tab">Add Vendor</a>
+      <a routerLink="/vendor-management/details" routerLinkActive="active" class="vm-tab">Vendor Details</a>
+      <a routerLink="/vendor-management/approval" routerLinkActive="active" class="vm-tab">Vendor Approval</a>
+    </nav>
+  </div>
+
+  <!-- Stat Cards -->
+  <div class="vm-stat-grid">
+    <div class="vm-stat-card" *ngFor="let card of statCards" [ngClass]="'accent-' + card.accent">
+      <div class="vm-stat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path [attr.d]="card.icon"></path>
+        </svg>
+      </div>
+      <div class="vm-stat-body">
+        <span class="vm-stat-label">{{ card.label }}</span>
+        <span class="vm-stat-value">{{ card.value }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Approval Queue Table -->
+  <div class="vm-table-card">
+    <div class="vm-table-card-head">
+      <h2>Approval Queue</h2>
+      <span class="vm-panel-sub">{{ queue.length }} vendors in review</span>
+    </div>
+    <table class="vm-table">
+      <thead>
+        <tr>
+          <th>Vendor</th>
+          <th>Company</th>
+          <th>Submitted Date</th>
+          <th>Documents</th>
+          <th>Reviewer</th>
+          <th>Status</th>
+          <th class="col-actions">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of queue">
+          <td>
+            <div class="vm-vendor-cell">
+              <strong>{{ row.vendor }}</strong>
+              <span class="mono">{{ row.vendorId }}</span>
+            </div>
+          </td>
+          <td>{{ row.company }}</td>
+          <td>{{ row.submittedDate }}</td>
+          <td>
+            <span class="vm-doc-count">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+              {{ row.documents }}
+            </span>
+          </td>
+          <td>{{ row.reviewer }}</td>
+          <td>
+            <span class="vm-badge" [ngClass]="'badge-' + row.status.toLowerCase().replace(' ', '-')">{{ row.status }}</span>
+          </td>
+          <td class="col-actions">
+            <div class="vm-row-actions">
+              <button class="vm-icon-btn approve" title="Approve" (click)="approve(row.vendorId)" [disabled]="row.status === 'Approved'">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+              </button>
+              <button class="vm-icon-btn reject" title="Reject" (click)="reject(row.vendorId)" [disabled]="row.status === 'Rejected'">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+              <a routerLink="/vendor-management/details" class="vm-icon-btn" title="View">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

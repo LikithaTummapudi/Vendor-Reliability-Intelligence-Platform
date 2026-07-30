@@ -1,0 +1,151 @@
+<div class="vm-page">
+
+  <!-- Top Navigation -->
+  <div class="vm-topbar">
+    <div class="vm-topbar-heading">
+      <h1>Vendor Management</h1>
+      <p>Full profile, performance and transaction history</p>
+    </div>
+    <nav class="vm-tabs">
+      <a routerLink="/vendor-management/dashboard" routerLinkActive="active" class="vm-tab">Vendor Dashboard</a>
+      <a routerLink="/vendor-management/list" routerLinkActive="active" class="vm-tab">Vendor List</a>
+      <a routerLink="/vendor-management/add" routerLinkActive="active" class="vm-tab">Add Vendor</a>
+      <a routerLink="/vendor-management/details" routerLinkActive="active" class="vm-tab">Vendor Details</a>
+      <a routerLink="/vendor-management/approval" routerLinkActive="active" class="vm-tab">Vendor Approval</a>
+    </nav>
+  </div>
+
+  <div class="vm-details-grid">
+
+    <!-- Left profile column -->
+    <aside class="vm-profile-card">
+      <div class="vm-profile-logo">{{ vendor.initials }}</div>
+      <h2>{{ vendor.company }}</h2>
+      <span class="vm-badge" [ngClass]="'badge-' + vendor.status.toLowerCase()">{{ vendor.status }}</span>
+
+      <div class="vm-profile-rating">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.75l-6.172 3.245 1.179-6.873L2 9.755l6.9-1.002L12 2.5l3.1 6.253 6.9 1.002-5.007 4.367 1.179 6.873z"/></svg>
+        {{ vendor.rating }} / 5.0
+      </div>
+
+      <div class="vm-profile-meta">
+        <div class="vm-profile-meta-row">
+          <span>Vendor ID</span>
+          <strong class="mono">{{ vendor.id }}</strong>
+        </div>
+        <div class="vm-profile-meta-row">
+          <span>Category</span>
+          <strong>{{ vendor.category }}</strong>
+        </div>
+        <div class="vm-profile-meta-row">
+          <span>Vendor Since</span>
+          <strong>{{ vendor.memberSince }}</strong>
+        </div>
+      </div>
+
+      <div class="vm-profile-actions">
+        <a routerLink="/vendor-management/edit" class="vm-btn vm-btn-primary">Edit Vendor</a>
+        <a routerLink="/vendor-management/list" class="vm-btn vm-btn-ghost">Back to List</a>
+      </div>
+    </aside>
+
+    <!-- Right content column -->
+    <div class="vm-details-content">
+
+      <!-- Company Information -->
+      <section class="vm-panel">
+        <div class="vm-panel-head"><h2>Company Information</h2></div>
+        <div class="vm-info-grid">
+          <div class="vm-info-item" *ngFor="let item of companyInfo">
+            <span>{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Information -->
+      <section class="vm-panel">
+        <div class="vm-panel-head"><h2>Contact Information</h2></div>
+        <div class="vm-info-grid">
+          <div class="vm-info-item" *ngFor="let item of contactInfo">
+            <span>{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Business Details -->
+      <section class="vm-panel">
+        <div class="vm-panel-head"><h2>Business Details</h2></div>
+        <div class="vm-info-grid">
+          <div class="vm-info-item" *ngFor="let item of businessDetails">
+            <span>{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Documents -->
+      <section class="vm-panel">
+        <div class="vm-panel-head"><h2>Documents</h2></div>
+        <div class="vm-doc-rows">
+          <div class="vm-doc-row" *ngFor="let doc of documents">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+            <div class="vm-doc-row-text">
+              <strong>{{ doc.name }}</strong>
+              <span>{{ doc.size }} &middot; Updated {{ doc.updated }}</span>
+            </div>
+            <button class="vm-icon-btn" title="Download">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bank Details -->
+      <section class="vm-panel">
+        <div class="vm-panel-head"><h2>Bank Details</h2></div>
+        <div class="vm-info-grid">
+          <div class="vm-info-item" *ngFor="let item of bankDetails">
+            <span>{{ item.label }}</span>
+            <strong>{{ item.value }}</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Purchase History -->
+      <section class="vm-panel">
+        <div class="vm-panel-head"><h2>Purchase History</h2></div>
+        <table class="vm-mini-table">
+          <thead>
+            <tr><th>PO Number</th><th>Item / Service</th><th>Amount</th><th>Date</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of purchaseHistory">
+              <td class="mono">{{ p.poNumber }}</td>
+              <td>{{ p.item }}</td>
+              <td>{{ p.amount }}</td>
+              <td>{{ p.date }}</td>
+              <td><span class="vm-status-pill" [ngClass]="'pill-' + p.status.toLowerCase().replace(' ', '-')">{{ p.status }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Performance Summary -->
+      <section class="vm-panel">
+        <div class="vm-panel-head"><h2>Performance Summary</h2></div>
+        <div class="vm-performance-list">
+          <div class="vm-performance-row" *ngFor="let m of performanceSummary">
+            <div class="vm-category-label">{{ m.label }}</div>
+            <div class="vm-category-bar-track">
+              <div class="vm-category-bar-fill" [ngClass]="'accent-' + m.color" [style.width.%]="m.value"></div>
+            </div>
+            <span class="vm-category-count">{{ m.value }}%</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

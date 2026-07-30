@@ -1,0 +1,74 @@
+/* ===========================
+   CONTRACT LAYOUT
+=========================== */
+
+.contract-container{
+    width:100%;
+    padding:24px;
+    background:#f4f7fc;
+    min-height:100vh;
+    box-sizing:border-box;
+}
+
+/* Header */
+
+.page-header{
+    margin-bottom:20px;
+}
+
+.page-header h1{
+    margin:0;
+    font-size:32px;
+    font-weight:700;
+    color:#111827;
+}
+
+.page-header p{
+    margin-top:8px;
+    color:#64748b;
+    font-size:15px;
+}
+
+/* Tabs */
+
+.contract-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    padding:10px;
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    margin-bottom:24px;
+}
+
+.contract-tabs a{
+    text-decoration:none;
+    color:#334155;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.contract-tabs a:hover{
+    background:#eff6ff;
+}
+
+.contract-tabs a.active{
+    background:#2563eb;
+    color:#fff;
+}
+
+/* IMPORTANT */
+
+.page-content{
+    width:100%;
+}
+
+/* Every child page should use full width */
+
+.page-content > *{
+    display:block;
+    width:100%;
+}

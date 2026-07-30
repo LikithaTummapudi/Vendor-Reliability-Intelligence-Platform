@@ -1,0 +1,182 @@
+/* ===================== contract-list.css ===================== */
+/* Modern professional theme — Indian Rupee currency, refined buttons */
+
+:root{
+  --blue-500:#2563EB; --blue-600:#1d4fd1; --blue-700:#1741ab;
+  --ink-900:#0f172a; --ink-700:#334155; --ink-500:#64748b; --ink-400:#94a3b8; --ink-200:#e2e8f0; --ink-100:#f1f5f9;
+  --green-50:#ecfdf5; --green-600:#059669; --green-700:#047857;
+  --orange-50:#fffbeb; --orange-600:#d97706; --orange-700:#b45309;
+  --red-50:#fef2f2; --red-600:#dc2626; --red-700:#b91c1c;
+  --purple-50:#f5f3ff; --purple-600:#7c3aed; --purple-700:#6d28d9;
+  --radius-lg:16px; --radius-md:10px;
+  --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+  --shadow-md: 0 4px 14px rgba(15,23,42,.07), 0 1px 3px rgba(15,23,42,.05);
+  --shadow-lg: 0 10px 28px rgba(37,99,235,.16);
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+*{box-sizing:border-box;}
+.cm-root{font-family:'Inter',sans-serif;color:var(--ink-900);}
+.cm-root button{font-family:inherit;cursor:pointer;}
+
+.page-head{margin-bottom:22px;}
+.page-head h1{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin:0 0 6px 0;}
+.page-head p{margin:0;color:var(--ink-500);font-size:14.5px;}
+
+/* Toolbar */
+.toolbar{display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;}
+.search-bar{
+  flex:1;min-width:280px;max-width:420px;display:flex;align-items:center;gap:10px;background:#fff;
+  border:1px solid var(--ink-200);border-radius:var(--radius-md);padding:11px 14px;box-shadow:var(--shadow-sm);
+  transition:border-color .18s var(--ease), box-shadow .18s var(--ease);
+}
+.search-bar:focus-within{border-color:var(--blue-500);box-shadow:0 0 0 4px rgba(37,99,235,.10);}
+.search-bar svg{width:17px;height:17px;color:var(--ink-400);flex-shrink:0;}
+.search-bar input{border:none;outline:none;font-size:14px;width:100%;color:var(--ink-900);background:transparent;}
+.search-bar input::placeholder{color:var(--ink-400);}
+
+/* Buttons — refined system */
+.btn{
+  display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:var(--radius-md);font-size:13.8px;font-weight:600;
+  border:1px solid var(--ink-200);background:#fff;color:var(--ink-700);box-shadow:var(--shadow-sm);white-space:nowrap;
+  transition:background .16s var(--ease), border-color .16s var(--ease), box-shadow .16s var(--ease), transform .1s var(--ease);
+}
+.btn svg{width:16px;height:16px;}
+.btn:hover{background:var(--ink-100);border-color:#cbd5e1;}
+.btn:active{transform:translateY(1px);}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(37,99,235,.25);}
+
+.btn-primary{
+    background: #2563EB !important;
+    color: #ffffff !important;
+    border: 1px solid #2563EB !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+
+    box-shadow: 0 4px 12px rgba(37,99,235,.25);
+    transition: 0.3s;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8 !important;
+    border-color:#1d4ed8 !important;
+}
+
+.btn-primary svg{
+    color:#fff !important;
+}
+
+.btn-primary:active{transform:translateY(1px);box-shadow:0 2px 8px rgba(37,99,235,.3);}
+
+.toolbar .spacer{flex:1;}
+select.btn{
+  appearance:none;-webkit-appearance:none;padding-right:32px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+}
+
+/* Table card */
+.table-card{background:#fff;border:1px solid var(--ink-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden;}
+.table-card-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--ink-100);}
+.table-card-head h3{margin:0;font-size:16px;font-weight:700;}
+.table-card-head .count{font-size:12.5px;color:var(--ink-500);font-weight:500;}
+table{width:100%;border-collapse:collapse;}
+thead th{
+  text-align:left;font-size:11.5px;font-weight:700;color:var(--ink-500);text-transform:uppercase;letter-spacing:.05em;
+  padding:13px 22px;background:var(--ink-100);border-bottom:1px solid var(--ink-200);white-space:nowrap;
+}
+tbody td{padding:15px 22px;font-size:13.8px;border-bottom:1px solid var(--ink-100);color:var(--ink-700);vertical-align:middle;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr{transition:background .15s var(--ease);}
+tbody tr:hover{background:#f8fbff;}
+
+.contract-id{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-500);}
+.contract-name-cell{display:flex;align-items:center;gap:10px;}
+.file-icon{width:32px;height:32px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#eff4ff;color:var(--blue-600);}
+.file-icon svg{width:16px;height:16px;}
+.cname-strong{font-weight:600;color:var(--ink-900);font-size:13.8px;}
+.cname-sub{font-size:11.8px;color:var(--ink-500);}
+
+/* Status badges */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;box-shadow:0 1px 2px rgba(15,23,42,.04);}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;}
+.badge.active{background:var(--green-50);color:var(--green-700);}
+.badge.active::before{background:var(--green-600);}
+.badge.expiring{background:var(--orange-50);color:var(--orange-700);}
+.badge.expiring::before{background:var(--orange-600);}
+.badge.expired{background:var(--red-50);color:var(--red-700);}
+.badge.expired::before{background:var(--red-600);}
+.badge.draft{background:var(--ink-100);color:var(--ink-500);}
+.badge.draft::before{background:var(--ink-400);}
+.badge.renewal{background:var(--purple-50);color:var(--purple-700);}
+.badge.renewal::before{background:var(--purple-600);}
+
+/* Currency — Indian Rupee, injected via CSS regardless of underlying text
+   Wrap the amount like: <span class="value-cell"><span class="cur">$</span>482,000</span>
+   The original "$" text is visually hidden and "₹" is drawn in its place. */
+.value-cell{font-weight:700;color:var(--ink-900);font-size:13.8px;}
+.value-cell .cur{
+  font-size:0;              /* hides whatever character is actually in the span */
+  margin-right:3px;
+}
+.value-cell .cur::before{
+  content:"\20B9";          /* ₹ Indian Rupee sign */
+  font-size:12px;
+  font-weight:700;
+  color:var(--ink-400);
+}
+
+.row-actions{display:flex;gap:6px;}
+.row-actions button{
+  width:30px;height:30px;border-radius:8px;border:1px solid var(--ink-200);background:#fff;display:flex;
+  align-items:center;justify-content:center;color:var(--ink-500);transition:all .15s var(--ease);
+}
+.row-actions button:hover{background:var(--blue-500);border-color:var(--blue-500);color:#fff;transform:translateY(-1px);}
+.row-actions button svg{width:15px;height:15px;}
+
+.table-footer{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-top:1px solid var(--ink-100);}
+.table-footer .info{font-size:12.8px;color:var(--ink-500);}
+.pagination{display:flex;gap:6px;}
+.pg-btn{
+  width:32px;height:32px;border-radius:8px;border:1px solid var(--ink-200);background:#fff;font-size:12.8px;font-weight:600;
+  color:var(--ink-700);display:flex;align-items:center;justify-content:center;transition:all .15s var(--ease);
+}
+.pg-btn.active{background:linear-gradient(135deg,var(--blue-500),var(--blue-700));border-color:var(--blue-600);color:#fff;box-shadow:0 3px 10px rgba(37,99,235,.3);}
+.pg-btn:hover:not(.active){background:var(--ink-100);}
+
+@media (max-width: 1100px){
+  .toolbar{flex-direction:column;align-items:stretch;}
+  .search-bar{max-width:none;}
+}
+
+.badge.active{
+  background:var(--green-50);
+  color:var(--green-700);
+}
+.badge.active::before{
+  background:var(--green-600);
+}
+
+.badge.expiring{
+  background:var(--orange-50);
+  color:var(--orange-700);
+}
+.badge.expiring::before{
+  background:var(--orange-600);
+}
+
+.badge.expired{
+  background:var(--red-50);
+  color:var(--red-700);
+}
+.badge.expired::before{
+  background:var(--red-600);
+}

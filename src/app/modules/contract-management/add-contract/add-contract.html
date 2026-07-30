@@ -1,0 +1,111 @@
+<div class="cm-root">
+
+  <div class="page-head">
+    <h1>Add Contract</h1>
+    <p>Create a new vendor contract and route it through approval.</p>
+  </div>
+
+  <div class="stepper">
+    <div class="step"><div class="step-num">1</div><div class="step-label">Contract Details</div></div>
+    <div class="step-line"></div>
+    <div class="step todo"><div class="step-num">2</div><div class="step-label">Terms &amp; Value</div></div>
+    <div class="step-line"></div>
+    <div class="step todo"><div class="step-num">3</div><div class="step-label">Documents</div></div>
+    <div class="step-line"></div>
+    <div class="step todo"><div class="step-num">4</div><div class="step-label">Review &amp; Submit</div></div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submitForApproval()">
+
+    <div class="form-card">
+      <h3>Contract Information</h3>
+      <p class="desc">Basic details identifying this contract and the vendor it applies to.</p>
+      <div class="form-grid">
+        <div class="field">
+          <label>Contract Name <span class="req">*</span></label>
+          <input type="text" formControlName="contractName" placeholder="e.g. Master Supply Agreement">
+        </div>
+        <div class="field">
+          <label>Vendor <span class="req">*</span></label>
+          <select formControlName="vendor">
+            <option value="" disabled>Select a vendor</option>
+            <option *ngFor="let v of vendors" [value]="v">{{ v }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Contract Type <span class="req">*</span></label>
+          <select formControlName="contractType">
+            <option value="" disabled>Select type</option>
+            <option *ngFor="let t of contractTypes" [value]="t">{{ t }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Department</label>
+          <select formControlName="department">
+            <option *ngFor="let d of departments" [value]="d">{{ d }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Terms &amp; Value</h3>
+      <p class="desc">Financial terms and duration of the agreement.</p>
+      <div class="form-grid">
+        <div class="field">
+          <label>Contract Value <span class="req">*</span></label>
+          <input type="text" formControlName="contractValue" placeholder="$ 0.00">
+        </div>
+        <div class="field">
+          <label>Payment Terms</label>
+          <select formControlName="paymentTerms">
+            <option *ngFor="let p of paymentTerms" [value]="p">{{ p }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Start Date <span class="req">*</span></label>
+          <input type="date" formControlName="startDate">
+        </div>
+        <div class="field">
+          <label>End Date <span class="req">*</span></label>
+          <input type="date" formControlName="endDate">
+        </div>
+        <div class="field">
+          <label>Auto-Renewal</label>
+          <select formControlName="autoRenewal">
+            <option *ngFor="let a of autoRenewalOptions" [value]="a">{{ a }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Renewal Notice Period</label>
+          <select formControlName="noticePeriod">
+            <option *ngFor="let n of noticePeriods" [value]="n">{{ n }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid full" style="margin-top:20px;">
+        <div class="field">
+          <label>Scope &amp; Description</label>
+          <textarea formControlName="scope" placeholder="Describe the scope of work, deliverables and key obligations..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Supporting Documents</h3>
+      <p class="desc">Upload the signed agreement and any supporting attachments.</p>
+      <div class="upload-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+        <div class="u1">Drag &amp; drop files here, or click to browse</div>
+        <div class="u2">PDF, DOCX up to 25MB per file</div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn" (click)="saveDraft()">Save as Draft</button>
+      <button type="submit" class="btn btn-primary">Submit for Approval</button>
+    </div>
+
+  </form>
+
+</div>

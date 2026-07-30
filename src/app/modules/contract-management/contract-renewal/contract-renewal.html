@@ -1,0 +1,44 @@
+<div class="cm-root">
+
+  <div class="page-head">
+    <h1>Contract Renewal</h1>
+    <p>Manage the active renewal pipeline and take action before contracts lapse.</p>
+  </div>
+
+  <div class="alert-banner">
+    <div class="a-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+    </div>
+    <div class="a-text">
+      <div class="a-title">3 renewals require action this week</div>
+      <div class="a-sub">Vendor responses are pending or renewal terms are still under internal review.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Renewal Pipeline <span class="count-chip">{{ renewals.length }}</span></div>
+
+  <div class="renewal-card" *ngFor="let r of renewals">
+    <div class="progress-mini">
+      <div class="p-label"><span>Days left</span><span>{{ r.daysLeft }}</span></div>
+      <div class="p-bar"><div class="p-fill" [style.width.%]="r.progressPercent" [style.background]="r.progressColor"></div></div>
+    </div>
+    <div class="renewal-body">
+      <div class="top-line">
+        <span class="r-name">{{ r.name }}</span>
+        <span class="badge" [ngClass]="r.status">{{ r.statusLabel }}</span>
+      </div>
+      <div class="r-meta">{{ r.vendor }} · {{ r.value }} · {{ r.note }}</div>
+    </div>
+    <div class="renewal-actions">
+      <ng-container *ngIf="r.actionable; else viewOnly">
+        <button class="btn btn-approve" (click)="renew(r)">Renew</button>
+        <button class="btn" (click)="negotiate(r)">Negotiate</button>
+        <button class="btn btn-reject" (click)="terminate(r)">Terminate</button>
+      </ng-container>
+      <ng-template #viewOnly>
+        <button class="btn">View</button>
+      </ng-template>
+    </div>
+  </div>
+
+</div>

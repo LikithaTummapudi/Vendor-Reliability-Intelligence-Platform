@@ -1,0 +1,300 @@
+<div class="vm-page">
+
+  <!-- Top Navigation -->
+  <div class="vm-topbar">
+    <div class="vm-topbar-heading">
+      <h1>Vendor Management</h1>
+      <p>Register a new vendor into the network</p>
+    </div>
+    <nav class="vm-tabs">
+      <a routerLink="/vendor-management/dashboard" routerLinkActive="active" class="vm-tab">Vendor Dashboard</a>
+      <a routerLink="/vendor-management/list" routerLinkActive="active" class="vm-tab">Vendor List</a>
+      <a routerLink="/vendor-management/add" routerLinkActive="active" class="vm-tab">Add Vendor</a>
+      <a routerLink="/vendor-management/details" routerLinkActive="active" class="vm-tab">Vendor Details</a>
+      <a routerLink="/vendor-management/approval" routerLinkActive="active" class="vm-tab">Vendor Approval</a>
+    </nav>
+  </div>
+
+  <form class="vm-form" (ngSubmit)="submitVendor()">
+
+    <!-- Basic Information -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">01</span>
+        <div>
+          <h2>Basic Information</h2>
+          <p>The identity vendors and approvers will see first</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field">
+          <label>Vendor Name</label>
+          <input type="text" [(ngModel)]="form.vendorName" name="vendorName" placeholder="e.g. Crestline Electricals" />
+        </div>
+        <div class="vm-field">
+          <label>Display Name</label>
+          <input type="text" [(ngModel)]="form.displayName" name="displayName" placeholder="Short name shown in lists" />
+        </div>
+        <div class="vm-field">
+          <label>Vendor Type</label>
+          <select [(ngModel)]="form.vendorType" name="vendorType">
+            <option value="" disabled selected>Select vendor type</option>
+            <option *ngFor="let t of vendorTypes" [value]="t">{{ t }}</option>
+          </select>
+        </div>
+        <div class="vm-field">
+          <label>Vendor Category</label>
+          <select [(ngModel)]="form.category" name="category">
+            <option value="" disabled selected>Select category</option>
+            <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Information -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">02</span>
+        <div>
+          <h2>Company Information</h2>
+          <p>Legal and registration details of the organization</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field">
+          <label>Company Name</label>
+          <input type="text" [(ngModel)]="form.companyName" name="companyName" placeholder="Registered company name" />
+        </div>
+        <div class="vm-field">
+          <label>Registration Number</label>
+          <input type="text" [(ngModel)]="form.registrationNumber" name="registrationNumber" placeholder="CIN / Registration No." />
+        </div>
+        <div class="vm-field">
+          <label>Year Established</label>
+          <input type="text" [(ngModel)]="form.yearEstablished" name="yearEstablished" placeholder="e.g. 2011" />
+        </div>
+        <div class="vm-field">
+          <label>Company Size</label>
+          <select [(ngModel)]="form.companySize" name="companySize">
+            <option value="" disabled selected>Select company size</option>
+            <option *ngFor="let s of companySizes" [value]="s">{{ s }}</option>
+          </select>
+        </div>
+        <div class="vm-field span-2">
+          <label>Website</label>
+          <input type="text" [(ngModel)]="form.website" name="website" placeholder="https://www.company.com" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Information -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">03</span>
+        <div>
+          <h2>Business Information</h2>
+          <p>What the vendor supplies and how large their operation is</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field">
+          <label>Industry</label>
+          <input type="text" [(ngModel)]="form.industry" name="industry" placeholder="e.g. Industrial Electricals" />
+        </div>
+        <div class="vm-field">
+          <label>Annual Turnover</label>
+          <input type="text" [(ngModel)]="form.annualTurnover" name="annualTurnover" placeholder="e.g. $2.5M" />
+        </div>
+        <div class="vm-field span-2">
+          <label>Business Description</label>
+          <textarea rows="3" [(ngModel)]="form.businessDescription" name="businessDescription" placeholder="Briefly describe products or services offered"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">04</span>
+        <div>
+          <h2>Contact Information</h2>
+          <p>Primary point of contact for this vendor</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field">
+          <label>Contact Person</label>
+          <input type="text" [(ngModel)]="form.contactPerson" name="contactPerson" placeholder="Full name" />
+        </div>
+        <div class="vm-field">
+          <label>Designation</label>
+          <input type="text" [(ngModel)]="form.designation" name="designation" placeholder="e.g. Account Manager" />
+        </div>
+        <div class="vm-field">
+          <label>Email Address</label>
+          <input type="email" [(ngModel)]="form.email" name="email" placeholder="name@company.com" />
+        </div>
+        <div class="vm-field">
+          <label>Phone Number</label>
+          <input type="text" [(ngModel)]="form.phone" name="phone" placeholder="+1 555 000 0000" />
+        </div>
+        <div class="vm-field">
+          <label>Alternate Phone</label>
+          <input type="text" [(ngModel)]="form.alternatePhone" name="alternatePhone" placeholder="Optional" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Address -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">05</span>
+        <div>
+          <h2>Address</h2>
+          <p>Registered business address</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field span-2">
+          <label>Address Line 1</label>
+          <input type="text" [(ngModel)]="form.addressLine1" name="addressLine1" placeholder="Street address" />
+        </div>
+        <div class="vm-field span-2">
+          <label>Address Line 2</label>
+          <input type="text" [(ngModel)]="form.addressLine2" name="addressLine2" placeholder="Suite, floor, building (optional)" />
+        </div>
+        <div class="vm-field">
+          <label>City</label>
+          <input type="text" [(ngModel)]="form.city" name="city" placeholder="City" />
+        </div>
+        <div class="vm-field">
+          <label>State / Province</label>
+          <input type="text" [(ngModel)]="form.state" name="state" placeholder="State or province" />
+        </div>
+        <div class="vm-field">
+          <label>Country</label>
+          <select [(ngModel)]="form.country" name="country">
+            <option value="" disabled selected>Select country</option>
+            <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+        <div class="vm-field">
+          <label>Postal Code</label>
+          <input type="text" [(ngModel)]="form.postalCode" name="postalCode" placeholder="ZIP / Postal code" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Bank Details -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">06</span>
+        <div>
+          <h2>Bank Details</h2>
+          <p>Used for processing vendor payments</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field">
+          <label>Bank Name</label>
+          <input type="text" [(ngModel)]="form.bankName" name="bankName" placeholder="e.g. HSBC" />
+        </div>
+        <div class="vm-field">
+          <label>Account Holder Name</label>
+          <input type="text" [(ngModel)]="form.accountHolder" name="accountHolder" placeholder="As per bank records" />
+        </div>
+        <div class="vm-field">
+          <label>Account Number</label>
+          <input type="text" [(ngModel)]="form.accountNumber" name="accountNumber" placeholder="Bank account number" />
+        </div>
+        <div class="vm-field">
+          <label>IFSC / SWIFT Code</label>
+          <input type="text" [(ngModel)]="form.ifscSwift" name="ifscSwift" placeholder="e.g. HSBC0001234" />
+        </div>
+        <div class="vm-field">
+          <label>Branch Name</label>
+          <input type="text" [(ngModel)]="form.branchName" name="branchName" placeholder="Branch location" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Tax Details -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">07</span>
+        <div>
+          <h2>Tax Details</h2>
+          <p>Required for statutory compliance and invoicing</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field">
+          <label>GST / VAT Number</label>
+          <input type="text" [(ngModel)]="form.gstNumber" name="gstNumber" placeholder="Tax registration number" />
+        </div>
+        <div class="vm-field">
+          <label>PAN / Tax ID</label>
+          <input type="text" [(ngModel)]="form.panNumber" name="panNumber" placeholder="Permanent account number" />
+        </div>
+        <div class="vm-field">
+          <label>Tax Residency Country</label>
+          <select [(ngModel)]="form.taxResidencyCountry" name="taxResidencyCountry">
+            <option value="" disabled selected>Select country</option>
+            <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Documents Upload -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">08</span>
+        <div>
+          <h2>Documents Upload</h2>
+          <p>Attach registration certificates, tax forms and compliance documents</p>
+        </div>
+      </div>
+      <label class="vm-upload-zone">
+        <input type="file" multiple hidden (change)="onFileSelected($event)" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5 5 5M12 5v11"/></svg>
+        <p><strong>Click to upload</strong> or drag and drop files here</p>
+        <span>PDF, JPG or PNG up to 10MB</span>
+      </label>
+      <div class="vm-doc-list" *ngIf="uploadedDocuments.length">
+        <div class="vm-doc-chip" *ngFor="let doc of uploadedDocuments">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span>{{ doc }}</span>
+          <button type="button" (click)="removeDocument(doc)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Notes -->
+    <section class="vm-form-section">
+      <div class="vm-section-head">
+        <span class="vm-section-index">09</span>
+        <div>
+          <h2>Notes</h2>
+          <p>Internal notes visible only to the procurement team</p>
+        </div>
+      </div>
+      <div class="vm-form-grid">
+        <div class="vm-field span-2">
+          <textarea rows="4" [(ngModel)]="form.notes" name="notes" placeholder="Add any internal remarks about this vendor"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Bar -->
+    <div class="vm-form-actions">
+      <a routerLink="/vendor-management/list" class="vm-btn vm-btn-ghost">Cancel</a>
+      <button type="button" class="vm-btn vm-btn-secondary" (click)="saveDraft()">Save Draft</button>
+      <button type="submit" class="vm-btn vm-btn-primary">Submit Vendor</button>
+    </div>
+
+  </form>
+</div>

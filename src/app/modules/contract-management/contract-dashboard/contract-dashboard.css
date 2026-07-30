@@ -1,0 +1,107 @@
+/* ===================== contract-dashboard.css ===================== */
+/* Modern professional theme — Indian Rupee currency, refined buttons */
+
+:root{
+  --blue-50:#eff4ff; --blue-100:#dbe7ff; --blue-500:#2563EB; --blue-600:#1d4fd1; --blue-700:#1741ab;
+  --ink-900:#0f172a; --ink-700:#334155; --ink-500:#64748b; --ink-400:#94a3b8; --ink-200:#e2e8f0; --ink-100:#f1f5f9;
+  --green-50:#ecfdf5; --green-600:#059669; --green-700:#047857;
+  --orange-50:#fffbeb; --orange-600:#d97706; --orange-700:#b45309;
+  --red-50:#fef2f2; --red-600:#dc2626;
+  --purple-50:#f5f3ff; --purple-600:#7c3aed; --purple-700:#6d28d9;
+  --radius-lg:16px; --radius-md:10px;
+  --shadow-sm: 0 1px 2px rgba(15,23,42,.05);
+  --shadow-md: 0 4px 14px rgba(15,23,42,.07), 0 1px 3px rgba(15,23,42,.05);
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+*{box-sizing:border-box;}
+.cm-root{font-family:'Inter',sans-serif;color:var(--ink-900);}
+.cm-root button{font-family:inherit;cursor:pointer;}
+
+.page-head{margin-bottom:22px;}
+.page-head h1{font-size:26px;font-weight:800;letter-spacing:-0.02em;margin:0 0 6px 0;}
+.page-head p{margin:0;color:var(--ink-500);font-size:14.5px;}
+
+/* Stat cards */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px;}
+.stat-card{
+  background:#fff;border:1px solid var(--ink-200);border-radius:var(--radius-lg);padding:20px 22px;
+  box-shadow:var(--shadow-md);transition:transform .18s var(--ease), box-shadow .18s var(--ease);
+}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,23,42,.10);}
+.stat-card .top-row{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.stat-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.stat-icon svg{width:21px;height:21px;}
+.stat-icon.blue{background:var(--blue-50);color:var(--blue-600);}
+.stat-icon.green{background:var(--green-50);color:var(--green-700);}
+.stat-icon.orange{background:var(--orange-50);color:var(--orange-700);}
+.stat-icon.purple{background:var(--purple-50);color:var(--purple-700);}
+.stat-trend{font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px;display:flex;align-items:center;gap:3px;}
+.stat-trend.up{background:var(--green-50);color:var(--green-700);}
+.stat-trend.down{background:var(--red-50);color:var(--red-600);}
+.stat-trend svg{width:11px;height:11px;}
+.stat-value{font-size:30px;font-weight:800;letter-spacing:-0.02em;line-height:1;margin-bottom:6px;}
+.stat-label{font-size:13.5px;color:var(--ink-500);font-weight:500;}
+
+/* Expiry alert banner */
+.alert-banner{
+  display:flex;align-items:center;gap:14px;background:var(--orange-50);border:1px solid #fde68a;
+  border-radius:var(--radius-lg);padding:16px 20px;margin-bottom:24px;
+}
+.alert-banner .a-icon{width:38px;height:38px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--orange-700);flex-shrink:0;box-shadow:var(--shadow-sm);}
+.alert-banner .a-icon svg{width:19px;height:19px;}
+.alert-banner .a-text{flex:1;}
+.alert-banner .a-title{font-size:14px;font-weight:700;color:var(--orange-700);margin-bottom:2px;}
+.alert-banner .a-sub{font-size:12.8px;color:#92600a;}
+
+.btn{
+  display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:var(--radius-md);font-size:13.8px;font-weight:600;
+  border:1px solid var(--ink-200);background:#fff;color:var(--ink-700);box-shadow:var(--shadow-sm);white-space:nowrap;
+  transition:background .16s var(--ease), box-shadow .16s var(--ease), transform .1s var(--ease);
+}
+.btn:hover{background:var(--ink-100);}
+.btn:active{transform:translateY(1px);}
+.alert-banner .btn{background:#fff;}
+.alert-banner .btn:hover{background:var(--ink-100);}
+
+/* Two-column layout */
+.grid-2{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;margin-bottom:24px;}
+
+.table-card{background:#fff;border:1px solid var(--ink-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);overflow:hidden;}
+.table-card-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--ink-100);}
+.table-card-head h3{margin:0;font-size:16px;font-weight:700;}
+
+.timeline-item{display:flex;gap:12px;padding-bottom:16px;position:relative;}
+.timeline-item:not(:last-child)::before{content:'';position:absolute;left:5px;top:16px;bottom:0;width:1.5px;background:var(--ink-200);}
+.timeline-dot{width:11px;height:11px;border-radius:50%;background:var(--blue-500);flex-shrink:0;margin-top:3px;border:2px solid var(--blue-100);}
+.timeline-body .t-title{font-size:13.2px;font-weight:600;color:var(--ink-900);}
+.timeline-body .t-date{font-size:11.5px;color:var(--ink-400);margin-top:2px;}
+
+.vd-panel{background:#fff;border:1px solid var(--ink-200);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:24px;margin-bottom:20px;}
+.vd-panel h4{margin:0 0 18px 0;font-size:14.5px;font-weight:700;}
+
+/* Category breakdown bars */
+.metric-row{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.metric-row:last-child{margin-bottom:0;}
+.metric-row .m-label{width:120px;font-size:13px;color:var(--ink-700);font-weight:500;flex-shrink:0;}
+.metric-row .m-bar{flex:1;height:8px;background:var(--ink-100);border-radius:4px;overflow:hidden;}
+.metric-row .m-fill{height:100%;border-radius:4px;transition:width .4s var(--ease);}
+.metric-row .m-val{width:38px;text-align:right;font-size:13px;font-weight:700;color:var(--ink-900);}
+
+/* Currency helper — Indian Rupee, for any amount wrapped as <span class="cur">$</span>1,234 */
+.cur{
+  font-size:0;
+  margin-right:3px;
+}
+.cur::before{
+  content:"\20B9";
+  font-size:inherit;
+  font-weight:700;
+}
+.stat-value .cur::before,
+.m-val .cur::before{ font-size:14px; }
+
+@media (max-width: 1100px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .grid-2{grid-template-columns:1fr;}
+}

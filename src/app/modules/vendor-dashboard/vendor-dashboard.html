@@ -1,0 +1,93 @@
+<h2>Vendor Dashboard</h2>
+
+<!-- Vendor Performance -->
+
+<div class="card">
+  <h3>Vendor Performance Score</h3>
+
+  <div *ngFor="let item of vendorPerformance">
+
+    <div class="row">
+      <span>{{item.metric}}</span>
+      <span>{{item.score}}%</span>
+    </div>
+
+    <div class="progress">
+      <div
+        class="progress-bar"
+        [style.width.%]="item.score">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Reliability Score -->
+
+<div class="card">
+  <h3>Reliability Score</h3>
+
+  <div class="score-circle">
+    {{reliabilityScore}}%
+  </div>
+</div>
+
+<!-- Contract Status -->
+
+<div class="card">
+  <h3>Contract Status</h3>
+
+  <table>
+    <tr>
+      <th>Contract ID</th>
+      <th>Start Date</th>
+      <th>Renewal Date</th>
+      <th>Status</th>
+    </tr>
+
+    <tr *ngFor="let contract of contracts">
+      <td>{{contract.contractId}}</td>
+      <td>{{contract.startDate}}</td>
+      <td>{{contract.renewalDate}}</td>
+      <td>{{contract.status}}</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Order History -->
+
+<div class="card">
+  <h3>Order History</h3>
+
+  <table>
+    <tr>
+      <th>PO Number</th>
+      <th>Date</th>
+      <th>Items</th>
+      <th>Amount</th>
+      <th>Delivery</th>
+      <th>Rating</th>
+    </tr>
+
+    <tr *ngFor="let order of orderHistory">
+      <td>{{order.po}}</td>
+      <td>{{order.date}}</td>
+      <td>{{order.items}}</td>
+      <td>{{order.amount}}</td>
+      <td>{{order.delivery}}</td>
+      <td>{{order.rating}} ⭐</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Communication Activity -->
+
+<div class="card">
+  <h3>Communication Activity</h3>
+
+  <ul>
+    <li *ngFor="let activity of communications">
+      {{activity}}
+    </li>
+  </ul>
+</div>

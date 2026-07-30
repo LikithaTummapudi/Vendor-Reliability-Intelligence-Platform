@@ -1,0 +1,82 @@
+<div class="cm-root">
+
+  <div class="page-head">
+    <h1>Compliance Monitoring</h1>
+    <p>Track certification, insurance and audit status across all contracted vendors.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card" *ngFor="let s of stats">
+      <div class="top-row">
+        <div class="stat-icon" [ngClass]="s.color">
+          <svg *ngIf="s.icon==='shield'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+          <svg *ngIf="s.icon==='check'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          <svg *ngIf="s.icon==='alert'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <svg *ngIf="s.icon==='x'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+        </div>
+      </div>
+      <div class="stat-value">{{ s.value }}</div>
+      <div class="stat-label">{{ s.label }}</div>
+    </div>
+  </div>
+
+  <div class="alert-banner red">
+    <div class="a-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+    </div>
+    <div class="a-text">
+      <div class="a-title">15 contracts are non-compliant</div>
+      <div class="a-sub">Missing required certifications, expired insurance, or unresolved audit findings. Immediate action recommended.</div>
+    </div>
+    <button class="btn">View All</button>
+  </div>
+
+  <div class="table-card">
+    <div class="table-card-head">
+      <h3>Compliance Status by Contract</h3>
+      <div class="count">Showing {{ rows.length }} of 742 contracts</div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Contract ID</th><th>Vendor</th><th>Compliance Score</th><th>Insurance</th>
+          <th>Certifications</th><th>Last Audit</th><th>Status</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of rows">
+          <td class="contract-id">{{ r.id }}</td>
+          <td>{{ r.vendor }}</td>
+          <td>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="compliance-score-ring" [ngClass]="r.scoreTier">{{ r.score }}</div>
+            </div>
+          </td>
+          <td><span class="badge" [ngClass]="r.insurance.status">{{ r.insurance.label }}</span></td>
+          <td><span class="badge" [ngClass]="r.certifications.status">{{ r.certifications.label }}</span></td>
+          <td>{{ r.lastAudit }}</td>
+          <td><span class="badge" [ngClass]="r.status">{{ r.statusLabel }}</span></td>
+          <td>
+            <div class="row-actions">
+              <button title="View">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="table-footer">
+      <div class="info">Showing 1 to {{ rows.length }} of 742 entries</div>
+      <div class="pagination">
+        <div class="pg-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></div>
+        <div class="pg-btn active">1</div>
+        <div class="pg-btn">2</div>
+        <div class="pg-btn">3</div>
+        <div class="pg-btn">…</div>
+        <div class="pg-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+</div>

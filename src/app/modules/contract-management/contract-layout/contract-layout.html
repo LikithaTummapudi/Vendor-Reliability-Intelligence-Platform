@@ -1,0 +1,66 @@
+<div class="contract-container">
+
+    <div class="page-header">
+
+        <h1>Contract Management</h1>
+
+        <p>
+            Track agreements, renewals, expirations and compliance status
+            across all vendors.
+        </p>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <div class="contract-tabs">
+
+        <a
+            routerLink="dashboard"
+            routerLinkActive="active">
+
+            Contract Dashboard
+
+        </a>
+
+        <a
+            routerLink="contract-list"
+            routerLinkActive="active">
+
+            Contract List
+
+        </a>
+
+        <a
+            routerLink="contract-details"
+            routerLinkActive="active">
+
+            Contract Details
+
+        </a>
+
+        <a
+            routerLink="contract-renewal"
+            routerLinkActive="active">
+
+            Contract Renewal
+
+        </a>
+
+        <a
+            routerLink="compliance-monitoring"
+            routerLinkActive="active">
+
+            Compliance Monitoring
+
+        </a>
+
+    </div>
+
+    <div class="page-content">
+
+        <router-outlet></router-outlet>
+
+    </div>
+
+</div>

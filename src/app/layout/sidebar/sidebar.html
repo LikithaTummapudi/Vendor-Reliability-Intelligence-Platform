@@ -1,0 +1,239 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+
+    <!-- ===========================
+         BRAND
+    ============================ -->
+
+    <div class="brand">
+
+        <div class="brand-logo">
+
+            VR
+
+        </div>
+
+        <div class="brand-text" *ngIf="!collapsed">
+
+            <h2>Vendor Reliability</h2>
+
+            <span>Enterprise Platform</span>
+
+        </div>
+
+        <button
+            mat-icon-button
+            class="collapse-btn"
+            (click)="toggleSidebar()">
+
+            <mat-icon>
+
+                {{ collapsed ? 'chevron_right' : 'chevron_left' }}
+
+            </mat-icon>
+
+        </button>
+
+    </div>
+
+    <!-- ===========================
+         MAIN NAVIGATION
+    ============================ -->
+
+<nav class="navigation">
+
+    <!-- MAIN -->
+
+    <div class="section-title" *ngIf="!collapsed">
+
+        MAIN
+
+    </div>
+
+    <a
+        [routerLink]="menu[0].route"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <mat-icon>{{menu[0].icon}}</mat-icon>
+
+        <span *ngIf="!collapsed">
+
+            {{menu[0].title}}
+
+        </span>
+
+    </a>
+
+    <!-- PROCUREMENT -->
+
+    <div class="section-title" *ngIf="!collapsed">
+
+        PROCUREMENT
+
+    </div>
+
+    <a
+        *ngFor="let item of menu.slice(1,6)"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <mat-icon>{{item.icon}}</mat-icon>
+
+        <span *ngIf="!collapsed">
+
+            {{item.title}}
+
+        </span>
+
+    </a>
+
+    <!-- COLLABORATION -->
+
+    <div class="section-title" *ngIf="!collapsed">
+
+        COLLABORATION
+
+    </div>
+
+    <a
+        [routerLink]="menu[6].route"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <mat-icon>{{menu[6].icon}}</mat-icon>
+
+        <span *ngIf="!collapsed">
+
+            {{menu[6].title}}
+
+        </span>
+
+    </a>
+
+    <!-- INSIGHTS -->
+
+    <div class="section-title" *ngIf="!collapsed">
+
+        INSIGHTS
+
+    </div>
+
+    <a
+        *ngFor="let item of menu.slice(7,9)"
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <mat-icon>{{item.icon}}</mat-icon>
+
+        <span *ngIf="!collapsed">
+
+            {{item.title}}
+
+        </span>
+
+        <div
+            class="badge"
+            *ngIf="item.badge && !collapsed">
+
+            {{item.badge}}
+
+        </div>
+
+    </a>
+
+    <!-- ACCOUNT -->
+
+    <div class="section-title" *ngIf="!collapsed">
+
+        ACCOUNT
+
+    </div>
+
+    <a
+        [routerLink]="menu[9].route"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <mat-icon>{{menu[9].icon}}</mat-icon>
+
+        <span *ngIf="!collapsed">
+
+            {{menu[9].title}}
+
+        </span>
+
+    </a>
+
+</nav>
+
+    <!-- ===========================
+         USER PROFILE
+    ============================ -->
+
+    <div class="profile-section">
+
+    <div
+        class="profile-card"
+        (click)="toggleProfileMenu()">
+
+        <div class="avatar">
+
+            LV
+
+        </div>
+
+        <div
+            class="profile-info"
+            *ngIf="!collapsed">
+
+            <h4>Likitha Varma</h4>
+
+            <span>Procurement Manager</span>
+
+        </div>
+
+        <mat-icon
+            *ngIf="!collapsed"
+            class="expand">
+
+            expand_more
+
+        </mat-icon>
+
+    </div>
+
+    <div
+        class="profile-menu"
+        *ngIf="profileMenuOpen && !collapsed">
+
+        <a class="menu-item">
+
+            <mat-icon>person</mat-icon>
+
+            <span>My Profile</span>
+
+        </a>
+
+        <a class="menu-item">
+
+            <mat-icon>settings</mat-icon>
+
+            <span>Settings</span>
+
+        </a>
+
+        <a class="menu-item logout">
+
+            <mat-icon>logout</mat-icon>
+
+            <span>Logout</span>
+
+        </a>
+
+    </div>
+
+</div>
+
+</div>
